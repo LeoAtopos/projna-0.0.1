@@ -7,7 +7,7 @@ exports.setReqUrl = function (app) {
 	app.get('/', function(req, res) {
 		console.log ('home page send');
     	res.header("Content-Type", "text/html");
-		res.sendFile (__dirname+"/public/index.html");
+		res.sendFile (__dirname+"/public/pages/index.html");
 	});
 
 // users
