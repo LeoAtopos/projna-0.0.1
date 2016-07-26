@@ -1,0 +1,75 @@
+.container-fluid{
+	margin: 0px;
+	border-radius: 0px;
+	padding: 0px;
+}
+
+.header{
+	margin: 0px;
+	border-radius: 0px;
+	padding: 0px;
+}
+
+.logo-mini{
+	height: 30px;
+	width: 30px;
+	margin-right: 15px;
+	margin-left: 15px;
+	margin-top: 10px;
+	display: inline-block;
+	cursor: pointer;
+}
+.cover{
+	border-radius: 0px;
+	background-image: url(../images/cover.jpg);
+	background-repeat: no-repeat;
+	background-position: right center;
+	background-position-x: 100%;
+	background-position-y: 50%;
+	background-size: cover;
+	text-shadow:2px 2px 0px black;
+	min-width: 200px;
+	padding-bottom: 30px;
+}
+
+/*in-covers_________________________________________________________*/
+	#brand{
+		color:#F5F5F5;
+		font-size:60px;
+		line-height:100px;
+		font-weight:bold;
+	}
+	#slogan1{
+		color:#F5F5F5;
+		font-size:28px;
+		line-height:20px;
+		font-weight:bold;
+	}
+	#slogan2{
+		color:#F5F5F5;
+		font-size:28px;
+		line-height:40px;
+		font-weight:bold;
+		font-style:italic;
+	}
+	#learnmore{
+		color:#F5F5F5;
+		font-size:15px;
+		line-height:40px;
+		text-decoration:none;
+	}
+	#joinnow{
+	}
+/*_____________________________________________________________________*/
+
+
+
+.footer{
+	padding-left: 100px;
+	padding-right: 100px;
+	padding-top: 20px;
+	background-color: #FFFFFF;
+	vertical-align: bottom;
+	text-align: center;
+	vertical-align: center;
+}
