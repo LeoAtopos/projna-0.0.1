@@ -34,6 +34,33 @@
 	            </div>
 			</div>			
 		</nav>
+		<script type="text/javascript">
+	$(document).ready(checkLogIn);
+	function checkLogIn(){
+		if(isLogged()){
+			$("#login").hide();
+			$("#beProjna").hide();
+			$("#projnaName").show();
+		}
+		else{
+			$("#login").show();
+			$("#beProjna").show();
+			$("#projnaName").hide();
+		}
+	}
+	function isLogged(){
+		var userInfo;
+		$.ajax({
+			type:"GET",url:"http://172.16.40.31:8081/checkSession",data:{},
+			success: function(msg){
+				alert("Sign Up Success");
+				userInfo = msg;
+			}
+		});
+		if (userInfo.success) return true;
+		else return false;
+	}
+</script>
 	</div>
 
 	<div id = "divcover">
