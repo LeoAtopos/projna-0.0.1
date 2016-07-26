@@ -68,8 +68,14 @@
 	padding-left: 100px;
 	padding-right: 100px;
 	padding-top: 20px;
-	background-color: #FFFFFF;
+	padding-bottom: 20px;
+	background-color: #232D32;
 	vertical-align: bottom;
-	text-align: center;
+	text-align: left;
 	vertical-align: center;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.footer a{
+	color: #A7B3B7;
 }
