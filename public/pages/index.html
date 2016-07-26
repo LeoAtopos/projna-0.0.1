@@ -11,50 +11,14 @@
 </head>
 <body>
 	<div class = "container-fluid">
-		<div id = "div1"></div>
-		<div class = "cover" align = "center">
-			<span id = "brand">Projna</span><br>
-			<span id = "slogan1">Trust in Building Persons</span><br>
-			<span id = "slogan2">@Projects</span><br><br>
-			<a id = "learnmore" href="">- Learn More -</a><br>
-			<button id = "joinnow" class = "btn btn-default"onclick="location.href='sign-up.html'">Join Now</button>
-		</div>
-		<div class = "footer">
-			<div class = "container">
-				<div class = "row">
-					<div class = "col-sm-6 col-md-3">
-						<h4>Discover</h4>
-						<div><a href="">Persons</a></div>
-						<div><a href="">Projects</a></div>
-						<div><a href="">Recent Features</a></div>
-						<div><a href="">News</a></div>
-						<div><a href="">Surprise me</a></div>
-					</div>
-					<div class = "col-sm-6 col-md-3">
-						<h4>Support</h4>
-						<div><a href="">FAQ</a></div>
-						<div><a href="">Guides</a></div>
-						<div><a href="">Terms of Use</a></div>
-					</div>
-					<div class = "col-sm-6 col-md-3">
-						<h4>About us</h4>
-						<div><a href="">What is Projna?</a></div>
-						<div><a href="">Who we are?</a></div>
-						<div><a href="">Jobs</a></div>
-					</div>
-					<div class = "col-sm-6 col-md-3">
-						<h4>Follow us</h4>
-						<div><a href="">Twiter</a></div>
-						<div><a href="">facebook</a></div>
-						<div><a href="">Instgram</a></div>
-					</div>
-				</div>
-			</div>
-		</div>
+		<div id = "divH"></div>
+		<div id = "divC" align = "center"></div>
+		<div id = "divF" ></div>
 	</div>
 </body>
-
 <script type="text/javascript">
-	$("#div1").load("utility.html #divheader");
+	$("#divH").load("pages/utility.html #divheader");
+	$("#divC").load("pages/utility.html #divcover");
+	$("#divF").load("pages/utility.html #divfooter");
 </script>
 </html>
