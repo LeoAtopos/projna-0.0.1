@@ -6,7 +6,7 @@ function checkLogIn(){
 		type:"GET",url:"http://172.16.40.36:8081/user/checkSession",data:{},
 		success: function(msg){
 			userInfo = msg;
-			if(userInfo){
+			if(userInfo.status === "user"){
 				$("#login").hide();
 				$("#beProjna").hide();
 				$("#projnaName").show();
