@@ -41,12 +41,12 @@ exports.onregister = function (req, res) {
 	})
 }
 
-exports.login = function (req, res) {
-	console.log ('user => login');
-	res.header("Content-Type", "text/html");
-	res.sendFile(path.join(__dirname, '../public', 'login.html'));
-	// res.sendFile (__dirname+'/public/login.html');
-}
+// exports.login = function (req, res) {
+// 	console.log ('user => login');
+// 	res.header("Content-Type", "text/html");
+// 	res.sendFile(path.join(__dirname+'/public/pages/login.html'));
+// 	// res.sendFile (__dirname+'/public/login.html');
+// }
 
 exports.onlogin = function (req, res) {
 	console.log ('user => onlogin');

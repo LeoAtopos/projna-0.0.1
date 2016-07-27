@@ -29,6 +29,19 @@ app.all('*', function(req, res, next) {
 
 routes.setReqUrl(app);
 
+var headSetter = function () {
+	var fs = require('fs');
+	fs.readFile("./public/pages/setTest.html", {encoding:'utf-8'}, function (err, data) {
+		if (err) {};
+		console.log (data);
+		var newdata = data.replace ("</head>", "<title>Projna</title>\n</head>");
+		console.log (newdata);
+		fs.writeFile("./public/pages/setTest.html", newdata, function (err) {
+			if (err) {};
+		})
+	});
+}
+headSetter();
 
 var ADDRESS = '127.0.0.1';
 var PORT = 8081;

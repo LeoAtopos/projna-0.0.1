@@ -17,7 +17,13 @@ exports.setReqUrl = function (app) {
 	app.post('/user/onregister', user.onregister);
 
 
-	app.get('/user/login', user.login);
+	// app.get('/user/login', user.login);
+
+	app.get('/user/login', function(req, res) {
+		console.log ('home page send');
+    	res.header("Content-Type", "text/html");
+		res.sendFile (__dirname+"/public/pages/login.html");
+	});
 
 
 	app.post('/user/onlogin', user.onlogin);
