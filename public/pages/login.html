@@ -56,11 +56,11 @@
 		}
 		$.ajax({
 			type:"POST",
-			url:"http://172.16.40.31:8081/user/onlogin",
+			url:"/user/onlogin",
 			data:params,
 			success : function(msg){
 				alert(JSON.stringify(msg));
-				window.location.href="index.html";
+				window.location.href="/";
 			},
 			error : function(msg){alert(JSON.stringify(msg));} 
 		});
