@@ -20,6 +20,15 @@
 	display: inline-block;
 	cursor: pointer;
 }
+.logo-mini2{
+	height: 30px;
+	width: 30px;
+	display: inline-block；
+	cursor: pointer;
+}
+#prminpic{
+	padding: 10px;
+}
 .glyphicon{
 	font-size: 20px;
 }

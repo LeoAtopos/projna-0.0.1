@@ -1,0 +1,76 @@
+<html>
+<head>
+	<title>Projna</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="../images/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="../scripts/utility.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/mystyle.css"/>
+</head>
+<body>
+	<div class = "container-fluid">
+		<div id = "divH"></div>
+		<div id = "divC" align = "center"></div>
+		<div id = "divF" ></div>
+	</div>
+</body>
+<script type="text/javascript">
+	$("#divH").load("../pages/utility.html #divheader");
+	$("#divC").load("../pages/utility.html #divsignup");
+	$("#divF").load("../pages/utility.html #divfooter");
+</script>
+<script>
+	var email;
+	var password;
+	var repassword;
+	$(document).ready(function(){
+		$("#signUpButton").click(signUpButtonClick);
+	});
+	function signUpButtonClick(){
+		email = $("#email").val();
+		password = $("#password").val();
+		repassword = $("#rePassword").val();
+		if(isOKInput()){
+			ajaxSend();
+		}
+	}
+
+	function isOKInput(){
+		if(email == "" || password == "" || repassword == ""){
+			alert(email);
+			return false;
+		}
+		if(password != repassword){
+			alert("Password not the same");
+			return false;
+		}
+		if(!email.match(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/)){
+			alert("E-mail is not a real E-mail");
+			$("#email1").focus();
+			return false;
+		}
+		return true;
+	}
+
+	function ajaxSend(){
+		var params ={
+		email : $("#email").val(),
+		password : $("#password").val()
+		}
+		$.ajax({
+			type:"POST",
+			// url:"http://172.16.40.31:8081/user/onregister",
+			url:"http://127.0.0.1:8081/user/onregister",
+			data:params,
+			success: function(msg){
+				alert(JSON.stringify(msg));
+				window.location.href="/";
+			},
+			error : function(msg){alert(JSON.stringify(msg));} 
+		});
+	}
+</script>
+</html>

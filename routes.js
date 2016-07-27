@@ -20,9 +20,15 @@ exports.setReqUrl = function (app) {
 	// app.get('/user/login', user.login);
 
 	app.get('/user/login', function(req, res) {
-		console.log ('home page send');
+		console.log ('login page send');
     	res.header("Content-Type", "text/html");
 		res.sendFile (__dirname+"/public/pages/login.html");
+	});
+
+	app.get('/user/signup', function(req, res) {
+		console.log ('signup page send');
+    	res.header("Content-Type", "text/html");
+		res.sendFile (__dirname+"/public/pages/signup.html");
 	});
 
 

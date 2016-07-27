@@ -77,7 +77,7 @@ exports.onlogin = function (req, res) {
 exports.logout = function (req, res) {
 	console.log ('user => logout');
 	req.session.destroy (function () {
-		res.redirect('/index.html');
+		res.redirect('/');
 	})
 }
 
