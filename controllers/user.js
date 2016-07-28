@@ -35,6 +35,8 @@ exports.onregister = function (req, res) {
 			user.save(function (err, userInfo) {
 				if (err) {};
 				console.log ("Successed adding user: "+req.body.email);
+				req.session.user = userInfo;
+				req.session.save;
 				res.json("Successed adding user: "+req.body.email);
 			})
 		}
