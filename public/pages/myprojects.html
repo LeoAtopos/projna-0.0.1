@@ -27,7 +27,9 @@
 
 </script>
 <script>
-	$("#pjpanel").append($("#pjpanel").clone());
+	$(document).ready(function(){
+		$("#pjpanel").append($("#pjpanel").clone());
+	});
 	// $.ajax({
 	// 	type:"POST",
 	// 	url:"/user/loadprojects",
