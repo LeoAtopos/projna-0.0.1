@@ -40,6 +40,11 @@ exports.setReqUrl = function (app) {
 
 	app.get('/user/checkSession', user.checkSession);
 
+	app.get('/user/myprojects', function(req, res) {
+		console.log ('myprojects page send');
+    	res.header("Content-Type", "text/html");
+		res.sendFile (__dirname+"/public/pages/myprojects.html");
+	});
 
 	app.get('/admin/userCheck', user.admin.userCheck);
 }
