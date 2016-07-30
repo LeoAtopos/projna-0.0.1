@@ -22,14 +22,15 @@
 	//$("#divC").load("../pages/utility.html #divmyprojects");
 	$("#divF").load("../pages/utility.html #divfooter");
 
-	$("#divC").load("../pages/utility.html #pjpanel");
-	$("#pjpanel").append($("#pjpanel").clone());
+	$("#divC").load("../pages/utility.html #pjpanel", function(){
+		$("#pjpanel").append($("#pjpanel").clone());
+	});
 
 </script>
 <script>
-	$(document).ready(function(){
-		$("#pjpanel").append($("#pjpanel").clone());
-	});
+	// $(document).ready(function(){
+	// 	$("#pjpanel").append($("#pjpanel").clone());
+	// });
 	// $.ajax({
 	// 	type:"POST",
 	// 	url:"/user/loadprojects",
