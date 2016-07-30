@@ -21,23 +21,28 @@
 	$("#divH").load("../pages/utility.html #divheader");
 	$("#divC").load("../pages/utility.html #divmyprojects");
 	$("#divF").load("../pages/utility.html #divfooter");
+
+	var pj = document.createElement("../pages/utility.html #pjpanel");
+	$("#divmyprojects").append(pj);
+
 </script>
 <script>
-	$.ajax({
-		type:"POST",
-		url:"/user/loadprojects",
-		data:{},
-		success : function(msg){
-			alert(JSON.stringify(msg));
-			loadprojects(msg);
-		},
-		error : function(msg){alert(JSON.stringify(msg));} 
-	});
-	function loadprojects(msg){
-		for (var i = 0; i < msg.num; i++) {
-			var pj = document.createElement("../pages/utility.html #pjpanel");
-			
-		};
-	}
+	// $.ajax({
+	// 	type:"POST",
+	// 	url:"/user/loadprojects",
+	// 	data:{},
+	// 	success : function(msg){
+	// 		alert(JSON.stringify(msg));
+	// 		loadprojects(msg);
+	// 	},
+	// 	error : function(msg){alert(JSON.stringify(msg));} 
+	// });
+	// function loadprojects(msg){
+	// 	for (var i = 0; i < msg.projects.length; i++) {
+	// 		var pj = document.createElement("../pages/utility.html #pjpanel");
+
+	// 		$("#divmyprojects").append(pj);
+	// 	};
+	// }
 </script>
 </html>
