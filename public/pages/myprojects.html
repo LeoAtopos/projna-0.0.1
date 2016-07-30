@@ -22,8 +22,8 @@
 	$("#divC").load("../pages/utility.html #divmyprojects");
 	$("#divF").load("../pages/utility.html #divfooter");
 
-	var pj = document.createElement("../pages/utility.html #pjpanel");
-	$("#divmyprojects").append(pj);
+	$("#divmyprojects").load("../pages/utility.html #pjpanel");
+	$("#pjpanel").append($("#pjpanel").clone());
 
 </script>
 <script>
