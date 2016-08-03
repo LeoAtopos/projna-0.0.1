@@ -46,5 +46,21 @@ exports.setReqUrl = function (app) {
 		res.sendFile (__dirname+"/public/pages/myprojects.html");
 	});
 
+	var plist = {
+		'0': {
+			'title': "Seeds",
+			'pic': "Pro2-pic.jpg"
+		},
+		'1': {
+			'title': "Grave",
+			'pic': "Pro2-pic.jpg"	
+		}
+	}
+
+	app.get('/user/myprojectList', function (req, res) {
+		console.log (plist.length);
+		res.json(plist);
+	})
+
 	app.get('/admin/userCheck', user.admin.userCheck);
 }
