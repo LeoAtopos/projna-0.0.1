@@ -27,18 +27,18 @@
 	$("#divF").load("../pages/utility.html #divfooter");
 
 	function loadprojects(){
-		// $.ajax(
-		// 	type:"POST",
-		// 	url:"/user/loadprojects",
-		// 	data:{},
-		// 	success:function(msg){
-		// 		do{
+		$.ajax(
+			type:"GET",
+			url:"/user/loadprojects",
+			data:{},
+			success:function(msg){
+				do{
 
-		// 		}while();
-		// 	},
-		// 	error:function(msg){}
-		// 	);
-		$("#divmyprojects").append($("#pjpanel").clone());
+				}while();
+			},
+			error:function(msg){}
+			);
+		$("#divmyprojects").append($("#pjpanel").clone()).append($("#pjpanel").clone()).append($("#pjpanel").clone()).append($("#pjpanel").clone()).append($("#pjpanel").clone()).append($("#pjpanel").clone());
 	}
 </script>
 <script>
