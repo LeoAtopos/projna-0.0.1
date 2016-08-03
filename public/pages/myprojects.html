@@ -27,17 +27,17 @@
 	$("#divF").load("../pages/utility.html #divfooter");
 
 	function loadprojects(){
-		$.ajax(
-			type:"POST",
-			url:"/user/loadprojects",
-			data:{},
-			success:function(msg){
-				do{
+		// $.ajax(
+		// 	type:"POST",
+		// 	url:"/user/loadprojects",
+		// 	data:{},
+		// 	success:function(msg){
+		// 		do{
 
-				}while();
-			},
-			error:function(msg){}
-			);
+		// 		}while();
+		// 	},
+		// 	error:function(msg){}
+		// 	);
 		$("#divmyprojects").append($("#pjpanel").clone());
 	}
 </script>
