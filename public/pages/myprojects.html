@@ -34,10 +34,14 @@
 			success:function(msg){
 				var plist = jQuery.parseJSON(JSON.stringify(msg));
 				var i = 0;
+				var l = 0;
+				for (var p in plist){
+					l++;
+				};
 				do{
 					$("#divmyprojects #pjpanel").last().find("h3").text(plist[i].title);
 					$("#divmyprojects #pjpanel").last().find("img").attr("src",'../images/'+plist[i].pic);
-					if(i < plist.length){
+					if(i < p){
 						$("#divmyprojects").append($("#pjpanel").clone());
 						i++;
 					}else break;
