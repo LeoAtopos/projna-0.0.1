@@ -29,16 +29,22 @@
 	function loadprojects(){
 		$.ajax(
 			type:"GET",
-			url:"/user/loadprojects",
+			url:"/user/myprojectList",
 			data:{},
 			success:function(msg){
+				var i = 0;
 				do{
-
-				}while();
+					$("#divmyprojects #pjpanel").last().children("h3").val(msg[i].title);
+					$("#divmyprojects #pjpanel").last().children("img").attr("src",'../images/'+msg[i].pic);
+					if(i < msg.length){
+						$("#divmyprojects").append($("#pjpanel").clone());
+						i++;
+					}else break;
+				}while(true);
 			},
-			error:function(msg){}
+			error:function(msg){alert("something xiaoxue!")}
 			);
-		$("#divmyprojects").append($("#pjpanel").clone()).append($("#pjpanel").clone()).append($("#pjpanel").clone()).append($("#pjpanel").clone()).append($("#pjpanel").clone()).append($("#pjpanel").clone());
+		// $("#divmyprojects").append($("#pjpanel").clone()).append($("#pjpanel").clone()).append($("#pjpanel").clone()).append($("#pjpanel").clone()).append($("#pjpanel").clone()).append($("#pjpanel").clone());
 	}
 </script>
 <script>
