@@ -75,7 +75,13 @@ exports.setReqUrl = function (app) {
 
 	app.get('/user/myprojectList', function (req, res) {
 		console.log (plist.length);
-		res.json(plist);
+		if (!req.session.user) {
+			res.json ({status: 'visiter'})
+		} else {
+			console.log (req.session);
+			res.json ({status: 'user', plist: plist});
+		}
+		// res.json(plist);
 	})
 
 	app.get('/admin/userCheck', user.admin.userCheck);

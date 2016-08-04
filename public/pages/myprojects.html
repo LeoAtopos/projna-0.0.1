@@ -32,20 +32,25 @@
 			url:"/user/myprojectList",
 			data:{},
 			success:function(msg){
-				var plist = jQuery.parseJSON(JSON.stringify(msg));
+				var plist = jQuery.parseJSON(JSON.stringify(msg)).plist;
 				var i = 0;
 				var l = 0;
 				for (var p in plist){
 					l++;
 				};
-				do{
-					$("#divmyprojects #pjpanel").last().find("h3").text(plist[i].title);
-					$("#divmyprojects #pjpanel").last().find("img").attr("src",'../images/'+plist[i].pic);
-					if(i < p){
-						$("#divmyprojects").append($("#pjpanel").clone());
-						i++;
-					}else break;
-				}while(true);
+				if (msg.status === "visiter") {
+					alert ("please login first");
+				}
+				else {
+					do{
+						$("#divmyprojects #pjpanel").last().find("h3").text(plist[i].title);
+						$("#divmyprojects #pjpanel").last().find("img").attr("src",'../images/'+plist[i].pic);
+						if(i < l-1){
+							$("#divmyprojects").append($("#pjpanel").clone());
+							i++;
+						}else break;
+					}while(true);
+				}
 			},
 			error:function(msg){alert("something xiaoxue!")}
 			});
