@@ -52,8 +52,8 @@ exports.setReqUrl = function (app) {
 			'pic': "Pro2-pic.jpg"
 		},
 		'1': {
-			'title': "Grave",
-			'pic': "Pro2-pic.jpg"	
+			'title': "Book Seeds",
+			'pic': "Pro1-pic.jpg"	
 		},
 		'2': {
 			'title': "Grave",

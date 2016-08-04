@@ -45,6 +45,7 @@
 					do{
 						$("#divmyprojects #pjpanel").last().find("h3").text(plist[i].title);
 						$("#divmyprojects #pjpanel").last().find("img").attr("src",'../images/'+plist[i].pic);
+						$("#divmyprojects #pjpanel").last().find("a").attr("href",'/user/'+plist[i].title.replace(/\s+/g,"").toLowerCase());
 						if(i < l-1){
 							$("#divmyprojects").append($("#pjpanel").clone());
 							i++;
