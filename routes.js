@@ -1,6 +1,6 @@
 exports.setReqUrl = function (app) {
 	var user = require('./controllers/user');
-	// var project = require('./controllers/project');
+	var project = require('./controllers/project');
 	// var path = require('path');
 
 // Get Home page
@@ -95,4 +95,8 @@ exports.setReqUrl = function (app) {
 	app.get('/wwwwTest', function (req, res) {
 		res.json ({status: 'connected!'})
 	})
+
+	app.get('/admin/addProject', project.admin.addProject);
+	
+	app.get('/admin/testProjectData', project.admin.testProjectData);
 }
