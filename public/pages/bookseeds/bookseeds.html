@@ -92,8 +92,16 @@ function renderbookseedsvisitor(msg){
 }
 function renderbookseedsself(msg){
 	$("#intro").show();
+	$("#stb").hide();
 	$("#working").hide();
 	$("#result").show();
+
+	$("#intro").find("h1").text(msg.project.title);
+	$("#intro").find("h3").text(msg.project.desc);
+	var bslist = msg.project.data.bslist;
+	for(var bs in bslist){
+		
+	}
 }
 function renderbookseedsother(msg){
 	$("#intro").show();
