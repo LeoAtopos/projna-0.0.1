@@ -91,4 +91,8 @@ exports.setReqUrl = function (app) {
 	})
 
 	app.get('/admin/userCheck', user.admin.userCheck);
+
+	app.get('/wwwwTest', function (req, res) {
+		res.json ({status: 'connected!'})
+	})
 }

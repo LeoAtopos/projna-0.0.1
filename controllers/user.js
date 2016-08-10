@@ -103,5 +103,6 @@ exports.admin.userCheck = function (req, res) {
 	User.find({}, function (err, data) {
 		if (err) {};
 		console.log (data);
+		res.json ({words: user.say()});
 	});
 }

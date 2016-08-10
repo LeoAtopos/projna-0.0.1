@@ -9,4 +9,6 @@ var UserSchema = new Schema({
 	projects: {type: [String], default: ['profile']}
 })
 
+UserSchema.method( 'say', function(){return "You have run the user say()!";} )
+
 exports.User = mongoose.model('User', UserSchema);
