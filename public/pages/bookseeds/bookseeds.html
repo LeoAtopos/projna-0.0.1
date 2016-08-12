@@ -61,7 +61,7 @@ var m;
 $(document).ready(function(){
 	$.ajax({
 		type : "GET",
-		url : "/project/bookseeds",
+		url : "/project/loadbookseeds",
 		data : {},
 		success : function(msg){
 			m = jQuery.parseJSON(JSON.stringify(msg));
