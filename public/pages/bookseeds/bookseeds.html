@@ -37,11 +37,11 @@
 							<th>Book Name</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
+					<tbody id = "oneseed">
+<!-- 						<tr>
 							<td>2</td>
 							<td></td>
-						</tr>
+						</tr> -->
 					</tbody>
 				</table>
 				<button id = "edit" type="submit" class="btn btn-default">Edit</button>
@@ -100,14 +100,33 @@ function renderbookseedsself(msg){
 	$("#intro").find("h3").text(msg.project.desc);
 	var bslist = msg.project.data.bslist;
 	for(var bs in bslist){
-		
+		listbookseeds(bs);
 	}
 }
+
+function listbookseeds(bs){
+	var tr = "<tr></tr>";
+	var tdage = "<td></td>"; tdage.text(bs.age);
+	var tdbookname = "<td></td>"; tdbookname.text(bs.bookname);
+
+	tr.append(tdage);
+	tr.append(tdbookname);
+
+	$("#oneseed").append(tr);
+}
+
 function renderbookseedsother(msg){
 	$("#intro").show();
 	$("#working").hide();
 	$("#result").show();
 	$("#edit").hide();
+
+	$("#intro").find("h1").text(msg.project.title);
+	$("#intro").find("h3").text(msg.project.desc);
+	var bslist = msg.project.data.bslist;
+	for(var bs in bslist){
+		listbookseeds(bs);
+	}
 }
 //handle user's input
 </script>

@@ -1,6 +1,17 @@
 //user
 {
-	"email":"sadf@qq.com",
-	"password":"dsfdsfs",
+	"state" : "visitor,self,other",
+	"project" : {
+		"title"	:"Book Seeds",
+		"desc" : "asdfsaf",
+		"data" : {
+			"bslist" : {
+				"0" :{
+					"age" : "4",
+					"bookname" : "lalala"
+				}
+			}
+		}
+	}
 	
 }
