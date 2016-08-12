@@ -2,19 +2,53 @@
 
 var path = require('path');
 var model = require('../models/project');
+var bookseedsModel = require('../models/bookseeds');
+
 var Proj = model.Project;
-
-
-// var ProjectSchema = new Schema({
-// 	title: {type: String, default: "Proj."},
-// 	desc: {type: String, default: "This is a projna project."},
-// 	createDate: {type: Date, default: Date.now},
-// 	data: type: String
-// })
-
+var Bookseeds = bookseedsModel.Bookseeds;
 
 exports.admin = function (req, res) {
 
+}
+
+exports.bookseeds = function (req, res) {
+	var resData = {
+		"state" : "visitor/self/other",
+		"project" : {
+			"title"	:"Book Seeds",
+			"desc" : "asdfsaf",
+			"data" : {
+				"bslist" : {
+					"0" :{
+						"age" : "4",
+						"bookname" : "lalala"
+					}
+				}
+			}
+		}
+	}
+	if (!req.session.user) {resData.state = "visitor"} else {
+		if (req.session.user.UID === req.body.UID) {resData.state = "self"}
+		else {resData.state = "other"}	
+	}
+
+	Proj.findOne({'title': 'Bookseeds'}, function (err, result) {
+		if (err) {};
+		if (result) {resData.project.title = result.title;	resData.project.desc = result.desc;}
+		else {console.log ('project doesnot exist');}
+	})
+	
+	Bookseeds.findOne({'author': req.session.user.email}, function (err, result) {
+		if (err) {};
+		if (result) {
+			result.forEach (function(bs) {
+				resData.project.data.push (bs);	
+			}) 
+		}
+		else {console.log ('project doesnot exist');}
+	})
+
+	res.send (resData);
 }
 
 exports.admin.addProject = function (req, res) {

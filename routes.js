@@ -84,11 +84,13 @@ exports.setReqUrl = function (app) {
 		// res.json(plist);
 	})
 
-	app.get('/project/:pagename', function (req, res) {
-		console.log (req.params.pagename);
-		res.header("Content-Type", "text/html");
-		res.sendFile (__dirname+"/public/pages/"+req.params.pagename+".html");
-	})
+	// app.get('/project/:pagename', function (req, res) {
+	// 	console.log (req.params.pagename);
+	// 	res.header("Content-Type", "text/html");
+	// 	res.sendFile (__dirname+"/public/pages/"+req.params.pagename+".html");
+	// })
+
+	app.get('/project/bookseeds', project.bookseeds);
 
 	app.get('/admin/userCheck', user.admin.userCheck);
 
