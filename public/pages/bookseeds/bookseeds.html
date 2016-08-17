@@ -100,16 +100,22 @@ function renderbookseedsself(msg){
 	$("#intro").find("h1").text(msg.project.title);
 	$("#intro").find("h3").text(msg.project.desc);
 	var bslist = msg.project.data.bslist;
-	alert (bslist[0].age);
+	// alert (bslist[0].age);
+	// bslist.forEach (function(arg) {
+	// 	listbookseeds(arg);
+	// });
+	// for (var i = 0; i < bslist.length; i++) {
+	// 	listbookseeds(bslist[i]);
+	// }
 	for(var bs in bslist){
-		listbookseeds(bs);
+		listbookseeds(bslist[bs]);
 	}
 }
 
 function listbookseeds(bs){
-	// alert (bs);
+	alert (JSON.stringify(bs));
 	var tr = $("<tr></tr>");
-	var tdage = $("<td></td>").text(bs.age); 
+	var tdage = $("<i></i>").text(bs.age);
 	var tdbookname = $("<td></td>").text(bs.bookname);
 
 	tr.append(tdage);

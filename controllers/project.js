@@ -22,6 +22,10 @@ exports.loadbookseeds = function (req, res) {
 					"0" :{
 						"age" : "4",
 						"bookname" : "lalala"
+					},
+					"1" :{
+						"age" : "14",
+						"bookname" : "lalala"
 					}
 				}
 			}
@@ -49,6 +53,35 @@ exports.loadbookseeds = function (req, res) {
 	})
 
 	res.send (resData);
+}
+
+exports.addSeeds = function (req, res) {
+	console.log ("project => onAddSeed");
+	Bookseeds.findOne({'author': req.session.user.email, 'age': req.body.book.age}, function (err, result) {
+		if (err) {};
+		if (result) {
+			result.bookname = req.body.book.bookname;
+			result.desc = req.body.book.desc;
+			result.link = req.body.book.link;
+			result.save (function (err) {
+				if (err) {};
+				res.json({"success": "Book of age already exist, update done"});
+			})
+		}
+		else {
+			var seed = new Bookseeds();
+			result.author = req.session.user.email;
+			result.age = req.body.book.age;
+			result.bookname = req.body.book.bookname;
+			result.desc = req.body.book.desc;
+			result.link = req.body.book.link;
+			seed.save(function (err, result) {
+				if (err) {};
+				console.log ("Successed adding seed: "+result);
+				res.json("Successed adding seed: "+result);
+			})
+		}
+	})
 }
 
 exports.admin.addProject = function (req, res) {

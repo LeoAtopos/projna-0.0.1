@@ -84,6 +84,10 @@ exports.setReqUrl = function (app) {
 		// res.json(plist);
 	})
 
+/*
+	****************************************************************
+*/
+
 	app.get('/project/:pagename', function (req, res) {
 		console.log (req.params.pagename);
 		res.header("Content-Type", "text/html");
@@ -91,6 +95,12 @@ exports.setReqUrl = function (app) {
 	})
 
 	app.get('/project/load/bookseeds', project.loadbookseeds);
+	app.post('/project/edit/addSeeds', project.addSeeds);
+
+
+/*
+	****************************************************************
+*/
 
 	app.get('/admin/userCheck', user.admin.userCheck);
 	

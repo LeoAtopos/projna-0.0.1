@@ -32,7 +32,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use(cookieParser());
 app.use(session({
 	secret:'gooze',
-  	cookie: {maxAge: 60000},
+  	cookie: {maxAge: 600000},
  	resave: false,
   	saveUninitialized: true,
 }));
