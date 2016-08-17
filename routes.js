@@ -84,15 +84,17 @@ exports.setReqUrl = function (app) {
 		// res.json(plist);
 	})
 
-	// app.get('/project/:pagename', function (req, res) {
-	// 	console.log (req.params.pagename);
-	// 	res.header("Content-Type", "text/html");
-	// 	res.sendFile (__dirname+"/public/pages/"+req.params.pagename+".html");
-	// })
+	app.get('/project/:pagename', function (req, res) {
+		console.log (req.params.pagename);
+		res.header("Content-Type", "text/html");
+		res.sendFile (__dirname+"/public/pages/"+req.params.pagename+"/"+req.params.pagename+".html");
+	})
 
-	app.get('/project/bookseeds', project.bookseeds);
+	app.get('/project/load/bookseeds', project.loadbookseeds);
 
 	app.get('/admin/userCheck', user.admin.userCheck);
+	
+	app.get('/admin/joinProjTest', user.admin.joinProjTest);
 
 	app.get('/wwwwTest', function (req, res) {
 		res.json ({status: 'connected!'})

@@ -12,3 +12,10 @@ var UserSchema = new Schema({
 UserSchema.method( 'say', function(){return "You have run the user say()!";} )
 
 exports.User = mongoose.model('User', UserSchema);
+
+exports.projPrivateInfo = {
+	projTitle : '',
+	joinDate : Date,
+	comment : '',
+	data : ''
+}

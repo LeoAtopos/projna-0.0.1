@@ -64,8 +64,9 @@ $(document).ready(function(){
 		url : "/project/load/bookseeds",
 		data : {},
 		success : function(msg){
-			m = jQuery.parseJSON(JSON.stringify(msg));
-			renderbookseeds(m);
+			alert (JSON.stringify(msg));
+			// m = jQuery.parseJSON(JSON.stringify(msg));
+			renderbookseeds(msg);
 		},
 		error : function(msg) {}
 	});
@@ -99,14 +100,17 @@ function renderbookseedsself(msg){
 	$("#intro").find("h1").text(msg.project.title);
 	$("#intro").find("h3").text(msg.project.desc);
 	var bslist = msg.project.data.bslist;
+	alert (bslist[0].age);
 	for(var bs in bslist){
 		listbookseeds(bs);
 	}
 }
 
 function listbookseeds(bs){
+	// alert (bs);
 	var tr = "<tr></tr>";
-	var tdage = "<td></td>"; tdage.text(bs.age);
+	var tdage = "<td></td>"; 
+	tdage.text(bs.age);
 	var tdbookname = "<td></td>"; tdbookname.text(bs.bookname);
 
 	tr.append(tdage);

@@ -11,7 +11,7 @@ exports.admin = function (req, res) {
 
 }
 
-exports.bookseeds = function (req, res) {
+exports.loadbookseeds = function (req, res) {
 	var resData = {
 		"state" : "visitor/self/other",
 		"project" : {

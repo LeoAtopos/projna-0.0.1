@@ -106,3 +106,23 @@ exports.admin.userCheck = function (req, res) {
 		res.json ({words: user.say()});
 	});
 }
+
+exports.admin.joinProjTest = function (req, res) {
+	var proj = model.projPrivateInfo;
+	proj.projTitle = 'Great';
+
+	User.findOne({'email': 'reseter@sina.com'}, function (err, result) {
+		if (err) {};
+		if (!result) {
+			console.log ('user not exist');
+		} else {
+			result.projects.push(JSON.stringify(proj));
+
+			console.log (result.projects);
+
+			var p = JSON.parse(result.projects[1]);
+
+			console.log (p);
+		}
+	});
+}
