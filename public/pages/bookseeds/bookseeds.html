@@ -20,7 +20,7 @@
 				<button id = "stb" class = "btn btn-default">Start to Build</button>
 			</div>
 			<form id = "working" class = "form-horizontal" role="form">
-				<div id = "age2" class="form-group">
+				<div id = "age18" class="form-group">
 					<label for="name" class="col-sm-2 control-label">Age 2</label>
 					<div class = "col-sm-10">
 						<input type="text" class="form-control" id="name" placeholder="The book name you recommend for this age">
@@ -74,6 +74,7 @@ $(document).ready(function(){
 //find what state this project is in, intro? working? result?
 //get 
 function renderbookseeds(msg){
+	m = msg;
 	if(msg.state === "visitor"){
 		renderbookseedsvisitor(msg);
 	}else if(msg.state === "self"){
@@ -124,6 +125,30 @@ function listbookseeds(bs){
 	$("#oneseed").append(tr);
 }
 
+function renderbookseedsselfedit(msg){
+	$("#intro").show();
+	$("#stb").hide();
+	$("#working").show();
+	$("#result").hide();
+
+	$("#intro").find("h1").text(msg.project.title);
+	$("#intro").find("h3").text(msg.project.desc);
+
+	var bslist = msg.project.data.bslist;
+
+	for(var i = 18; i > 2; i--){
+		var a = $("#age18").clone();
+		a.attr("id","age" + i - 1);
+		if(bslist[i]){
+			a.find("input").val(bslist[i].bookname);
+		}
+		$("#working").prepend(a);
+	}
+	if(bslist[18]){
+			$("#age18").find("input").val(bslist[18].bookname);
+		}
+}
+
 function renderbookseedsother(msg){
 	$("#intro").show();
 	$("#working").hide();
@@ -138,6 +163,9 @@ function renderbookseedsother(msg){
 	}
 }
 //handle user's input
+$("#edit").on("click",function(event){
+	renderbookseedsselfedit();
+});
 </script>
 </html>
 
