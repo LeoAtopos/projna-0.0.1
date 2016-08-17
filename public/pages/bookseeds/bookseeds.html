@@ -26,7 +26,7 @@
 						<input type="text" class="form-control" id="name" placeholder="The book name you recommend for this age">
 					</div>
 				</div>
-				<button type="submit" class="btn btn-default">Submit</button>
+				<button id = "submit" type="submit" class="btn btn-default">Submit</button>
 			</form>
 			<div id = "result" class="table-responsive">
 				<table class="table">
@@ -166,6 +166,27 @@ $("#edit").on("click",function(event){
 	alert(m);
 	renderbookseedsselfedit(m);
 });
+
+$("#submit").on("click",function(event){
+	submitbookseeds(m);
+	
+});
+
+function submitbookseeds(msg){
+	$.ajax({
+		type : "POST",
+		url : "/project/edit/addSeeds",
+		data:{
+
+		},
+		success : function(msg){
+			renderbookseedsself(m);
+		},
+		error : function(msg){
+			alert("something xiaoxue!")
+		}
+	});
+}
 </script>
 </html>
 
