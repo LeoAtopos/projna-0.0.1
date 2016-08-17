@@ -176,16 +176,28 @@ function submitbookseeds(msg){
 	$.ajax({
 		type : "POST",
 		url : "/project/edit/addSeeds",
-		data:{
-
-		},
+		data:readbookseeds(),
 		success : function(msg){
 			renderbookseedsself(m);
 		},
 		error : function(msg){
-			alert("something xiaoxue!")
+			alert("something xiaoxue!");
 		}
 	});
+}
+
+function readbookseeds(){
+	var bslist = {};
+	for(var i = 2;i<=18;i++){
+		var id = "#age"+i.toString();
+		if($(id).find("input").val() != ""){
+			var bs = new Object();
+			bs.age = i;
+			bs.bookname = $(id).find("input").val();
+			bslist.push(bs);
+		}
+	}
+	return jQuery.parseJSON(bslist);
 }
 </script>
 </html>
