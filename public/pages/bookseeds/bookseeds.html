@@ -108,10 +108,9 @@ function renderbookseedsself(msg){
 
 function listbookseeds(bs){
 	// alert (bs);
-	var tr = "<tr></tr>";
-	var tdage = "<td></td>"; 
-	tdage.text(bs.age);
-	var tdbookname = "<td></td>"; tdbookname.text(bs.bookname);
+	var tr = $("<tr></tr>");
+	var tdage = $("<td></td>").text(bs.age); 
+	var tdbookname = $("<td></td>").text(bs.bookname);
 
 	tr.append(tdage);
 	tr.append(tdbookname);
