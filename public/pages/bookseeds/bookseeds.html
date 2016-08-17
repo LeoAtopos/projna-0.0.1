@@ -21,7 +21,7 @@
 			</div>
 			<form id = "working" class = "form-horizontal" role="form">
 				<div id = "age18" class="form-group">
-					<label for="name" class="col-sm-2 control-label">Age 2</label>
+					<label for="name" class="col-sm-2 control-label">Age 18</label>
 					<div class = "col-sm-10">
 						<input type="text" class="form-control" id="name" placeholder="The book name you recommend for this age">
 					</div>
@@ -139,14 +139,13 @@ function renderbookseedsselfedit(msg){
 	for(var i = 18; i > 2; i--){
 		var a = $("#age18").clone();
 		a.attr("id","age" + (i - 1).toString());
-		if(bslist[i]){
-			a.find("input").val(bslist[i].bookname);
-		}
+		a.find("label").text("Age "+ (i - 1).toString());
 		$("#working").prepend(a);
 	}
-	if(bslist[18]){
-			$("#age18").find("input").val(bslist[18].bookname);
-		}
+	for(var bs in bslist){
+		var l = bslist[bs].age;
+		$("#age"+l.toString()).find("input").val(bslist[bs].bookname);
+	}
 }
 
 function renderbookseedsother(msg){
