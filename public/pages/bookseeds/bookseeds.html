@@ -138,7 +138,7 @@ function renderbookseedsselfedit(msg){
 
 	for(var i = 18; i > 2; i--){
 		var a = $("#age18").clone();
-		a.attr("id","age" + i - 1);
+		a.attr("id","age" + (i - 1).toString());
 		if(bslist[i]){
 			a.find("input").val(bslist[i].bookname);
 		}
