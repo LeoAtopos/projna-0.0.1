@@ -139,7 +139,6 @@ function renderbookseedsselfedit(msg){
 	for(var i = 18; i > 2; i--){
 		var a = $("#age18").clone();
 		a.attr("id","age" + (i - 1).toString());
-		alert(bslist[i]);
 		if(bslist[i]){
 			a.find("input").val(bslist[i].bookname);
 		}
@@ -165,6 +164,7 @@ function renderbookseedsother(msg){
 }
 //handle user's input
 $("#edit").on("click",function(event){
+	alert(m);
 	renderbookseedsselfedit(m);
 });
 </script>
