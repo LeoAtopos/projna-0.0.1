@@ -60,7 +60,7 @@
 			data:params,
 			success : function(msg){
 				alert(JSON.stringify(msg));
-				window.location.href="/user/myprojects/" + msg.user.email;
+				window.location.href="/user/myprojects";
 			},
 			error : function(msg){alert(JSON.stringify(msg));} 
 		});

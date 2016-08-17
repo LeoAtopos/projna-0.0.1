@@ -70,7 +70,7 @@ exports.onlogin = function (req, res) {
 				req.session.user = result;
 				console.log (req.session);
 				req.session.save;
-				res.json ({"success": 'Login Successed'});
+				res.json ({"success": 'Login Successed', session: req.session.user});
 			}
 		}
 	});
