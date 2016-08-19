@@ -40,13 +40,17 @@ exports.setReqUrl = function (app) {
 
 	app.get('/user/checkSession', user.checkSession);
 
-	app.get('/user/myprojects', function(req, res) {
-		console.log ('myprojects page send');
-    	res.header("Content-Type", "text/html");
+	// app.get('/user/myprojects/:email', project.common.myproject);
+	app.get('/myprojects/:email', function (req, res) {
+		console.log (req.session);
+		req.session.cookie.looking = req.params.email || "";
+		console.log (req.session);
+		req.session.save;
+		res.header("Content-Type", "text/html");
 		res.sendFile (__dirname+"/public/pages/myprojects.html");
 	});
 
-	var plist = {
+	var plistExample = {
 		'0': {
 			'title': "Seeds",
 			'pic': "Pro2-pic.jpg"
@@ -74,14 +78,23 @@ exports.setReqUrl = function (app) {
 	}
 
 	app.get('/user/myprojectList', function (req, res) {
-		console.log (plist.length);
+		// console.log (plist.length);
+		var status = "";
+		var plist = {};
 		if (!req.session.user) {
-			res.json ({status: 'visiter'})
+			status = 'visiter';
+			// res.json ({status: 'visiter'})
 		} else {
-			console.log (req.session);
-			res.json ({status: 'user', plist: plist});
+			if (req.session.user.email === req.session.cookie.looking) {
+				status = 'self';
+			}
+			else {
+				status = 'other';
+			}
+			plist = plistExample;
+			// res.json ({status: 'user', plist: plist});
 		}
-		// res.json(plist);
+		res.json({status: status, plist: plist});
 	})
 
 /*
@@ -113,4 +126,6 @@ exports.setReqUrl = function (app) {
 	app.get('/admin/addProject', project.admin.addProject);
 	
 	app.get('/admin/testProjectData', project.admin.testProjectData);
+
+	app.get('/admin/testWebSession', user.admin.testWebSession);
 }

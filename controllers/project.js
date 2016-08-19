@@ -1,11 +1,18 @@
 "use strict";
 
-var path = require('path');
 var model = require('../models/project');
 var bookseedsModel = require('../models/bookseeds');
 
 var Proj = model.Project;
 var Bookseeds = bookseedsModel.Bookseeds;
+
+exports.common = function (req, res) {
+
+}
+
+exports.common.myproject = function (req, res) {
+
+}
 
 exports.admin = function (req, res) {
 
@@ -112,3 +119,4 @@ exports.admin.testProjectData = function (req, res) {
 		}
 	})
 }
+

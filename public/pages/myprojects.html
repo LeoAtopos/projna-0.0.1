@@ -29,7 +29,7 @@
 		$.ajax({
 			type:"GET",
 			url:"/user/myprojectList",
-			data:{},
+			data:{looking: "reseter@sina.com"},
 			success:function(msg){
 				var plist = jQuery.parseJSON(JSON.stringify(msg)).plist;
 				var i = 0;

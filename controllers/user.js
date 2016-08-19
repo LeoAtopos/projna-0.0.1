@@ -69,6 +69,7 @@ exports.onlogin = function (req, res) {
 				console.log (result);
 				req.session.user = result;
 				console.log (req.session);
+				req.session.cookie.looking = req.params.email || "";
 				req.session.save;
 				res.json ({"success": 'Login Successed', session: req.session.user});
 			}
@@ -125,4 +126,10 @@ exports.admin.joinProjTest = function (req, res) {
 			console.log (p);
 		}
 	});
+}
+
+exports.admin.testWebSession = function (req, res) {
+	var user = new User ();
+	req.session.user = user;
+	res.json (req.session);	
 }
