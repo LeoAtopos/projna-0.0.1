@@ -176,7 +176,7 @@ function submitbookseeds(msgs){
 	$.ajax({
 		type : "POST",
 		url : "/project/edit/addSeeds",
-		data:readbookseeds(),
+		data: {bslist: readbookseeds()},
 		success : function(msg){
 			alert (msg);
 			renderbookseedsself(msgs);
@@ -198,7 +198,8 @@ function readbookseeds(){
 			bslist.push(bs);
 		}
 	}
-	alert (bslist);
+	// alert (bslist);
+	return bslist;
 	// return jQuery.parseJSON(bslist);
 }
 </script>

@@ -65,13 +65,14 @@ exports.loadbookseeds = function (req, res) {
 
 exports.addSeeds = function (req, res) {
 	console.log ("project => onAddSeed");
+	console.log (req.session.user.email);
 	console.log (req.body.bslist);
-	Bookseeds.findOne({'author': req.session.user.email, 'age': req.body.book.age}, function (err, result) {
+	Bookseeds.findOne({'author': req.session.user.email, 'age': req.body.bslist[0].age}, function (err, result) {
 		if (err) {};
 		if (result) {
 			result.bookname = req.body.book.bookname;
-			result.desc = req.body.book.desc;
-			result.link = req.body.book.link;
+			// result.desc = req.body.book.desc;
+			// result.link = req.body.book.link;
 			result.save (function (err) {
 				if (err) {};
 				res.json({"success": "Book of age already exist, update done"});
@@ -79,15 +80,15 @@ exports.addSeeds = function (req, res) {
 		}
 		else {
 			var seed = new Bookseeds();
-			result.author = req.session.user.email;
-			result.age = req.body.book.age;
-			result.bookname = req.body.book.bookname;
-			result.desc = req.body.book.desc;
-			result.link = req.body.book.link;
+			seed.author = req.session.user.email;
+			seed.age = req.body.bslist[0].age;
+			seed.bookname = req.body.bslist[0].bookname;
+			// result.desc = req.body.book.desc;
+			// result.link = req.body.book.link;
 			seed.save(function (err, result) {
 				if (err) {};
-				console.log ("Successed adding seed: "+result);
-				res.json("Successed adding seed: "+result);
+				console.log ("Successed adding seed: " + seed);
+				res.json("Successed adding seed: " + seed);
 			})
 		}
 	})
