@@ -19,6 +19,7 @@ exports.admin = function (req, res) {
 }
 
 exports.loadbookseeds = function (req, res) {
+	console.log ("project => loadbookseeds");
 	var resData = {
 		"state" : "visitor/self/other",
 		"project" : {
@@ -46,7 +47,7 @@ exports.loadbookseeds = function (req, res) {
 	Proj.findOne({'title': 'Bookseeds'}, function (err, result) {
 		if (err) {};
 		if (result) {resData.project.title = result.title;	resData.project.desc = result.desc;}
-		else {console.log ('project doesnot exist');}
+		else {console.log ('project doesnot exist with title ' + 'Bookseeds');}
 	})
 	
 	Bookseeds.findOne({'author': req.session.user.email}, function (err, result) {
@@ -56,7 +57,7 @@ exports.loadbookseeds = function (req, res) {
 				resData.project.data.push (bs);	
 			}) 
 		}
-		else {console.log ('project doesnot exist');}
+		else {console.log ('project doesnot exist with author ' + req.session.user.email);}
 	})
 
 	res.send (resData);
@@ -64,6 +65,7 @@ exports.loadbookseeds = function (req, res) {
 
 exports.addSeeds = function (req, res) {
 	console.log ("project => onAddSeed");
+	console.log (req.body.bslist);
 	Bookseeds.findOne({'author': req.session.user.email, 'age': req.body.book.age}, function (err, result) {
 		if (err) {};
 		if (result) {

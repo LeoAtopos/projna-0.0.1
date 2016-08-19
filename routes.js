@@ -42,9 +42,9 @@ exports.setReqUrl = function (app) {
 
 	// app.get('/user/myprojects/:email', project.common.myproject);
 	app.get('/myprojects/:email', function (req, res) {
-		console.log (req.session);
+		// console.log (req.session);
 		req.session.cookie.looking = req.params.email || "";
-		console.log (req.session);
+		// console.log (req.session);
 		req.session.save;
 		res.header("Content-Type", "text/html");
 		res.sendFile (__dirname+"/public/pages/myprojects.html");
@@ -95,7 +95,7 @@ exports.setReqUrl = function (app) {
 			// res.json ({status: 'user', plist: plist});
 		}
 		res.json({status: status, plist: plist});
-	})
+	});
 
 /*
 	****************************************************************
@@ -116,12 +116,13 @@ exports.setReqUrl = function (app) {
 */
 
 	app.get('/admin/userCheck', user.admin.userCheck);
+	app.get('/admin/userCreate', user.admin.userCreate);
 	
 	app.get('/admin/joinProjTest', user.admin.joinProjTest);
 
 	app.get('/wwwwTest', function (req, res) {
 		res.json ({status: 'connected!'})
-	})
+	});
 
 	app.get('/admin/addProject', project.admin.addProject);
 	

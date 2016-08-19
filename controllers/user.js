@@ -65,10 +65,10 @@ exports.onlogin = function (req, res) {
 				req.session.error = 'Wrong password';
 				res.json ({"success": "Wrong password"});
 			} else {
-				console.log (req.session);
-				console.log (result);
+				// console.log (req.session);
+				// console.log (result);
 				req.session.user = result;
-				console.log (req.session);
+				// console.log (req.session);
 				req.session.cookie.looking = req.params.email || "";
 				req.session.save;
 				res.json ({"success": 'Login Successed', session: req.session.user});
@@ -86,11 +86,11 @@ exports.logout = function (req, res) {
 
 exports.checkSession = function (req, res) {
 	console.log ("user => checkSession");
-	console.log (req.session);
+	// console.log (req.session);
 	if (!req.session.user) {
 		res.json ({status: 'visiter'})
 	} else {
-		console.log (req.session);
+		// console.log (req.session);
 		res.json ({status: 'user', session: req.session.user});
 	}
 }
@@ -106,6 +106,35 @@ exports.admin.userCheck = function (req, res) {
 		console.log (data);
 		res.json ({words: user.say()});
 	});
+}
+
+exports.admin.userCreate = function (req, res) {
+	// var project = {
+	// 	projTitle: 'profile',
+	// 	joinDate : Date.now,
+	// 	desc: '',
+	// 	comment: {
+	// 		author: '',
+	// 		content: ''
+	// 	}
+	// }
+	var user = new User();
+	User.findOne({'email': req.query.email}, function (err, result) {
+		if (err) {};
+		if (result) {req.session.error = 'user already exist';res.json({"success": "user already exist"});}
+		else {
+			user.email = req.query.email;
+			user.password = req.query.password;
+			// user.projects.push (project);
+			user.save(function (err, userInfo) {
+				if (err) {};
+				console.log ("Successed adding user: "+req.query.email);
+				req.session.user = userInfo;
+				req.session.save;
+				res.json({voice: "Successed adding user: "+req.body.email, data: userInfo});
+			})
+		}
+	})
 }
 
 exports.admin.joinProjTest = function (req, res) {

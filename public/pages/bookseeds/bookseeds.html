@@ -19,15 +19,15 @@
 				<h3>Name the books you thought suitable for children in each age, because a person's ideas ought to be past on to next generations, and that can be done by books he/she thoughtfully recomended.</h3>
 				<button id = "stb" class = "btn btn-default">Start to Build</button>
 			</div>
-			<form id = "working" class = "form-horizontal" role="form">
+			<div id = "working" class = "form-horizontal">
 				<div id = "age18" class="form-group">
 					<label for="name" class="col-sm-2 control-label">Age 18</label>
 					<div class = "col-sm-10">
 						<input type="text" class="form-control" id="name" placeholder="The book name you recommend for this age">
 					</div>
 				</div>
-				<button id = "submit" type="submit" class="btn btn-default">Submit</button>
-			</form>
+				<button id = "submit" class="btn btn-default">Submit</button>
+			</div>
 			<div id = "result" class="table-responsive">
 				<table class="table">
 					<caption>Projna's Book Seeds</caption>
@@ -44,7 +44,7 @@
 						</tr> -->
 					</tbody>
 				</table>
-				<button id = "edit" type="submit" class="btn btn-default">Edit</button>
+				<button id = "edit" class="btn btn-default">Edit</button>
 			</div>
 		</div>
 		<div id = "divF" ></div>
@@ -114,7 +114,7 @@ function renderbookseedsself(msg){
 }
 
 function listbookseeds(bs){
-	alert (JSON.stringify(bs));
+	// alert (JSON.stringify(bs));
 	var tr = $("<tr></tr>");
 	var tdage = $("<i></i>").text(bs.age);
 	var tdbookname = $("<td></td>").text(bs.bookname);
@@ -163,7 +163,7 @@ function renderbookseedsother(msg){
 }
 //handle user's input
 $("#edit").on("click",function(event){
-	alert(m);
+	// alert(m);
 	renderbookseedsselfedit(m);
 });
 
@@ -172,13 +172,14 @@ $("#submit").on("click",function(event){
 	
 });
 
-function submitbookseeds(msg){
+function submitbookseeds(msgs){
 	$.ajax({
 		type : "POST",
 		url : "/project/edit/addSeeds",
 		data:readbookseeds(),
 		success : function(msg){
-			renderbookseedsself(m);
+			alert (msg);
+			renderbookseedsself(msgs);
 		},
 		error : function(msg){
 			alert("something xiaoxue!");
@@ -187,7 +188,7 @@ function submitbookseeds(msg){
 }
 
 function readbookseeds(){
-	var bslist = {};
+	var bslist = new Array();
 	for(var i = 2;i<=18;i++){
 		var id = "#age"+i.toString();
 		if($(id).find("input").val() != ""){
@@ -197,7 +198,8 @@ function readbookseeds(){
 			bslist.push(bs);
 		}
 	}
-	return jQuery.parseJSON(bslist);
+	alert (bslist);
+	// return jQuery.parseJSON(bslist);
 }
 </script>
 </html>
