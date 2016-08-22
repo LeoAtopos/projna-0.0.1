@@ -12,7 +12,7 @@ function checkLogIn(){
 				$("#beProjna").hide();
 				$("#projnaName").show();
 				alert(JSON.stringify(userInfo));
-				$("#mplink").attr("href","/myprojects/" + userInfo.session.email);
+				$("#mplink").attr("href","/myprojects/" + $.session.get("email"));
 			}
 			else{
 				$("#login").show();
