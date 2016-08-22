@@ -128,5 +128,7 @@ exports.setReqUrl = function (app) {
 	
 	app.get('/admin/testProjectData', project.admin.testProjectData);
 
+	app.get('/admin/testBookseedsData', project.admin.testBookseedsData);
+	
 	app.get('/admin/testWebSession', user.admin.testWebSession);
 }

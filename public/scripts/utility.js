@@ -11,8 +11,8 @@ function checkLogIn(){
 				$("#login").hide();
 				$("#beProjna").hide();
 				$("#projnaName").show();
-				alert(userInfo);
-				$("#mplink").attr("href","/user/myprojects/" + userInfo.email);
+				alert(JSON.stringify(userInfo));
+				$("#mplink").attr("href","/myprojects/" + userInfo.session.email);
 			}
 			else{
 				$("#login").show();

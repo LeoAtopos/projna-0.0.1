@@ -26,16 +26,16 @@ exports.loadbookseeds = function (req, res) {
 			"title"	:"Book Seeds",
 			"desc" : "asdfsaf",
 			"data" : {
-				"bslist" : {
-					"0" :{
+				"bslist" : [
+					{
 						"age" : "4",
 						"bookname" : "lalala"
 					},
-					"1" :{
+					{
 						"age" : "14",
 						"bookname" : "lalala"
 					}
-				}
+				]
 			}
 		}
 	}
@@ -50,11 +50,11 @@ exports.loadbookseeds = function (req, res) {
 		else {console.log ('project doesnot exist with title ' + 'Bookseeds');}
 	})
 	
-	Bookseeds.findOne({'author': req.session.user.email}, function (err, result) {
+	Bookseeds.find({'author': req.session.user.email}, function (err, result) {
 		if (err) {};
 		if (result) {
 			result.forEach (function(bs) {
-				resData.project.data.push (bs);	
+				resData.project.data.bslist.push (bs);	
 			}) 
 		}
 		else {console.log ('project doesnot exist with author ' + req.session.user.email);}
@@ -67,30 +67,32 @@ exports.addSeeds = function (req, res) {
 	console.log ("project => onAddSeed");
 	console.log (req.session.user.email);
 	console.log (req.body.bslist);
-	Bookseeds.findOne({'author': req.session.user.email, 'age': req.body.bslist[0].age}, function (err, result) {
-		if (err) {};
-		if (result) {
-			result.bookname = req.body.book.bookname;
-			// result.desc = req.body.book.desc;
-			// result.link = req.body.book.link;
-			result.save (function (err) {
-				if (err) {};
-				res.json({"success": "Book of age already exist, update done"});
-			})
-		}
-		else {
-			var seed = new Bookseeds();
-			seed.author = req.session.user.email;
-			seed.age = req.body.bslist[0].age;
-			seed.bookname = req.body.bslist[0].bookname;
-			// result.desc = req.body.book.desc;
-			// result.link = req.body.book.link;
-			seed.save(function (err, result) {
-				if (err) {};
-				console.log ("Successed adding seed: " + seed);
-				res.json("Successed adding seed: " + seed);
-			})
-		}
+	req.body.bslist.forEach (function(sd){
+		Bookseeds.findOne({'author': req.session.user.email, 'age': sd.age}, function (err, result) {
+			if (err) {};
+			if (result) { // if the seed of age already exist, then update the content. Keep the seeds unique to each age.
+				result.bookname = req.body.book.bookname;
+				// result.desc = req.body.book.desc;
+				// result.link = req.body.book.link;
+				result.save (function (err) {
+					if (err) {};
+					res.json({"success": "Book of age already exist, update done"});
+				})
+			}
+			else { // if there are no seed matched, save a new seed into db.
+				var seed = new Bookseeds();
+				seed.author = req.session.user.email;
+				seed.age = sd.age;
+				seed.bookname = sd.bookname;
+				// result.desc = req.body.book.desc;
+				// result.link = req.body.book.link;
+				seed.save(function (err, result) {
+					if (err) {};
+					console.log ("Successed adding seed: " + seed);
+					res.json("Successed adding seed: " + seed);
+				})
+			}
+		})
 	})
 }
 
@@ -121,5 +123,30 @@ exports.admin.testProjectData = function (req, res) {
 			console.log ('project doesnot exist');
 		}
 	})
+}
+
+exports.admin.testBookseedsData = function (req, res) {
+	Bookseeds.find(function (err, result) {
+		if (err) {};
+		if (result) {
+			// result.forEach (function(bs) {
+			// 	resData.project.data.push (bs);	
+			// }) 
+			res.json (result);
+			var seed = new Bookseeds();
+			seed.author = 'gz@qq.com';
+			seed.age = result.length + 1;
+			seed.bookname = seed.age + ' s Book';
+			// result.desc = req.body.book.desc;
+			// result.link = req.body.book.link;
+			seed.save(function (err, result) {
+				if (err) {};
+				console.log ("Successed adding seed: " + seed);
+				// res.json("Successed adding seed: " + seed);
+			})
+		}
+		else {console.log ('project doesnot exist with author ' + req.session.user.email);res.json ('Null');}
+	})
+	// res.send (resData);
 }
 
