@@ -23,6 +23,9 @@
 	$("#divF").load("pages/utility.html #divfooter");
 </script>
 <script type="text/javascript">
+//with model of this page, we can render this page based on this model, so we can code the rendering part first,
+//then we can code the communication part for the dynamic context, rewrite model, and render again by just calling the render function
+//all the input function should be put in here first, it's part of control.
 pageData = {
 	login : "visitor",//"projna"
 	location : "projna",//"projna","project","featrue","build","building"
