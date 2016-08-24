@@ -12,9 +12,15 @@
 </head>
 <body>
 	<div class = "container-fluid">
+<<<<<<< HEAD
 		<div id = "divH" ></div>
 		<div id = "divC" ></div>
 		<div id = "divF" ></div>
+=======
+		<div id = "divH"></div>
+		<div id = "divC"></div>
+		<div id = "divF"></div>
+>>>>>>> master
 	</div>
 </body>
 <script type="text/javascript">
@@ -22,4 +28,35 @@
 	$("#divC").load("pages/utility.html #divcover");
 	$("#divF").load("pages/utility.html #divfooter");
 </script>
+<script type="text/javascript">
+//with model of this page, we can render this page based on this model, so we can code the rendering part first,
+//then we can code the communication part for the dynamic context, rewrite model, and render again by just calling the render function
+//all the input function should be put in here first, it's part of control.
+pageData = {
+	login : "visitor",//"projna"
+	location : "projna",//"projna","project","featrue","build","building"
+	person : "visitor",//"person"
+	projna : [
+		{id : "bookseeds", name : "Book Seeds", pic : "Pro1-pic", state : "intro"},
+		{id : "graveyard", name : "Grave Yard", pic : "Pro2-pic", state : "intro"}
+	],
+	project : {
+		id : "bookseeds",//"project"
+		data : {}
+	}
+}
+
+$(document).ready(function(){
+	//control part, check the pageData and call the right js function for next level control
+});
+</script>
 </html>
+<!-- 
+$('#loadButton').click(function(){
+$.getScript('new.js',function(){
+newFun('"Checking new script"');//这个函数是在new.js里面的，当点击click后运行这个函数
+}); 
+
+$("script[src='../static/js/cpu_memory.js']").remove(); 
+$("script[src='../static/js/wan_flow.js']").remove(); 
+-->
