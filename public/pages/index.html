@@ -19,30 +19,35 @@
 </body>
 <script type="text/javascript">
 	$("#divH").load("pages/utility.html #divheader");
-	$("#divC").load("pages/utility.html #divcover");
 	$("#divF").load("pages/utility.html #divfooter");
 </script>
 <script type="text/javascript">
 //with model of this page, we can render this page based on this model, so we can code the rendering part first,
 //then we can code the communication part for the dynamic context, rewrite model, and render again by just calling the render function
 //all the input function should be put in here first, it's part of control.
-pageData = {
-	login : "visitor",//"projna"
-	location : "projna",//"projna","project","featrue","build","building"
-	person : "visitor",//"person"
-	projna : [
-		{id : "bookseeds", name : "Book Seeds", pic : "Pro1-pic", state : "intro"},
-		{id : "graveyard", name : "Grave Yard", pic : "Pro2-pic", state : "intro"}
-	],
-	project : {
-		id : "bookseeds",//"project"
-		data : {}
-	}
-}
+
 
 $(document).ready(function(){
 	//control part, check the pageData and call the right js function for next level control
+	renderProjna();
 });
+
+function renderProjna(){
+	//get the cover
+	var dc = $("#divC");
+	if (pageData.login === "visitor") {
+		dc.load("pages/utility.html #divcover");
+	};
+	var dd = $.load("pages/utility.html #divcover");
+
+	//render the person div
+	var personH = $("<div><a><h3></h3></a></div>");
+	personH.find("h3").text(pageData.login);
+	dc.append(personH);
+	dc.append(dd);
+	//render the projna list
+
+}
 </script>
 </html>
 <!-- 
