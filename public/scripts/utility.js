@@ -38,6 +38,9 @@ function checkLogIn(){
 				$("#projnaName").hide();
 				pageData.login = "visitor";
 			}
+			updatePage(function(){
+				renderPage();
+			});
 		}
 	});
 }

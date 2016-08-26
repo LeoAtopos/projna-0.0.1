@@ -37,10 +37,19 @@
 //all the input function should be put in here first, it's part of control.
 
 
-$(document).ready(function(){
+
 	//control part, check the pageData and call the right js function for next level control
+function updatePage(callback){
+	updateProjna();
+	callback();
+}
+function updateProjna(){
+
+}
+
+function renderPage(){
 	renderProjna();
-});
+}
 
 function renderProjna(){
 	//get the cover
