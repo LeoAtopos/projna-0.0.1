@@ -45,6 +45,7 @@ $(document).ready(function(){
 function renderProjna(){
 	//get the cover
 	var dc = $("#divC");
+	alert(pageData.login);
 	if (pageData.login === "visitor") {
 		$("#divcover").show();
 	}else{$("#divcover").hide();};
@@ -54,7 +55,7 @@ function renderProjna(){
 	dc.append(personH);
 	//render the projna list
 	var dprojna = $("<div id = 'divmyprojects' class = 'container' align = 'center'></div>");
-	var dpjpl = $("<div id = 'pjpanel'><div id = 'pjlist' class = 'col-sm-6 col-md-3'><a href = '#' class='thumbnail'><img src='../images/Pro1-pic.jpg' alt='通用的占位符缩略图'><h3 class = 'caption'>Project Name</h3></a></div></div>");
+	var dpjpl = $("<div><div id = 'pjlist' class = 'col-sm-6 col-md-3'><a href = '#' class='thumbnail'><img src='../images/Pro1-pic.jpg' alt='通用的占位符缩略图'><h3 class = 'caption'>Project Name</h3></a></div></div>");
 	pageData.projna.forEach(function(pj){
 		var pjpl = dpjpl.clone();
 		pjpl.find("h3").text(pj.name);
