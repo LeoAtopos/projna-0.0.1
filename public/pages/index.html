@@ -56,9 +56,7 @@ function renderProjna(){
 	var dc = $("#divC");
 	if (pageData.login === "visitor") {
 		$("#divcover").show();
-	}else{$("#divcover").hide();};
-	//render the person div
-	renderProjnaName(pageData.login);
+	}else{$("#divcover").hide();renderProjnaName(pageData.login);};
 	//render the projna list
 	var dprojna = $("<div id = 'divmyprojects' class = 'container' align = 'center'></div>");
 	var dpjpl = $("<div><div id = 'pjlist' class = 'col-sm-6 col-md-3'><a href = '#' class='thumbnail'><img src='../images/Pro1-pic.jpg' alt='通用的占位符缩略图'><h3 class = 'caption'>Project Name</h3></a></div></div>");
