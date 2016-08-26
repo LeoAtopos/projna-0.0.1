@@ -13,7 +13,17 @@
 <body>
 	<div class = "container-fluid">
 		<div id = "divH"></div>
-		<div id = "divC"></div>
+		<div id = "divC">
+			<div id = 'divcover'>
+				<div class = 'cover' align = 'center'>
+					<span id = 'brand'>Projna</span><br>
+					<span id = 'slogan1'>Trust in Building Persons</span><br>
+					<span id = 'slogan2'>@Projects</span><br><br>
+					<a id = 'learnmore' href=''>- Learn More -</a><br>
+					<button id = 'joinnow' class = 'btn btn-default' onclick="'location.href='/user/signup'">Join Now</button>
+				</div>
+			</div>"
+		</div>
 		<div id = "divF"></div>
 	</div>
 </body>
@@ -36,41 +46,23 @@ function renderProjna(){
 	//get the cover
 	var dc = $("#divC");
 	if (pageData.login === "visitor") {
-		dc.append("
-			<div id = 'divcover'>
-				<div class = 'cover' align = 'center'>
-					<span id = 'brand'>Projna</span><br>
-					<span id = 'slogan1'>Trust in Building Persons</span><br>
-					<span id = 'slogan2'>@Projects</span><br><br>
-					<a id = 'learnmore' href=''>- Learn More -</a><br>
-					<button id = 'joinnow' class = 'btn btn-default' onclick='location.href='/user/signup''>Join Now</button>
-				</div>
-			</div>"
-		);
-	};
+		$("#divcover").show();
+	}else{$("#divcover").hide();};
 	//render the person div
 	var personH = $("<div><a><h3></h3></a></div>");
 	personH.find("h3").text(pageData.login);
 	dc.append(personH);
 	//render the projna list
-	var dprojna = $("<div id = "divmyprojects" class = "container" align = "center">
-	</div>");
-	var dpjpl = $("
-		<div id = 'pjpanel'>
-			<div id = 'pjlist' class = 'col-sm-6 col-md-3'>
-				<a href = '#' class='thumbnail'>
-			        <img src='../images/Pro1-pic.jpg' alt='通用的占位符缩略图'>
-				    <h3 class = 'caption'>Project Name</h3>
-			    </a>
-		    </div>;
-		</div>"
-	);
+	var dprojna = $("<div id = 'divmyprojects' class = 'container' align = 'center'></div>");
+	var dpjpl = $("<div id = 'pjpanel'><div id = 'pjlist' class = 'col-sm-6 col-md-3'><a href = '#' class='thumbnail'><img src='../images/Pro1-pic.jpg' alt='通用的占位符缩略图'><h3 class = 'caption'>Project Name</h3></a></div>;</div>");
 	pageData.projna.forEach(function(pj){
 		var pjpl = dpjpl.clone();
 		pjpl.find("h3").text(pj.name);
 		pjpl.find("img").attr("src",'../images/'+pj.pic);
 		pjpl.find("a").attr("href",'/project/'+pj.id);
+		dprojna.append(pjpl);
 	});
+	dc.append(dprojna);
 }
 </script>
 </html>
