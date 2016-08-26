@@ -58,7 +58,7 @@ function renderProjna(){
 	pageData.projna.forEach(function(pj){
 		var pjpl = dpjpl.clone();
 		pjpl.find("h3").text(pj.name);
-		pjpl.find("img").attr("src",'../images/'+pj.pic);
+		pjpl.find("img").attr("src",'../images/'+pj.pic+'.jpg');
 		pjpl.find("a").attr("href",'/project/'+pj.id);
 		dprojna.append(pjpl);
 	});
