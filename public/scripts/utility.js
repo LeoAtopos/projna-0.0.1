@@ -8,7 +8,10 @@ pageData = {
 	],
 	project : {
 		id : "bookseeds",//"project"
-		data : {}
+		data : {
+			featruePage : [],
+			featruePerson : [],
+		}
 	},
 	build : {
 		id : "sample",
@@ -43,6 +46,13 @@ function checkLogIn(){
 			});
 		}
 	});
+}
+
+function renderProjnaName(pn){
+	var dc = $("#divC");
+	var personH = $("<center><div><a><h3></h3></a></div></center>");
+	personH.find("h3").text(pn);
+	dc.prepend(personH);
 }
 
 
