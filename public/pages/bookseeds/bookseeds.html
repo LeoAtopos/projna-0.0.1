@@ -47,7 +47,7 @@ function renderBookseeds(){
 	if(pageData.login === "visitor"){
 		$("#stb").attr('onclick',"location.href='/user/login'");
 	}else {
-		var h = '/project/'+pj.id+'/building/'+pageData.login;
+		var h = '/project/'+pageData.project.id+'/building/'+pageData.login;
 		$("#stb").attr('onclick',"location.href='"+h+"'");
 	}
 }
