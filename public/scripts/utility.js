@@ -3,7 +3,7 @@ pageData = {
 	location : "projna",//"projna","project","featrue","build","building"
 	person : "visitor",//"person"
 	projna : [
-		{id : "bookseeds", name : "Book Seeds", pic : "Pro1-pic", state : "intro"},
+		{id : "bookseeds", name : "Book Seeds", pic : "Pro1-pic", state : "intro"},//build,
 		{id : "graveyard", name : "Grave Yard", pic : "Pro2-pic", state : "intro"}
 	],
 	project : {

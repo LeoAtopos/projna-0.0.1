@@ -64,7 +64,12 @@ function renderProjna(){
 		var pjpl = dpjpl.clone();
 		pjpl.find("h3").text(pj.name);
 		pjpl.find("img").attr("src",'../images/'+pj.pic+'.jpg');
-		pjpl.find("a").attr("href",'/project/'+pj.id);
+		if(pj.state === "intro"){
+			pjpl.find("a").attr("href",'/project/'+pj.id);
+		}else if (pj.state === "build"){
+			pjpl.find("a").attr("href",'/project/'+pj.id+'/build/'+pageData.person);
+		}
+		
 		dprojna.append(pjpl);
 	});
 	dc.append(dprojna);
