@@ -80,17 +80,23 @@ $("#submit").on("click",function(event){
 });
 
 function submitbookseeds(){
-	$.ajax({
-		type : "POST",
-		url : "/project/edit/addSeeds",
-		data: {bslist: readbookseeds()},
-		success : function(msg){
-			window.location.href='/project/bookseeds/build/'+pageData.login;
-		},
-		error : function(msg){
-			alert("something xiaoxue!");
-		}
-	});
+	var bsl = readbookseeds();
+	if(bsl.length > 0){
+		$.ajax({
+			type : "POST",
+			url : "/project/edit/addSeeds",
+			data: {bslist: bsl},
+			success : function(msg){
+				window.location.href='/project/bookseeds/build/'+pageData.login;
+			},
+			error : function(msg){
+				alert("something xiaoxue!");
+			}
+		});
+	}else{
+		alert("Hey! The list is empty!");
+	}
+	
 }
 
 function readbookseeds(){

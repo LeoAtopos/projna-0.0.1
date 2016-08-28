@@ -1,7 +1,7 @@
 pageData = {
-	login : "visitor",//"projna"
+	login : "reseter@sina.com",//"projna"
 	location : "projna",//"projna","project","featrue","build","building"
-	person : "visitor",//"person"
+	person : "reseter@sina.com",//"person"
 	projna : [
 		{id : "bookseeds", name : "Book Seeds", pic : "Pro1-pic", state : "intro"},//build,
 		{id : "graveyard", name : "Grave Yard", pic : "Pro2-pic", state : "intro"}

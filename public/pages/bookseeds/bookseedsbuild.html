@@ -93,6 +93,11 @@ function listbookseeds(bs){
 
 	$("#oneseed").append(tr);
 }
+
+//handle input
+$("#edit").on("click",function(event){
+	window.location.href = '/project/'+pageData.project.id+'/building/'+pageData.login;
+});
 </script>
 <script type="text/javascript">
 // var m;

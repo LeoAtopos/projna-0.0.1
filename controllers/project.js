@@ -71,7 +71,7 @@ exports.addSeeds = function (req, res) {
 		Bookseeds.findOne({'author': req.session.user.email, 'age': sd.age}, function (err, result) {
 			if (err) {};
 			if (result) { // if the seed of age already exist, then update the content. Keep the seeds unique to each age.
-				result.bookname = req.body.book.bookname;
+				result.bookname = sd.bookname;
 				// result.desc = req.body.book.desc;
 				// result.link = req.body.book.link;
 				result.save (function (err) {
