@@ -8,7 +8,7 @@
     <script src="https://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="/scripts/utility.js"></script>
-    <link rel="stylesheet" type="text/css" href="../css/mystyle.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/mystyle.css"/>
 </head>
 <body>
 	<div class = "container-fluid">
@@ -17,7 +17,17 @@
 			<div id = "intro">
 				<h1>Book Seeds</h1>
 				<h3>Name the books you thought suitable for children in each age, because a person's ideas ought to be past on to next generations, and that can be done by books he/she thoughtfully recomended.</h3>
-				<button id = "stb" class = "btn btn-default">Need to Build</button>
+			</div>
+			<div class = "form-horizontal">
+				<div id = "working">
+					<div id = "age" class="form-group">
+						<label for="name" class="col-sm-2 control-label">Age 7</label>
+						<div class = "col-sm-10">
+							<input type="text" class="form-control" id="name" placeholder="The book name you recommend for this age">
+						</div>
+					</div>
+				</div>
+				<button id = "submit" class="btn btn-default">Submit</button>
 			</div>
 		</div>
 		<div id = "divF" ></div>
@@ -25,31 +35,78 @@
 </body>
 <script type="text/javascript">
 //load the page html
-	$("#divH").load("../pages/utility.html #divheader");
-	$("#divF").load("../pages/utility.html #divfooter");
+	$("#divH").load("/pages/utility.html #divheader");
+	$("#divF").load("/pages/utility.html #divfooter");
 </script>
 <script type="text/javascript">
+//make the fake sample pageData for this building page
+pageData.build.id = "reseter@sina.com";
+pageData.build.data.bslist = [];
+
 function updatePage(callback){
-	updateBookseeds();
+	updateBookseedsBuilding();
 	callback();
 }
-function updateBookseeds(){
+function updateBookseedsBuilding(){
 //ajax and update project bookseeds' pageData
 }
 
 function renderPage(){
-	renderBookseeds();
+	renderBookseedsBuilding();
 }
 
-function renderBookseeds(){
+function renderBookseedsBuilding(){
 //render bookseeds page with pageData
 	renderProjnaName(pageData.login);
-	if(pageData.login === "visitor"){
-		$("#stb").attr('onclick',"location.href='/user/login'");
-	}else {
-		var h = '/project/'+pageData.project.id+'/building/'+pageData.login;
-		$("#stb").attr('onclick',"location.href='"+h+"'");
+
+	var bslist = pageData.build.data.bslist;
+
+	for(var i = 7; i <= 22; i++){
+		var a = $("#age").clone();
+		a.attr("id","age" + i.toString());
+		a.find("label").text("Age "+ i.toString());
+		$("#working").append(a);
 	}
+	$("#age").remove();
+	for(var bs in bslist){
+		var l = bslist[bs].age;
+		$("#age"+l.toString()).find("input").val(bslist[bs].bookname);
+	}
+}
+
+//handle input submit the book seeds user edited
+$("#submit").on("click",function(event){
+	submitbookseeds();
+});
+
+function submitbookseeds(){
+	$.ajax({
+		type : "POST",
+		url : "/project/edit/addSeeds",
+		data: {bslist: readbookseeds()},
+		success : function(msg){
+			window.location.href='/project/bookseeds/build/'+pageData.login;
+		},
+		error : function(msg){
+			alert("something xiaoxue!");
+		}
+	});
+}
+
+function readbookseeds(){
+	var bslist = new Array();
+	for(var i = 7;i<=22;i++){
+		var id = "#age"+i.toString();
+		if($(id).find("input").val() != ""){
+			var bs = new Object();
+			bs.age = i;
+			bs.bookname = $(id).find("input").val();
+			bslist.push(bs);
+		}
+	}
+	// alert (bslist);
+	return bslist;
+	// return jQuery.parseJSON(bslist);
 }
 </script>
 <script type="text/javascript">

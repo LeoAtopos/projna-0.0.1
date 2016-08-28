@@ -110,6 +110,19 @@ exports.setReqUrl = function (app) {
 	app.get('/project/load/bookseeds', project.loadbookseeds);
 	app.post('/project/edit/addSeeds', project.addSeeds);
 
+//just send those files back without any method
+
+	app.get('/project/:pagename/building/:person', function (req, res) {
+		console.log (req.params.pagename+"building");
+		res.header("Content-Type", "text/html");
+		res.sendFile (__dirname+"/public/pages/"+req.params.pagename+"/"+req.params.pagename+"building"+".html");
+	});
+
+	app.get('/project/:pagename/build/:person', function (req, res) {
+		console.log (req.params.pagename+"build");
+		res.header("Content-Type", "text/html");
+		res.sendFile (__dirname+"/public/pages/"+req.params.pagename+"/"+req.params.pagename+"build"+".html");
+	})
 
 /*
 	****************************************************************

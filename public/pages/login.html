@@ -60,7 +60,8 @@
 			data:params,
 			success : function(msg){
 				alert(JSON.stringify(msg));
-				window.location.href="/myprojects/" + params.email;
+				window.location.href="/";
+				// window.location.href="/myprojects/" + params.email;
 			},
 			error : function(msg){alert(JSON.stringify(msg));} 
 		});

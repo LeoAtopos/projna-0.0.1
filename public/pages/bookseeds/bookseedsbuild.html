@@ -2,13 +2,13 @@
 <head>
 	<title>Projna</title>
     <meta charset="utf-8">
-    <link rel="shortcut icon" href="../images/logo.png" />
+    <link rel="shortcut icon" href="/images/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script src="https://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="/scripts/utility.js"></script>
-    <link rel="stylesheet" type="text/css" href="../css/mystyle.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/mystyle.css"/>
 </head>
 <body>
 	<div class = "container-fluid">
@@ -19,37 +19,75 @@
 				<h3>Name the books you thought suitable for children in each age, because a person's ideas ought to be past on to next generations, and that can be done by books he/she thoughtfully recomended.</h3>
 				<button id = "stb" class = "btn btn-default">Need to Build</button>
 			</div>
+			<div id = "result" class="table-responsive">
+				<table class="table">
+					<caption id = "whos">Projna's Book Seeds</caption>
+					<thead>
+						<tr>
+							<th>Age</th>
+							<th>Book Name</th>
+						</tr>
+					</thead>
+					<tbody id = "oneseed">
+					</tbody>
+				</table>
+				<button id = "edit" class="btn btn-default">Edit</button>
+			</div>
 		</div>
 		<div id = "divF" ></div>
 	</div>
 </body>
 <script type="text/javascript">
 //load the page html
-	$("#divH").load("../pages/utility.html #divheader");
-	$("#divF").load("../pages/utility.html #divfooter");
+	$("#divH").load("/pages/utility.html #divheader");
+	$("#divF").load("/pages/utility.html #divfooter");
 </script>
 <script type="text/javascript">
+//make the fake sample pageData for this building page
+pageData.build.id = "reseter@sina.com";
+pageData.build.data.bslist = [];
+
 function updatePage(callback){
-	updateBookseeds();
+	updateBookseedsBuild();
 	callback();
 }
-function updateBookseeds(){
+function updateBookseedsBuild(){
 //ajax and update project bookseeds' pageData
 }
 
 function renderPage(){
-	renderBookseeds();
+	renderBookseedsBuild();
 }
 
-function renderBookseeds(){
+function renderBookseedsBuild(){
 //render bookseeds page with pageData
-	renderProjnaName(pageData.login);
+	renderProjnaName(pageData.person);
 	if(pageData.login === "visitor"){
 		$("#stb").attr('onclick',"location.href='/user/login'");
 	}else {
 		var h = '/project/'+pageData.project.id+'/building/'+pageData.login;
 		$("#stb").attr('onclick',"location.href='"+h+"'");
 	}
+
+	$("#whos").text(pageData.person + "'s Book Seeds");
+
+	var bslist = pageData.build.data.bslist;
+
+	for(var bs in bslist){
+		listbookseeds(bslist[bs]);
+	}
+}
+
+function listbookseeds(bs){
+	// alert (JSON.stringify(bs));
+	var tr = $("<tr></tr>");
+	var tdage = $("<i></i>").text(bs.age);
+	var tdbookname = $("<td></td>").text(bs.bookname);
+
+	tr.append(tdage);
+	tr.append(tdbookname);
+
+	$("#oneseed").append(tr);
 }
 </script>
 <script type="text/javascript">
