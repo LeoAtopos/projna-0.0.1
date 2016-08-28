@@ -76,6 +76,10 @@ function renderBookseedsBuild(){
 	for(var bs in bslist){
 		listbookseeds(bslist[bs]);
 	}
+
+	if(pageData.login != "visitor" && pageData.login === pageData.person)
+		$("#edit").show();
+	else $("#edit").hide();
 }
 
 function listbookseeds(bs){
