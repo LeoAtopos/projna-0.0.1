@@ -43,12 +43,19 @@
 pageData.build.id = "reseter@sina.com";
 pageData.build.data.bslist = [];
 
-function updatePage(callback){
+function updatePage(){
 	updateBookseedsBuilding();
-	callback();
 }
 function updateBookseedsBuilding(){
 //ajax and update project bookseeds' pageData
+	$.ajax({
+		type:"GET",url:"/project/load/bookseeds",data:{"username" : pageData.login},
+		async:false,
+		success: function(msg){
+			pageData.build.data.bslist = msg.project.data.bslist;
+		},
+		error: function(msg){alert("somethin xiaoyue!");}
+	});
 }
 
 function renderPage(){
@@ -85,7 +92,7 @@ function submitbookseeds(){
 		$.ajax({
 			type : "POST",
 			url : "/project/edit/addSeeds",
-			data: {bslist: bsl},
+			data: {bslist: bsl},async:true,
 			success : function(msg){
 				window.location.href='/project/bookseeds/build/'+pageData.login;
 			},

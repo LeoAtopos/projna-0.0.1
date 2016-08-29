@@ -47,12 +47,20 @@
 pageData.build.id = "reseter@sina.com";
 pageData.build.data.bslist = [];
 
-function updatePage(callback){
+function updatePage(){
 	updateBookseedsBuild();
-	callback();
 }
 function updateBookseedsBuild(){
 //ajax and update project bookseeds' pageData
+	$.ajax({
+		type:"GET",url:"/project/load/bookseeds",data:{"username" : pageData.login},
+		async:false,
+		success: function(msg){
+			alert(JSON.stringify(msg));
+			pageData.build = msg.project;
+		},
+		error: function(msg){alert("somethin xiaoyue!");}
+	});
 }
 
 function renderPage(){

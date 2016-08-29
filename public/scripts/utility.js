@@ -15,7 +15,7 @@ pageData = {
 	},
 	build : {
 		id : "sample",
-		data : {}
+		data : {bslist:[{age:7,bookname:"love you"},{age:8,bookname:"go to build"}]}
 	}
 }
 
@@ -24,7 +24,7 @@ function checkLogIn(){
 	var userInfo;
 	$.ajax({
 		// type:"GET",url:"http://172.16.40.36:8081/user/checkSession",data:{},
-		type:"GET",url:"/user/checkSession",data:{},
+		type:"GET",url:"/user/checkSession",data:{},async:false,
 		success: function(msg){
 			userInfo = msg;
 			if(userInfo.status === "user"){
@@ -42,11 +42,13 @@ function checkLogIn(){
 				$("#projnaName").hide();
 				pageData.login = "visitor";
 			}
-			updatePage(function(){
-				renderPage();
-			});
+			// updatePage(function(){
+			// 	renderPage();
+			// });
 		}
 	});
+	updatePage();
+	renderPage();
 }
 
 function renderProjnaName(pn){

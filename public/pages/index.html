@@ -8,7 +8,7 @@
     <script src="https://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="scripts/utility.js"></script>
-    <link rel="stylesheet" type="text/css" href="../css/mystyle.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/mystyle.css"/>
 </head>
 <body>
 	<div class = "container-fluid">
@@ -20,7 +20,7 @@
 					<span id = 'slogan1'>Trust in Building Persons</span><br>
 					<span id = 'slogan2'>@Projects</span><br><br>
 					<a id = 'learnmore' href=''>- Learn More -</a><br>
-					<button id = 'joinnow' class = 'btn btn-default' onclick="'location.href='/user/signup'">Join Now</button>
+					<button id = 'joinnow' class = 'btn btn-default' onclick="location.href='/user/signup'">Join Now</button>
 				</div>
 			</div>
 		</div>
@@ -39,12 +39,27 @@
 
 
 	//control part, check the pageData and call the right js function for next level control
-function updatePage(callback){
+function updatePage(){
 	updateProjna();
-	callback();
 }
 function updateProjna(){
 //ajax and update pageData;
+	//find what user it is looking at
+	var str = window.location.href;
+	var index = str.lastIndexOf("\/");  
+	username  = str.substring(index + 1, str.length);
+	//ajax for the user's projna data
+	if(username != ""){
+		$.ajax({
+			type:"GET",url:"/user/getprojna",data:{"username" : username},
+			async:false,
+			success: function(msg){
+	//update projna
+				pageData.projna = msg.projna;
+			},
+			error: function(msg){alert("somethin xiaoyue!");}
+		});
+	}
 }
 
 function renderPage(){

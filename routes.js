@@ -10,6 +10,12 @@ exports.setReqUrl = function (app) {
 		res.sendFile (__dirname+"/public/pages/index.html");
 	});
 
+	app.get('/:user', function(req, res) {
+		console.log ('home page send');
+    	res.header("Content-Type", "text/html");
+		res.sendFile (__dirname+"/public/pages/index.html");
+	});
+
 // users
 	app.get('/user/register', user.register);
 
