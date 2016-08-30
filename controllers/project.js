@@ -21,20 +21,20 @@ exports.admin = function (req, res) {
 exports.loadbookseeds = function (req, res) {
 	console.log ("project => loadbookseeds");
 	var resData = {
-		"state" : "visitor/self/other",
-		"project" : {
-			"title"	:"Book Seeds",
-			"desc" : "asdfsaf",
-			"data" : {
-				"bslist" : [
-					{
-						"age" : "4",
-						"bookname" : "lalala"
-					},
-					{
-						"age" : "14",
-						"bookname" : "lalala"
-					}
+		state : "visitor/self/other",
+		project : {
+			title	:"Book Seeds",
+			desc : "asdfsaf",
+			data : {
+				bslist : [
+					// {
+					// 	"age" : "4",
+					// 	"bookname" : "lalala"
+					// },
+					// {
+					// 	"age" : "14",
+					// 	"bookname" : "lalala"
+					// }
 				]
 			}
 		}
@@ -49,24 +49,38 @@ exports.loadbookseeds = function (req, res) {
 		if (result) {resData.project.title = result.title;	resData.project.desc = result.desc;}
 		else {console.log ('project doesnot exist with title ' + 'Bookseeds');}
 	})
-	
+
 	Bookseeds.find({'author': req.session.user.email}, function (err, result) {
 		if (err) {};
 		if (result) {
+			// console.log("bslist of mine "+result);
 			result.forEach (function(bs) {
-				resData.project.data.bslist.push (bs);	
-			}) 
+			// 	console.log ("bs is "+bs);
+				resData.project.data.bslist.push (bs);
+			// 	// resData.project.data.bslist[resData.project.data.bslist.length] = bs;
+			})
+			// resData.project.data.bslist = result;
+			// res.send (resData);
 		}
 		else {console.log ('project doesnot exist with author ' + req.session.user.email);}
+		res.send (resData);
 	})
 
-	res.send (resData);
+	// res.send (resData);
 }
 
 exports.addSeeds = function (req, res) {
 	console.log ("project => onAddSeed");
 	console.log (req.session.user.email);
 	console.log (req.body.bslist);
+	// var resList = new array();
+	var resData = {
+		error: [],
+		msg: {
+			update: [],
+			add: []
+		}
+	}
 	req.body.bslist.forEach (function(sd){
 		console.log(sd);
 		Bookseeds.findOne({'author': req.session.user.email, 'age': sd.age}, function (err, result) {
@@ -76,8 +90,9 @@ exports.addSeeds = function (req, res) {
 				// result.desc = req.body.book.desc;
 				// result.link = req.body.book.link;
 				result.save (function (err) {
-					if (err) {};
-					res.json({"success": "Book of age already exist, update done"});
+					if (err) {resData.error.push(err)};
+					// res.json({"success": "Book of age already exist, update done"});
+					resData.msg.update.push(sd.age);
 				})
 			}
 			else { // if there are no seed matched, save a new seed into db.
@@ -88,13 +103,15 @@ exports.addSeeds = function (req, res) {
 				// result.desc = req.body.book.desc;
 				// result.link = req.body.book.link;
 				seed.save(function (err, result) {
-					if (err) {};
+					if (err) {resData.error.push(err)};
 					console.log ("Successed adding seed: " + seed);
-					res.json("Successed adding seed: " + seed);
+					// res.json("Successed adding seed: " + seed);
+					resData.msg.add.push(seed);
 				})
 			}
 		})
 	})
+	res.json (resData);
 }
 
 exports.admin.addProject = function (req, res) {
@@ -117,13 +134,16 @@ exports.admin.addProject = function (req, res) {
 exports.admin.testProjectData = function (req, res) {
 	console.log ("project => oncreate");
 	var proj = new Proj();
-	Proj.findOne({'title': 'Bookseeds'}, function (err, result) {
+	var data = [];
+	Proj.find({'title': 'Bookseeds'}, function (err, result) {
 		if (err) {};
-		if (result) {res.send (result + "-------" + result.followers.length);}
+		if (result) {console.log (result);data.push(result);}
 		else {
 			console.log ('project doesnot exist');
 		}
 	})
+	console.log (data);
+	res.json (data);
 }
 
 exports.admin.testBookseedsData = function (req, res) {
@@ -134,17 +154,17 @@ exports.admin.testBookseedsData = function (req, res) {
 			// 	resData.project.data.push (bs);	
 			// }) 
 			res.json (result);
-			var seed = new Bookseeds();
-			seed.author = 'gz@qq.com';
-			seed.age = result.length + 1;
-			seed.bookname = seed.age + ' s Book';
+			// var seed = new Bookseeds();
+			// seed.author = 'gz@qq.com';
+			// seed.age = result.length + 1;
+			// seed.bookname = seed.age + ' s Book';
 			// result.desc = req.body.book.desc;
 			// result.link = req.body.book.link;
-			seed.save(function (err, result) {
-				if (err) {};
-				console.log ("Successed adding seed: " + seed);
-				// res.json("Successed adding seed: " + seed);
-			})
+			// seed.save(function (err, result) {
+			// 	if (err) {};
+			// 	console.log ("Successed adding seed: " + seed);
+			// 	// res.json("Successed adding seed: " + seed);
+			// })
 		}
 		else {console.log ('project doesnot exist with author ' + req.session.user.email);res.json ('Null');}
 	})
