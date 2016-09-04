@@ -4,7 +4,7 @@ pageData = {
 	person : "reseter@sina.com",//"person"
 	projna : [
 		{id : "bookseeds", name : "Book Seeds", pic : "Pro1-pic", state : "intro"},//build,
-		{id : "epitaph", name : "epitaph", pic : "Pro2-pic", state : "intro"}
+		{id : "epitaph", name : "Epitaph", pic : "Pro2-pic", state : "intro"}
 	],
 	project : {
 		id : "bookseeds",//"project"
