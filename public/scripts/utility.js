@@ -4,13 +4,13 @@ pageData = {
 	person : "reseter@sina.com",//"person"
 	projna : [
 		{id : "bookseeds", name : "Book Seeds", pic : "Pro1-pic", state : "intro"},//build,
-		{id : "graveyard", name : "Grave Yard", pic : "Pro2-pic", state : "intro"}
+		{id : "epitaph", name : "epitaph", pic : "Pro2-pic", state : "intro"}
 	],
 	project : {
 		id : "bookseeds",//"project"
 		data : {
-			featruePage : [],
-			featruePerson : [],
+			featurePage : [],
+			featurePerson : [{id:"reseter@sina.com",name:"reseter@sina.com",pic:"per1-pic"},{id:"gz@qq.com",name:"gz@qq.com",pic:"per2-pic"}],
 		}
 	},
 	build : {
@@ -56,6 +56,44 @@ function renderProjnaName(pn){
 	var personH = $("<center><div><a><h3></h3></a></div></center>");
 	personH.find("h3").text(pn);
 	dc.prepend(personH);
+}
+
+function getThePerson(){
+	var str = window.location.href;
+	var index = str.lastIndexOf("\/");  
+	var username  = str.substring(index + 1, str.length);
+	return username;
+}
+
+function updateFeaturePerson(){
+	// $.ajax({
+	// 	type:"GET",url:"/project/"+pageData.project.id+"/loadfeatureperson",async:false,
+	// 	data:{},
+	// 	success : function(msg){
+	// 		pageData.project.data.featurePerson = msg.project.data.featurePerson;
+	// 	},
+	// 	error : function(msg){
+	// 		alert("something xiaoyue!");
+	// 	}
+	// });
+}
+
+function renderFeaturePerson(){
+	var fp = pageData.project.data.featurePerson;
+	if(fp.length > 0){
+		fp.forEach(function(p){
+			$("#feature").append(renderPerson(p));
+		});
+	}
+}
+
+function renderPerson(p){
+	var fp = $("<div><div class = 'col-sm-6 col-md-3'><a href = '#' class='thumbnail'><img class = 'img-circle' src='../images/per1-pic.jpg' alt='通用的占位符缩略图'><h3 class = 'caption'>Person Name</h3></a></div></div>");
+	fp.find("h3").text(p.name);
+	fp.find("img").attr("src",'../images/'+p.pic+'.jpg');
+	fp.find("a").attr("href",'/project/'+pageData.project.id+'/build/'+p.id);
+
+	return fp;
 }
 
 

@@ -15,15 +15,16 @@
 		<div id = "divH"></div>
 		<div id = "divC" class = "container">
 			<div id = "intro">
-				<h1>Book Seeds</h1>
-				<h3>Name the books you thought suitable for children in each age, because a person's ideas ought to be past on to next generations, and that can be done by books he/she thoughtfully recomended.</h3>
+				<h1>Epitaph</h1>
+				<h3>You will not live for ever, but your charactor may. How could it be better to show who you are than writing your own EPITAPH? Carve it on your own internet grave(which you don't need to die to have one). Now, show your charactor to the world with just one line(which for long long history you may leave at least).</h3>
+				<h3>How Grave it is!</h3>
 			</div>
-			<div class = "form-horizontal">
+			<div>
 				<div id = "working">
-					<div id = "age" class="form-group">
-						<label for="name" class="col-sm-2 control-label">Age 7</label>
-						<div class = "col-sm-10">
-							<input type="text" class="form-control" id="name" placeholder="The book name you recommend for this age">
+					<div id = "grave" class="form-group">
+						<label id = "whos">MY EPITAPH</label>
+						<div>
+							<input type="text" class="form-control" id="content" placeholder="Bla Bla for all my life.">
 						</div>
 					</div>
 				</div>
@@ -40,86 +41,63 @@
 </script>
 <script type="text/javascript">
 //make the fake sample pageData for this building page
-pageData.build.id = "reseter@sina.com";
-pageData.build.data.bslist = [];
+
 
 function updatePage(){
-	updateBookseedsBuilding();
+	pageData.build.id = "reseter@sina.com";
+	pageData.build.data.epitaph = "";
+	pageData.project.id = "epitaph";
+	updateEpitaphBuilding();
 }
-function updateBookseedsBuilding(){
+function updateEpitaphBuilding(){
 //ajax and update project bookseeds' pageData
 	$.ajax({
-		type:"GET",url:"/project/load/bookseeds",data:{"username" : pageData.login},
+		type:"GET",url:"/project/load/epitaph",data:{"username" : pageData.login},
 		async:false,
 		success: function(msg){
-			pageData.build.data.bslist = msg.project.data.bslist;
+			pageData.build.data.epitaph = msg.project.data.epitaph;
 		},
 		error: function(msg){alert("somethin xiaoyue!");}
 	});
 }
 
 function renderPage(){
-	renderBookseedsBuilding();
+	renderEpitaphBuilding();
 }
 
-function renderBookseedsBuilding(){
+function renderEpitaphBuilding(){
 //render bookseeds page with pageData
 	renderProjnaName(pageData.login);
 
-	var bslist = pageData.build.data.bslist;
+	var epitaph = pageData.build.data.epitaph;
 
-	for(var i = 7; i <= 22; i++){
-		var a = $("#age").clone();
-		a.attr("id","age" + i.toString());
-		a.find("label").text("Age "+ i.toString());
-		$("#working").append(a);
-	}
-	$("#age").remove();
-	for(var bs in bslist){
-		var l = bslist[bs].age;
-		$("#age"+l.toString()).find("input").val(bslist[bs].bookname);
-	}
+	$("#grave").find("#whos").val(pageData.login + "'s Epitaph");
+	$("#grave").find("input").val(epitaph);
 }
 
 //handle input submit the book seeds user edited
 $("#submit").on("click",function(event){
-	submitbookseeds();
+	submitepitaph();
 });
 
-function submitbookseeds(){
-	var bsl = readbookseeds();
-	if(bsl.length > 0){
+function submitepitaph(){
+	var ep = $("#grave").find("input").val();
+	if(ep != ""){
 		$.ajax({
 			type : "POST",
-			url : "/project/edit/addSeeds",
-			data: {bslist: bsl},async:true,
+			url : "/project/edit/addEpitaph",
+			data: {epitaph: ep},async:true,
 			success : function(msg){
-				window.location.href='/project/bookseeds/build/'+pageData.login;
+				window.location.href='/project/epitaph/build/'+pageData.login;
 			},
 			error : function(msg){
 				alert("something xiaoxue!");
 			}
 		});
 	}else{
-		alert("Hey! The list is empty!");
+		alert("Hey! It's empty!");
 	}
 	
-}
-
-function readbookseeds(){
-	var bslist = new Array();
-	for(var i = 7;i<=22;i++){
-		var id = "#age"+i.toString();
-		if($(id).find("input").val() != ""){
-			var bs = new Object();
-			bs.age = i;
-			bs.bookname = $(id).find("input").val();
-			bslist.push(bs);
-		}
-	}
-	// alert (bslist);
-	return bslist;
-	// return jQuery.parseJSON(bslist);
 }
 </script>
 <script type="text/javascript">

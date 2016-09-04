@@ -20,6 +20,9 @@
 				<button id = "stb" class = "btn btn-default">Need to Build</button>
 				<button id = "ddd" class = "btn btn-default" onclick = "loadbslist()">testload</button>
 			</div>
+			<div id = "feature">
+				<h2>Featured Persons</h2>
+			</div>
 		</div>
 		<div id = "divF" ></div>
 	</div>
@@ -30,15 +33,20 @@
 	$("#divF").load("../pages/utility.html #divfooter");
 </script>
 <script type="text/javascript">
+
 function updatePage(){
+	pageData.project.id = "bookseeds";
 	updateBookseeds();
+	updateFeaturePerson();
 }
 function updateBookseeds(){
 //ajax and update project bookseeds' pageData
 }
 
+
 function renderPage(){
 	renderBookseeds();
+	renderFeaturePerson();
 }
 
 function renderBookseeds(){
@@ -64,6 +72,8 @@ function loadbslist () {
 		error : function(msg) {}
 	});
 }
+
+
 </script>
 <script type="text/javascript">
 // var m;

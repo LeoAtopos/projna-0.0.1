@@ -44,23 +44,30 @@
 </script>
 <script type="text/javascript">
 //make the fake sample pageData for this building page
-pageData.build.id = "reseter@sina.com";
-pageData.build.data.bslist = [];
+
 
 function updatePage(){
+	pageData.build.id = "reseter@sina.com";
+	pageData.build.data.bslist = [];
+	pageData.project.id = "bookseeds";
 	updateBookseedsBuild();
 }
 function updateBookseedsBuild(){
 //ajax and update project bookseeds' pageData
-	$.ajax({
-		type:"GET",url:"/project/load/bookseeds",data:{"username" : pageData.login},
-		async:false,
-		success: function(msg){
-			alert(JSON.stringify(msg));
-			pageData.build = msg.project;
-		},
-		error: function(msg){alert("somethin xiaoyue!");}
-	});
+	var username = getThePerson();
+	alert(username);
+	if(username != ""){
+		pageData.person = username;
+		$.ajax({
+			type:"GET",url:"/project/load/bookseeds",data:{"username" : pageData.person},
+			async:false,
+			success: function(msg){
+				//alert(JSON.stringify(msg));
+				pageData.build = msg.project;
+			},
+			error: function(msg){alert("somethin xiaoyue!lalalal");}
+		});
+	}
 }
 
 function renderPage(){

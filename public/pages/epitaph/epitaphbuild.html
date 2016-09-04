@@ -15,22 +15,16 @@
 		<div id = "divH"></div>
 		<div id = "divC" class = "container">
 			<div id = "intro">
-				<h1>Book Seeds</h1>
-				<h3>Name the books you thought suitable for children in each age, because a person's ideas ought to be past on to next generations, and that can be done by books he/she thoughtfully recomended.</h3>
+				<h1>Epitaph</h1>
+				<h3>You will not live for ever, but your charactor may. How could it be better to show who you are than writing your own EPITAPH? Carve it on your own internet grave(which you don't need to die to have one). Now, show your charactor to the world with just one line(which for long long history you may leave at least).</h3>
+				<h3>How Grave it is!</h3>
 				<button id = "stb" class = "btn btn-default">Need to Build</button>
 			</div>
-			<div id = "result" class="table-responsive">
-				<table class="table">
-					<caption id = "whos">Projna's Book Seeds</caption>
-					<thead>
-						<tr>
-							<th>Age</th>
-							<th>Book Name</th>
-						</tr>
-					</thead>
-					<tbody id = "oneseed">
-					</tbody>
-				</table>
+			<div id = "result">
+				<div id = "grave">
+					<label id = "whos">MY EPITAPH</label>
+					<h3 id = "content">Leave me alone!</h3>
+				</div>
 				<button id = "edit" class="btn btn-default">Edit</button>
 			</div>
 		</div>
@@ -44,32 +38,38 @@
 </script>
 <script type="text/javascript">
 //make the fake sample pageData for this building page
-pageData.build.id = "reseter@sina.com";
-pageData.build.data.bslist = [];
+
 
 function updatePage(){
-	updateBookseedsBuild();
+	pageData.build.id = "reseter@sina.com";
+	pageData.build.data.epitaph = "";
+	pageData.project.id = "epitaph";
+	updateEpitaphBuild();
 }
-function updateBookseedsBuild(){
+function updateEpitaphBuild(){
 //ajax and update project bookseeds' pageData
-	$.ajax({
-		type:"GET",url:"/project/load/bookseeds",data:{"username" : pageData.login},
-		async:false,
-		success: function(msg){
-			alert(JSON.stringify(msg));
-			pageData.build = msg.project;
-		},
-		error: function(msg){alert("somethin xiaoyue!");}
-	});
+	var username = getThePerson();
+	if(username != ""){
+		pageData.person = username;
+		$.ajax({
+			type:"GET",url:"/project/load/epitaph",data:{"username" : pageData.person},
+			async:false,
+			success: function(msg){
+				pageData.build.data.epitaph = msg.project.data.epitaph;
+			},
+			error: function(msg){alert("somethin xiaoyue!");}
+		});		
+	}
 }
 
 function renderPage(){
-	renderBookseedsBuild();
+	renderEpitaphBuild();
 }
 
-function renderBookseedsBuild(){
+function renderEpitaphBuild(){
 //render bookseeds page with pageData
 	renderProjnaName(pageData.person);
+
 	if(pageData.login === "visitor"){
 		$("#stb").attr('onclick',"location.href='/user/login'");
 	}else {
@@ -77,29 +77,14 @@ function renderBookseedsBuild(){
 		$("#stb").attr('onclick',"location.href='"+h+"'");
 	}
 
-	$("#whos").text(pageData.person + "'s Book Seeds");
+	var epitaph = pageData.build.data.epitaph;
 
-	var bslist = pageData.build.data.bslist;
-
-	for(var bs in bslist){
-		listbookseeds(bslist[bs]);
-	}
+	$("#grave").find("#whos").val(pageData.login + "'s Epitaph");
+	$("#grave").find("h3").val(epitaph);
 
 	if(pageData.login != "visitor" && pageData.login === pageData.person)
 		$("#edit").show();
 	else $("#edit").hide();
-}
-
-function listbookseeds(bs){
-	// alert (JSON.stringify(bs));
-	var tr = $("<tr></tr>");
-	var tdage = $("<i></i>").text(bs.age);
-	var tdbookname = $("<td></td>").text(bs.bookname);
-
-	tr.append(tdage);
-	tr.append(tdbookname);
-
-	$("#oneseed").append(tr);
 }
 
 //handle input

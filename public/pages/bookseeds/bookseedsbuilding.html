@@ -40,10 +40,12 @@
 </script>
 <script type="text/javascript">
 //make the fake sample pageData for this building page
-pageData.build.id = "reseter@sina.com";
-pageData.build.data.bslist = [];
+
 
 function updatePage(){
+	pageData.build.id = "reseter@sina.com";
+	pageData.build.data.bslist = [];
+	pageData.project.id = "bookseeds";
 	updateBookseedsBuilding();
 }
 function updateBookseedsBuilding(){

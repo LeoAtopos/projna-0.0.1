@@ -45,13 +45,12 @@ function updatePage(){
 function updateProjna(){
 //ajax and update pageData;
 	//find what user it is looking at
-	var str = window.location.href;
-	var index = str.lastIndexOf("\/");  
-	username  = str.substring(index + 1, str.length);
+	var username = getThePerson();
 	//ajax for the user's projna data
 	if(username != ""){
+		pageData.person = username;
 		$.ajax({
-			type:"GET",url:"/user/getprojna",data:{"username" : username},
+			type:"GET",url:"/user/getprojna",data:{"username" : pageData.person},
 			async:false,
 			success: function(msg){
 	//update projna

@@ -16,9 +16,12 @@
 		<div id = "divC" class = "container">
 			<div id = "intro">
 				<h1>Epitaph</h1>
-				<h3>You will not live for ever, but your charactor may. How could it be better to show who you are than writing your own EPITAPH? Cave it on your own internet grave(which you don't need to die to have one). Now, show your charactor to the world with just one line(which for long long history you may leave at least).</h3>
+				<h3>You will not live for ever, but your charactor may. How could it be better to show who you are than writing your own EPITAPH? Carve it on your own internet grave(which you don't need to die to have one). Now, show your charactor to the world with just one line(which for long long history you may leave at least).</h3>
+				<h3>How Grave it is!</h3>
 				<button id = "stb" class = "btn btn-default">Need to Build</button>
-				<button id = "ddd" class = "btn btn-default" onclick = "loadbslist()">testload</button>
+			</div>
+			<div id = "feature">
+				<h2>Featured Persons</h2>
 			</div>
 		</div>
 		<div id = "divF" ></div>
@@ -31,17 +34,20 @@
 </script>
 <script type="text/javascript">
 function updatePage(){
-	updateBookseeds();
+	pageData.project.id = "epitaph";
+	updateEpitaph();
+	updateFeaturePerson();
 }
-function updateBookseeds(){
+function updateEpitaph(){
 //ajax and update project bookseeds' pageData
 }
 
 function renderPage(){
-	renderBookseeds();
+	renderEpitaph();
+	renderFeaturePerson();
 }
 
-function renderBookseeds(){
+function renderEpitaph(){
 //render bookseeds page with pageData
 	renderProjnaName(pageData.login);
 	if(pageData.login === "visitor"){
@@ -52,18 +58,6 @@ function renderBookseeds(){
 	}
 }
 
-function loadbslist () {
-	$.ajax({
-		type : "GET",
-		url : "/project/load/bookseeds",
-		data : {},
-		success : function(msg){
-			alert (JSON.stringify(msg));
-			// m = jQuery.parseJSON(JSON.stringify(msg));
-		},
-		error : function(msg) {}
-	});
-}
 </script>
 <script type="text/javascript">
 // var m;

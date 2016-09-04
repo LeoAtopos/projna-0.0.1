@@ -50,6 +50,7 @@ exports.loadbookseeds = function (req, res) {
 		else {console.log ('project doesnot exist with title ' + 'Bookseeds');}
 	})
 
+//need to work something ,for none-login user to visitor some one's bookseeds directly by url
 	Bookseeds.find({'author': req.session.user.email}, function (err, result) {
 		if (err) {};
 		if (result) {
