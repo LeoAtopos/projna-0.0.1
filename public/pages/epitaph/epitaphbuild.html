@@ -1,0 +1,301 @@
+<html>
+<head>
+	<title>Projna</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="/images/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="/scripts/utility.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/mystyle.css"/>
+</head>
+<body>
+	<div class = "container-fluid">
+		<div id = "divH"></div>
+		<div id = "divC" class = "container">
+			<div id = "intro">
+				<h1>Book Seeds</h1>
+				<h3>Name the books you thought suitable for children in each age, because a person's ideas ought to be past on to next generations, and that can be done by books he/she thoughtfully recomended.</h3>
+				<button id = "stb" class = "btn btn-default">Need to Build</button>
+			</div>
+			<div id = "result" class="table-responsive">
+				<table class="table">
+					<caption id = "whos">Projna's Book Seeds</caption>
+					<thead>
+						<tr>
+							<th>Age</th>
+							<th>Book Name</th>
+						</tr>
+					</thead>
+					<tbody id = "oneseed">
+					</tbody>
+				</table>
+				<button id = "edit" class="btn btn-default">Edit</button>
+			</div>
+		</div>
+		<div id = "divF" ></div>
+	</div>
+</body>
+<script type="text/javascript">
+//load the page html
+	$("#divH").load("/pages/utility.html #divheader");
+	$("#divF").load("/pages/utility.html #divfooter");
+</script>
+<script type="text/javascript">
+//make the fake sample pageData for this building page
+pageData.build.id = "reseter@sina.com";
+pageData.build.data.bslist = [];
+
+function updatePage(){
+	updateBookseedsBuild();
+}
+function updateBookseedsBuild(){
+//ajax and update project bookseeds' pageData
+	$.ajax({
+		type:"GET",url:"/project/load/bookseeds",data:{"username" : pageData.login},
+		async:false,
+		success: function(msg){
+			alert(JSON.stringify(msg));
+			pageData.build = msg.project;
+		},
+		error: function(msg){alert("somethin xiaoyue!");}
+	});
+}
+
+function renderPage(){
+	renderBookseedsBuild();
+}
+
+function renderBookseedsBuild(){
+//render bookseeds page with pageData
+	renderProjnaName(pageData.person);
+	if(pageData.login === "visitor"){
+		$("#stb").attr('onclick',"location.href='/user/login'");
+	}else {
+		var h = '/project/'+pageData.project.id+'/building/'+pageData.login;
+		$("#stb").attr('onclick',"location.href='"+h+"'");
+	}
+
+	$("#whos").text(pageData.person + "'s Book Seeds");
+
+	var bslist = pageData.build.data.bslist;
+
+	for(var bs in bslist){
+		listbookseeds(bslist[bs]);
+	}
+
+	if(pageData.login != "visitor" && pageData.login === pageData.person)
+		$("#edit").show();
+	else $("#edit").hide();
+}
+
+function listbookseeds(bs){
+	// alert (JSON.stringify(bs));
+	var tr = $("<tr></tr>");
+	var tdage = $("<i></i>").text(bs.age);
+	var tdbookname = $("<td></td>").text(bs.bookname);
+
+	tr.append(tdage);
+	tr.append(tdbookname);
+
+	$("#oneseed").append(tr);
+}
+
+//handle input
+$("#edit").on("click",function(event){
+	window.location.href = '/project/'+pageData.project.id+'/building/'+pageData.login;
+});
+</script>
+<script type="text/javascript">
+// var m;
+// // get data from server: user, looking, project
+// $(document).ready(function(){
+// 	$.ajax({
+// 		type : "GET",
+// 		url : "/project/load/bookseeds",
+// 		data : {},
+// 		success : function(msg){
+// 			alert (JSON.stringify(msg));
+// 			// m = jQuery.parseJSON(JSON.stringify(msg));
+// 			renderbookseeds(msg);
+// 		},
+// 		error : function(msg) {}
+// 	});
+// });
+// //find what state this project is in, intro? working? result?
+// //get 
+// function renderbookseeds(msg){
+// 	m = msg;
+// 	if(msg.state === "visitor"){
+// 		renderbookseedsvisitor(msg);
+// 	}else if(msg.state === "self"){
+// 		renderbookseedsself(msg);
+// 	}else if(msg.state === "other"){
+// 		renderbookseedsother(msg);
+// 	}
+// }
+// //render the page with data and status
+// function renderbookseedsvisitor(msg){
+// 	$("#intro").show();
+// 	$("#working").hide();
+// 	$("#result").hide();
+
+// 	$("#intro").find("h1").text(msg.project.title);
+// 	$("#intro").find("h3").text(msg.project.desc);
+// }
+// function renderbookseedsself(msg){
+// 	$("#intro").show();
+// 	$("#stb").hide();
+// 	$("#working").hide();
+// 	$("#result").show();
+
+// 	$("#intro").find("h1").text(msg.project.title);
+// 	$("#intro").find("h3").text(msg.project.desc);
+// 	var bslist = msg.project.data.bslist;
+// 	// alert (bslist[0].age);
+// 	// bslist.forEach (function(arg) {
+// 	// 	listbookseeds(arg);
+// 	// });
+// 	// for (var i = 0; i < bslist.length; i++) {
+// 	// 	listbookseeds(bslist[i]);
+// 	// }
+// 	for(var bs in bslist){
+// 		listbookseeds(bslist[bs]);
+// 	}
+// }
+
+// function listbookseeds(bs){
+// 	// alert (JSON.stringify(bs));
+// 	var tr = $("<tr></tr>");
+// 	var tdage = $("<i></i>").text(bs.age);
+// 	var tdbookname = $("<td></td>").text(bs.bookname);
+
+// 	tr.append(tdage);
+// 	tr.append(tdbookname);
+
+// 	$("#oneseed").append(tr);
+// }
+
+// function renderbookseedsselfedit(msg){
+// 	$("#intro").show();
+// 	$("#stb").hide();
+// 	$("#working").show();
+// 	$("#result").hide();
+
+// 	$("#intro").find("h1").text(msg.project.title);
+// 	$("#intro").find("h3").text(msg.project.desc);
+
+// 	var bslist = msg.project.data.bslist;
+
+// 	for(var i = 18; i > 2; i--){
+// 		var a = $("#age18").clone();
+// 		a.attr("id","age" + (i - 1).toString());
+// 		a.find("label").text("Age "+ (i - 1).toString());
+// 		$("#working").prepend(a);
+// 	}
+// 	for(var bs in bslist){
+// 		var l = bslist[bs].age;
+// 		$("#age"+l.toString()).find("input").val(bslist[bs].bookname);
+// 	}
+// }
+
+// function renderbookseedsother(msg){
+// 	$("#intro").show();
+// 	$("#working").hide();
+// 	$("#result").show();
+// 	$("#edit").hide();
+
+// 	$("#intro").find("h1").text(msg.project.title);
+// 	$("#intro").find("h3").text(msg.project.desc);
+// 	var bslist = msg.project.data.bslist;
+// 	for(var bs in bslist){
+// 		listbookseeds(bs);
+// 	}
+// }
+// //handle user's input
+// $("#edit").on("click",function(event){
+// 	// alert(m);
+// 	renderbookseedsselfedit(m);
+// });
+
+// $("#submit").on("click",function(event){
+// 	submitbookseeds(m);
+	
+// });
+
+// function submitbookseeds(msgs){
+// 	$.ajax({
+// 		type : "POST",
+// 		url : "/project/edit/addSeeds",
+// 		data: {bslist: readbookseeds()},
+// 		success : function(msg){
+// 			alert (msg);
+// 			renderbookseedsself(msgs);
+// 		},
+// 		error : function(msg){
+// 			alert("something xiaoxue!");
+// 		}
+// 	});
+// }
+
+// function readbookseeds(){
+// 	var bslist = new Array();
+// 	for(var i = 2;i<=18;i++){
+// 		var id = "#age"+i.toString();
+// 		if($(id).find("input").val() != ""){
+// 			var bs = new Object();
+// 			bs.age = i;
+// 			bs.bookname = $(id).find("input").val();
+// 			bslist.push(bs);
+// 		}
+// 	}
+// 	// alert (bslist);
+// 	return bslist;
+// 	// return jQuery.parseJSON(bslist);
+// }
+</script>
+</html>
+
+
+<!-- 			<div id = "working" class = "form-horizontal">
+				<div id = "age18" class="form-group">
+					<label for="name" class="col-sm-2 control-label">Age 18</label>
+					<div class = "col-sm-10">
+						<input type="text" class="form-control" id="name" placeholder="The book name you recommend for this age">
+					</div>
+				</div>
+				<button id = "submit" class="btn btn-default">Submit</button>
+			</div>
+			<div id = "result" class="table-responsive">
+				<table class="table">
+					<caption>Projna's Book Seeds</caption>
+					<thead>
+						<tr>
+							<th>Age</th>
+							<th>Book Name</th>
+						</tr>
+					</thead>
+					<tbody id = "oneseed">
+						<tr>
+							<td>2</td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+				<button id = "edit" class="btn btn-default">Edit</button>
+			</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
