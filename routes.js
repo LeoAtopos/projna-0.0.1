@@ -116,7 +116,10 @@ exports.setReqUrl = function (app) {
 	app.get('/project/load/bookseeds', project.loadbookseeds);
 	app.post('/project/edit/addSeeds', project.addSeeds);
 
-//just send those files back without any method
+	app.get('/project/load/epitaph', project.loadepitaph);
+	app.post('/project/edit/addEpitaph', project.addEpitaph);
+
+//just send those files back without any method, each page needs load their own details with funcs above
 
 	app.get('/project/:pagename/building/:person', function (req, res) {
 		console.log (req.params.pagename+"building");

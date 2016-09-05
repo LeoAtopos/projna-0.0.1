@@ -51,7 +51,7 @@ exports.loadbookseeds = function (req, res) {
 	})
 
 //need to work something ,for none-login user to visitor some one's bookseeds directly by url
-	Bookseeds.find({'author': req.session.user.email}, function (err, result) {
+	Bookseeds.find({'author': req.query.username}, function (err, result) {
 		if (err) {};
 		if (result) {
 			// console.log("bslist of mine "+result);
@@ -112,6 +112,36 @@ exports.addSeeds = function (req, res) {
 			}
 		})
 	})
+	res.json (resData);
+}
+
+exports.loadepitaph = function (req, res) {
+	console.log ("project => loadepitaph");
+	var resData = {
+		state : "visitor/self/other",
+		project : {
+			title	:"Epitaph",
+			desc : "asdfsaf",
+			data : {}
+		}
+	}
+
+	res.send (resData);
+}
+
+exports.addEpitaph = function (req, res) {
+	console.log ("project => onEpitaph");
+	console.log (req.session.user.email);
+	console.log (req.body.bslist);
+	// var resList = new array();
+	var resData = {
+		error: [],
+		msg: {
+			update: [],
+			add: []
+		}
+	}
+
 	res.json (resData);
 }
 

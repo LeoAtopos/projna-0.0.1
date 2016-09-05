@@ -16,8 +16,8 @@ epitaph : "I hate death"
 //no msg
 
 
-//type:"GET",url:"/project/"+pageData.project.id+"/loadfeatureperson",
-//	data:{proj : pageData.project.id}
+//type:"GET",url:"/project/loadfeatureperson/:pageData.project.id,
+//	data:{}
 //utility.js
 //msg.project.data.featurePerson
 featurePerson : [{id:"reseter@sina.com",name:"reseter@sina.com",pic:"per1-pic"},{id:"gz@qq.com",name:"gz@qq.com",pic:"per2-pic"}]
