@@ -50,7 +50,7 @@ function updateProjna(){
 	if(username != ""){
 		pageData.person = username;
 		$.ajax({
-			type:"GET",url:"/user/getprojna",data:{"username" : pageData.person},
+			type:"GET",url:"/user/getprojna",data:{username : pageData.person},
 			async:false,
 			success: function(msg){
 	//update projna

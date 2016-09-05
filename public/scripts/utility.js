@@ -68,7 +68,7 @@ function getThePerson(){
 function updateFeaturePerson(){
 	// $.ajax({
 	// 	type:"GET",url:"/project/"+pageData.project.id+"/loadfeatureperson",async:false,
-	// 	data:{},
+	// 	data:{proj : pageData.project.id},
 	// 	success : function(msg){
 	// 		pageData.project.data.featurePerson = msg.project.data.featurePerson;
 	// 	},

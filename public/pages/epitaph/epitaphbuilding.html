@@ -52,7 +52,7 @@ function updatePage(){
 function updateEpitaphBuilding(){
 //ajax and update project bookseeds' pageData
 	$.ajax({
-		type:"GET",url:"/project/load/epitaph",data:{"username" : pageData.login},
+		type:"GET",url:"/project/load/epitaph",data:{username : pageData.login},
 		async:false,
 		success: function(msg){
 			pageData.build.data.epitaph = msg.project.data.epitaph;
