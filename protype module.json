@@ -1,16 +1,23 @@
-//call "/project/bookseeds"
-{
-	"state" : "visitor,self,other",
-	"project" : {
-		"title"	:"Book Seeds",
-		"desc" : "asdfsaf",
-		"data" : {
-			"bslist" : {
-				"0" :{
-					"age" : "4",
-					"bookname" : "lalala"
-				}
-			}
-		}
-	}
-}
+//type:"GET",url:"/user/getprojna",data:{"username" : pageData.person}
+//index.html
+//msg.projna
+projna : [
+		{id : "bookseeds", name : "Book Seeds", pic : "Pro1-pic", state : "intro"},//build,
+		{id : "epitaph", name : "Epitaph", pic : "Pro2-pic", state : "intro"}
+	]
+
+//type:"GET",url:"/project/load/epitaph",data:{"username" : pageData.login}
+//epitaphbuild.html epitaphbuilding.html
+//msg.project.data.epitaph
+epitaph : "I hate death"
+
+//type : "POST",url : "/project/edit/addEpitaph",	data: {epitaph: ep}
+//epitaphbuilding.html
+//no msg
+
+
+//type:"GET",url:"/project/"+pageData.project.id+"/loadfeatureperson",
+//	data:{proj : pageData.project.id}
+//utility.js
+//msg.project.data.featurePerson
+featurePerson : [{id:"reseter@sina.com",name:"reseter@sina.com",pic:"per1-pic"},{id:"gz@qq.com",name:"gz@qq.com",pic:"per2-pic"}]
