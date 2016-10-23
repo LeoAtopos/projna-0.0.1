@@ -73,7 +73,7 @@ function updateFeaturePerson(){
 			pageData.project.data.featurePerson = msg.project.data.featurePerson;
 		},
 		error : function(msg){
-			alert("something xiaoyue!");
+			alert("something xiaoyue! for featured person");
 		}
 	});
 }
