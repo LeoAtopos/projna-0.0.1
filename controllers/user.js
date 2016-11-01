@@ -95,8 +95,29 @@ exports.checkSession = function (req, res) {
 	}
 }
 
+exports.getProjna = function (req, res) {
+	console.log ('user => getProjna');
+	var uid = req.query.username;
+	User.findOne({'username': uid}, function (err, result) {
+		if (err) {}
+		if (!result) {
+			req.session.error = 'user not exist';
+			res.json ({"success": "user not exist"});
+		} else {
+			var msg = '';
+			// if (result.projects.length < 2) {msg = }
+			res.json ({projna: result.projna});
+		}
+	})
+}
+
 exports.admin = function (req, res) {
 
+}
+
+exports.admin.addProjToMe = function (req, res) {
+	var user = new User();
+	res.json (user.selfProjna ({id: 11123, name: 'test Proj'}));
 }
 
 exports.admin.userCheck = function (req, res) {

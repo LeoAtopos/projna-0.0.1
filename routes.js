@@ -103,6 +103,8 @@ exports.setReqUrl = function (app) {
 		res.json({status: status, plist: plist});
 	});
 
+	app.get('/user/getprojna', user.getProjna);
+
 /*
 	****************************************************************
 */
@@ -118,6 +120,8 @@ exports.setReqUrl = function (app) {
 
 	app.get('/project/load/epitaph', project.loadepitaph);
 	app.post('/project/edit/addEpitaph', project.addEpitaph);
+
+	app.get('/project/loadFeaturePerson/:projectTitle', project.loadFeaturePerson);
 
 //just send those files back without any method, each page needs load their own details with funcs above
 
@@ -153,4 +157,6 @@ exports.setReqUrl = function (app) {
 	app.get('/admin/testBookseedsData', project.admin.testBookseedsData);
 	
 	app.get('/admin/testWebSession', user.admin.testWebSession);
+
+	app.get('/admin/addProjToMe', user.admin.addProjToMe);
 }

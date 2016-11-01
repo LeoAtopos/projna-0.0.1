@@ -145,6 +145,25 @@ exports.addEpitaph = function (req, res) {
 	res.json (resData);
 }
 
+exports.loadFeaturePerson = function (req, res) {
+	console.log ("project => loadFeaturePerson");
+	console.log (req.params.projectTitle);
+	var resData = {
+		error: [],
+		msg: {}
+	}
+	Bookseeds.find({}, function (err, result) {
+		if (err) {};
+		if (result) {
+			result.forEach (function(bs) {
+				resData.msg.push (bs);
+			})
+		}
+		else {console.log ('No person worth to be featured!');resData.error[0]="No person worth to be featured!"}
+		res.send (resData);
+	})
+}
+
 exports.admin.addProject = function (req, res) {
 	console.log ("project => oncreate");
 	var proj = new Proj();
@@ -161,6 +180,7 @@ exports.admin.addProject = function (req, res) {
 		}
 	})
 }
+
 
 exports.admin.testProjectData = function (req, res) {
 	console.log ("project => oncreate");
