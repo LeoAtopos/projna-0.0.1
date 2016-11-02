@@ -150,7 +150,7 @@ exports.loadFeaturePerson = function (req, res) {
 	console.log (req.params.projectTitle);
 	var resData = {
 		error: [],
-		msg: {}
+		msg: []
 	}
 	Bookseeds.find({}, function (err, result) {
 		if (err) {};
