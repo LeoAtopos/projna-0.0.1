@@ -157,9 +157,11 @@ exports.loadFeaturePerson = function (req, res) {
 		if (result) {
 			result.forEach (function(bs) {
 				resData.msg.push (bs);
+				console.log(bs);
 			})
 		}
 		else {console.log ('No person worth to be featured!');resData.error[0]="No person worth to be featured!"}
+		
 		res.send (resData);
 	})
 }

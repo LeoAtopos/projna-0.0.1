@@ -71,6 +71,7 @@ function updateFeaturePerson(){
 		data:{proj : pageData.project.id},
 		success : function(msg){
 			pageData.project.data.featurePerson = msg.project.data.featurePerson;
+			alert('lsd'+msg.project.data.featurePerson);
 		},
 		error : function(msg){
 			alert("something xiaoyue! for featured person");
