@@ -32,8 +32,12 @@ exports.loadFeaturePerson = function (req, res) {
 		if (err) {};
 		if (result) {
 			result.forEach (function(bs) {
-				resData.msg.push (bs);
-				console.log(bs);
+				var b = {id:'',name:'',pic:''};
+				b.id = bs.email;
+				b.name = bs.nickname;
+				b.pic = bs.pic;
+				resData.msg.push (b);
+				console.log(b);
 			})
 		}
 		else {console.log ('No person worth to be featured!');resData.error[0]="No person worth to be featured!"}

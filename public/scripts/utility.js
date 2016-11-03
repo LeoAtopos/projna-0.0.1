@@ -70,7 +70,7 @@ function updateFeaturePerson(){
 		type:"GET",url:"/project/"+"loadFeaturePerson/"+pageData.project.id,async:false,
 		data:{proj : pageData.project.id},
 		success : function(msg){
-			pageData.project.data.featurePerson = msg.project.data.featurePerson;
+			pageData.project.data.featurePerson = msg.msg;
 			alert('lsd'+msg.project.data.featurePerson);
 		},
 		error : function(msg){
