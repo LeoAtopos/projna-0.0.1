@@ -1,12 +1,14 @@
 "use strict";
 
 var model = require('../Schemas/projectSchema');
+var user = require('../Schemas/userSchema');
 // var bookseedsModel = require('../Schemas/bookseedsSchema');
 
 var bookseedsController = require('./projectBookseedsController');
 var epitaphController = require('./projectEpitaphController');
 
 var Proj = model.Project;
+var User = model.User;
 
 
 exports.common = function (req, res) {
@@ -28,20 +30,21 @@ exports.loadFeaturePerson = function (req, res) {
 		error: [],
 		msg: []
 	}
-	Bookseeds.find({}, function (err, result) {
+
+	Proj.find({title: req.body.proj},function (err, result) {
 		if (err) {};
 		if (result) {
-			result.forEach (function(bs) {
-				var b = {id:'',name:'',pic:''};
-				b.id = bs.email;
-				b.name = bs.nickname;
-				b.pic = bs.pic;
-				resData.msg.push (b);
-				console.log(b);
+			result.feature.forEach (function (fp) {
+				User.find({username: fp}, function (pp) {
+					var d = {};
+					d.nickname = pp.nickname;
+					d.pic = pp.pic;
+					resData.push (d);
+				})
 			})
 		}
 		else {console.log ('No person worth to be featured!');resData.error[0]="No person worth to be featured!"}
-		
+
 		res.send (resData);
 	})
 }

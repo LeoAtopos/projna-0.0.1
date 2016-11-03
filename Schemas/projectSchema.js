@@ -8,6 +8,7 @@ var ProjectSchema = new Schema({
 	desc: {type: String, default: "This is a projna project."},
 	createDate: {type: Date, default: Date.now},
 	followers: {type: [String], default: []},
+	featurer: {type: [String], default: ["reseter@sina.com","gz@qq.com"]},
 	data: String
 })
 
