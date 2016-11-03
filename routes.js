@@ -115,11 +115,11 @@ exports.setReqUrl = function (app) {
 		res.sendFile (__dirname+"/public/pages/"+req.params.pagename+"/"+req.params.pagename+".html");
 	})
 
-	app.get('/project/load/bookseeds', project.loadbookseeds);
-	app.post('/project/edit/addSeeds', project.addSeeds);
+	app.get('/project/load/bookseeds', project.bookseedsController.loadbookseeds);
+	app.post('/project/edit/addSeeds', project.bookseedsController.addSeeds);
 
-	app.get('/project/load/epitaph', project.loadepitaph);
-	app.post('/project/edit/addEpitaph', project.addEpitaph);
+	app.get('/project/load/epitaph', project.epitaphController.loadepitaph);
+	app.post('/project/edit/addEpitaph', project.epitaphController.addEpitaph);
 
 	app.get('/project/loadFeaturePerson/:projectTitle', project.loadFeaturePerson);
 
