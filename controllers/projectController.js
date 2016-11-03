@@ -150,16 +150,18 @@ exports.loadFeaturePerson = function (req, res) {
 	console.log (req.params.projectTitle);
 	var resData = {
 		error: [],
-		msg: {}
+		msg: []
 	}
 	Bookseeds.find({}, function (err, result) {
 		if (err) {};
 		if (result) {
 			result.forEach (function(bs) {
 				resData.msg.push (bs);
+				console.log(bs);
 			})
 		}
 		else {console.log ('No person worth to be featured!');resData.error[0]="No person worth to be featured!"}
+		
 		res.send (resData);
 	})
 }

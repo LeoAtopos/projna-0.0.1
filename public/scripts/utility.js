@@ -67,10 +67,11 @@ function getThePerson(){
 
 function updateFeaturePerson(){
 	$.ajax({
-		type:"GET",url:"/project/"+pageData.project.id+"/loadfeatureperson",async:false,
+		type:"GET",url:"/project/"+"loadFeaturePerson/"+pageData.project.id,async:false,
 		data:{proj : pageData.project.id},
 		success : function(msg){
 			pageData.project.data.featurePerson = msg.project.data.featurePerson;
+			alert('lsd'+msg.project.data.featurePerson);
 		},
 		error : function(msg){
 			alert("something xiaoyue! for featured person");
