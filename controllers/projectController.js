@@ -10,6 +10,8 @@ var epitaphController = require('./projectEpitaphController');
 var Proj = model.Project;
 var User = model.User;
 
+exports.bookseedsController = bookseedsController;
+exports.epitaphController = epitaphController;
 
 exports.common = function (req, res) {
 
@@ -30,10 +32,11 @@ exports.loadFeaturePerson = function (req, res) {
 		error: [],
 		msg: []
 	}
-
-	Proj.find({title: req.body.proj},function (err, result) {
+console.log(req.query.proj);
+	Proj.find({title: req.query.proj},function (err, result) {
 		if (err) {};
 		if (result) {
+			console.log(result);
 			result.feature.forEach (function (fp) {
 				User.find({username: fp}, function (pp) {
 					var d = {};
