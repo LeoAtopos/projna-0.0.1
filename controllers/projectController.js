@@ -1,7 +1,7 @@
 "use strict";
 
-var model = require('../models/project');
-var bookseedsModel = require('../models/bookseeds');
+var model = require('../Schemas/projectSchema');
+var bookseedsModel = require('../Schemas/bookseedsSchema');
 
 var Proj = model.Project;
 var Bookseeds = bookseedsModel.Bookseeds;

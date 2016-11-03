@@ -1,6 +1,6 @@
 exports.setReqUrl = function (app) {
-	var user = require('./controllers/user');
-	var project = require('./controllers/project');
+	var user = require('./controllers/userController');
+	var project = require('./controllers/projectController');
 	// var path = require('path');
 
 // Get Home page
