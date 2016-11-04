@@ -70,11 +70,8 @@ function updateFeaturePerson(){
 		type:"GET",url:"/project/"+"loadFeaturePerson/"+pageData.project.id,
 		async:false,
 		data:{proj : pageData.project.id},
-		dataType: "text",
 		success : function(msg){
 			pageData.project.data.featurePerson = msg.msg;
-			// alert('lsd'+msg.project.data.featurePerson);
-			alert (msg);
 		},
 		error : function(msg){
 			alert("something xiaoyue! for featured person");
