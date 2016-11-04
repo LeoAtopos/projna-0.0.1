@@ -1,14 +1,14 @@
 "use strict";
 
-var model = require('../Schemas/projectSchema');
-var user = require('../Schemas/userSchema');
+var projModel = require('../Schemas/projectSchema');
+var userModel = require('../Schemas/userSchema');
 // var bookseedsModel = require('../Schemas/bookseedsSchema');
 
 var bookseedsController = require('./projectBookseedsController');
 var epitaphController = require('./projectEpitaphController');
 
-var Proj = model.Project;
-var User = model.User;
+var Proj = projModel.Project;
+var User = userModel.User;
 
 exports.bookseedsController = bookseedsController;
 exports.epitaphController = epitaphController;
@@ -32,15 +32,17 @@ exports.loadFeaturePerson = function (req, res) {
 		error: [],
 		msg: []
 	}
-console.log(req.query.proj);
-	Proj.find({title: req.query.proj},function (err, result) {
+	console.log(req.query.proj);
+	Proj.find({title: req.query.proj.toLowerCase()},function (err, result) {
 		if (err) {};
 		if (result) {
 			console.log(result);
-			result.feature.forEach (function (fp) {
-				User.find({username: fp}, function (pp) {
+			console.log (result[0].featurer);
+			result[0].featurer.forEach (function (fp) {
+				User.findOne({email: fp}, function (pp) {
+					console.log ("pp is " + pp);
 					var d = {};
-					d.nickname = pp.nickname;
+					d.nickname = pp.email;
 					d.pic = pp.pic;
 					resData.push (d);
 				})
@@ -55,15 +57,15 @@ console.log(req.query.proj);
 exports.admin.addProject = function (req, res) {
 	console.log ("project => oncreate");
 	var proj = new Proj();
-	Proj.findOne({'title': 'Bookseeds'}, function (err, result) {
+	Proj.findOne({'title': 'bookseeds'}, function (err, result) {
 		if (err) {};
 		if (result) {console.log ('project already exist');}
 		else {
-			proj.title = 'Bookseeds';
+			proj.title = 'bookseeds';
 			proj.save(function (err, userInfo) {
 				if (err) {};
-				console.log ("Successed adding project: "+'Bookseeds');
-				res.send ("Successed adding project: "+'Bookseeds');
+				console.log ("Successed adding project: "+'bookseeds');
+				res.send ("Successed adding project: "+'bookseeds');
 			})
 		}
 	})
