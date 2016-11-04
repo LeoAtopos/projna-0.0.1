@@ -32,25 +32,51 @@ exports.loadFeaturePerson = function (req, res) {
 		error: [],
 		msg: []
 	}
+
+	// User.find({}, function (err, r) {
+	// 	console.log(r);
+	// })
 	console.log(req.query.proj);
 	Proj.find({title: req.query.proj.toLowerCase()},function (err, result) {
 		if (err) {};
 		if (result) {
 			console.log(result);
 			console.log (result[0].featurer);
-			result[0].featurer.forEach (function (fp) {
-				User.findOne({email: fp}, function (pp) {
+
+			// var trytry = function (argument) {
+			// 	// body...
+			// }
+
+			// result[0].featurer.forEach (function (err, fp) {
+			// 	// console.log ("fp is " + result[0].featurer[fp]);
+			// 	User.findOne({email: result[0].featurer[fp]}, function (err, pp) {
+			// 		console.log ("pp is " + pp);
+			// 		var d = {};
+			// 		d.nickname = pp.email;
+			// 		d.pic = pp.pic;
+			// 		resData.msg.push (d);
+			// 	})
+			// })
+
+			var tmpNum = 0;
+			for (var i = 0; i < result[0].featurer.length; i++) {
+				User.findOne({email: result[0].featurer[i]}, function (err, pp) {
 					console.log ("pp is " + pp);
 					var d = {};
 					d.nickname = pp.email;
 					d.pic = pp.pic;
-					resData.push (d);
-				})
-			})
+					resData.msg.push (d);
+					tmpNum ++;
+					if (tmpNum == result[0].featurer.length) {
+						res.send (resData);
+					}
+				})		
+			}
+
+			// res.send (resData);
 		}
 		else {console.log ('No person worth to be featured!');resData.error[0]="No person worth to be featured!"}
-
-		res.send (resData);
+		console.log ("resData " + resData);
 	})
 }
 
