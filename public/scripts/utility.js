@@ -91,7 +91,7 @@ function renderFeaturePerson(){
 
 function renderPerson(p){
 	var fp = $("<div><div class = 'col-sm-6 col-md-3'><a href = '#' class='thumbnail'><img class = 'img-circle' src='../images/per1-pic.jpg' alt='通用的占位符缩略图'><center><h3 class = 'caption'>Person Name</h3></center></a></div></div>");
-	fp.find("h3").text(p.name);
+	fp.find("h3").text(p.nickname);
 	fp.find("img").attr("src",'../images/'+p.pic+'.jpg');
 	fp.find("a").attr("href",'/project/'+pageData.project.id+'/build/'+p.id);
 
