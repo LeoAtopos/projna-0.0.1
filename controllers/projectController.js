@@ -36,8 +36,8 @@ exports.loadFeaturePerson = function (req, res) {
 	// User.find({}, function (err, r) {
 	// 	console.log(r);
 	// })
-	console.log(req.query.proj);
-	Proj.find({title: req.query.proj.toLowerCase()},function (err, result) {
+	//console.log(req.query.proj);
+	Proj.find({title: req.query.proj},function (err, result) {
 		if (err) {};
 		if (result) {
 			console.log(result);
@@ -83,11 +83,11 @@ exports.loadFeaturePerson = function (req, res) {
 exports.admin.addProject = function (req, res) {
 	console.log ("project => oncreate");
 	var proj = new Proj();
-	Proj.findOne({'title': 'bookseeds'}, function (err, result) {
+	Proj.findOne({'title': 'epitaph'}, function (err, result) {
 		if (err) {};
 		if (result) {console.log ('project already exist');}
 		else {
-			proj.title = 'bookseeds';
+			proj.title = 'epitaph';
 			proj.save(function (err, userInfo) {
 				if (err) {};
 				console.log ("Successed adding project: "+'bookseeds');

@@ -1,8 +1,10 @@
 "use strict";
 
+var projModel = require('../Schemas/projectSchema');
 var bookseedsModel = require('../Schemas/bookseedsSchema');
 
 var Bookseeds = bookseedsModel.Bookseeds;
+var Proj = projModel.Project;
 
 exports.loadbookseeds = function (req, res) {
 	console.log ("project => loadbookseeds");
@@ -30,7 +32,7 @@ exports.loadbookseeds = function (req, res) {
 		else {resData.state = "other"}	
 	}
 
-	Proj.findOne({'title': 'Bookseeds'}, function (err, result) {
+	Proj.findOne({'title': 'bookseeds'}, function (err, result) {
 		if (err) {};
 		if (result) {resData.project.title = result.title;	resData.project.desc = result.desc;}
 		else {console.log ('project doesnot exist with title ' + 'Bookseeds');}
