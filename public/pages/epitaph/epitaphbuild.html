@@ -79,8 +79,8 @@ function renderEpitaphBuild(){
 
 	var epitaph = pageData.build.data.epitaph;
 
-	$("#grave").find("#whos").val(pageData.login + "'s Epitaph");
-	$("#grave").find("h3").val(epitaph);
+	$("#whos").text(pageData.login + "'s Epitaph");
+	$("#content").text(epitaph);
 
 	if(pageData.login != "visitor" && pageData.login === pageData.person)
 		$("#edit").show();
