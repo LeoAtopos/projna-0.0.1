@@ -30,11 +30,12 @@ exports.loadepitaph = function (req, res) {
 	})
 
 //need to work something ,for none-login user to visitor some one's bookseeds directly by url
+	console.log ("epitaph author is " + req.query.username);
 	Epitaph.find({'author': req.query.username}, function (err, result) {
 		if (err) {};
-		if (result != []) {
-				console.log(result);
-				resData.project.data.epitaph=result[0].epitaph;
+		if (result) {
+			console.log(result);
+			if (result.length > 0) {resData.project.data.epitaph=result[0].epitaph;}
 			// 	// resData.project.data.bslist[resData.project.data.bslist.length] = bs;
 		}
 		else {console.log ('project doesnot exist with author ' + req.session.user.email);}
@@ -84,3 +85,45 @@ exports.addEpitaph = function (req, res) {
 
 	res.json (resData);
 }
+
+// exports.addEpitaph = function (req, res) {
+// 	console.log ("project => onEpitaph");
+// 	// console.log (req.session.user.email);
+// 	// console.log (req.body.epitaph);
+// 	// var resList = new array();
+// 	var resData = {
+// 		error: [],
+// 		msg: {
+// 			update: [],
+// 			add: []
+// 		}
+// 	}
+// 	Epitaph.findOne({'author': "gz@qq.com"}, function (err, result) {
+// 		if (err) {}
+// 		if (result) { // if the seed of age already exist, then update the content. Keep the seeds unique to each age.
+// 			result.epitaph = req.body.epitaph;
+// 			// result.desc = req.body.book.desc;
+// 			// result.link = req.body.book.link;
+// 			result.save (function (err) {
+// 				if (err) {resData.error.push(err)};
+// 				// res.json({"success": "Book of age already exist, update done"});
+// 				resData.msg.update.push(result.epitaph);
+// 			})
+// 		}
+// 		else { // if there are no seed matched, save a new seed into db.
+// 			var ep = new Epitaph();
+// 			ep.author = "gz@qq.com";
+// 			ep.epitaph = "this is not dying";
+// 			// result.desc = req.body.book.desc;
+// 			// result.link = req.body.book.link;
+// 			ep.save(function (err, result) {
+// 				if (err) {resData.error.push(err)};
+// 				console.log ("Successed adding taph: " + ep);
+// 				// res.json("Successed adding seed: " + seed);
+// 				resData.msg.add.push(ep);
+// 			})
+// 		}
+// 	})
+
+// 	res.json (resData);
+// }
