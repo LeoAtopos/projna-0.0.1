@@ -31,6 +31,7 @@ exports.onregister = function (req, res) {
 		if (result) {req.session.error = 'user already exist';res.json({"success": "user already exist"});}
 		else {
 			user.email = req.body.email;
+			user.nickname = req.body.nickname;
 			user.password = req.body.password;
 			user.save(function (err, userInfo) {
 				if (err) {};
