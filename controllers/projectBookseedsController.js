@@ -1,10 +1,12 @@
 "use strict";
 
 var projModel = require('../Schemas/projectSchema');
+var userModel = require('../Schemas/userSchema');
 var bookseedsModel = require('../Schemas/bookseedsSchema');
 
 var Bookseeds = bookseedsModel.Bookseeds;
 var Proj = projModel.Project;
+var User = userModel.User;
 
 exports.loadbookseeds = function (req, res) {
 	console.log ("project => loadbookseeds");
@@ -62,6 +64,8 @@ exports.addSeeds = function (req, res) {
 	console.log ("project => onAddSeed");
 	console.log (req.session.user.email);
 	console.log (req.body.bslist);
+
+	var uid = req.session.user._id;
 	// var resList = new array();
 	var resData = {
 		error: [],
@@ -99,8 +103,27 @@ exports.addSeeds = function (req, res) {
 				})
 			}
 		})
-	})
+	});
+	
+	Proj.findOne({'title':'bookseeds'},function (err, pjResult){
+		var hooked = false;
+		var pid = pjResult._id;
+		User.findOne({'_id':uid}, function (err, userResult){
+			for(var i = 0; i < userResult.projna.length;i++){
+				if(userResult.projna[i] === pid){
+					hooked = true;
+				}
+			}
+			if(!hooked){
+				userResult.projna.push(pid);
+				pjResult.follower.push(uid);
+			}
+		});
+	});
+	//adding this user to the projects follower, and this project to this user's projna
+
+
 	res.json (resData);
 
-	//lack of adding this project to this user's schema!
+	//Dose here really need response?
 }

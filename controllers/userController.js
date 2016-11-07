@@ -103,59 +103,69 @@ exports.getProjna = function (req, res) {
 	var uid = req.query._id;
 	var projnaTmp = [];
 
-
+	//no one login, just a visitor, then send all projnas
 	if (uid === "_id") {
-		res.json ({
-			projna: [
-						{id : "bookseeds", name : "Book Seeds", pic : "Pro1-pic", state : "intro"},//build,
-						{id : "epitaph", name : "Epitaph", pic : "Pro2-pic", state : "intro"}
-					],
-			nickname: "halala"
-		});
-	}
-	else {
-
-		//get all projects from Projects collection
-		Proj.find({},function (err,result){
+		Proj.find({},function (err, result){
 			if(err){}
 			if(result){
-				//for each project, if the _id is its follower, mark it built
 				for(var i = 0;i<result.length;i++){
 					var pj = {};
 					pj.id = result[i]._id;
 					pj.name = result[i].title;
 					pj.pic = result[i].pic;
 					pj.state = 'intro';
-					for(var j = 0; j<result[i].followers.length; j++){
-						if(result[i].followers[j] === uid){
-							pj.state = 'build';
-						}
-					}
 					projnaTmp.push[pj];
 				}
-				console.log ("proj tmp? " + projnaTmp);
-				User.findOne({'_id':uid},function (err, nResult){
-					console.log ("have i found me?");
-					if(err){}
-					if(nResult){
-						//send back all projects.
-						res.json ({projna: projnaTmp,nickname:nResult.nickname});
-					}
-					else {
-						res.json ({
-							projna: [
-										{id : "bookseeds", name : "Book Seeds", pic : "Pro1-pic", state : "intro"},//build,
-										{id : "epitaph", name : "Epitaph", pic : "Pro2-pic", state : "intro"}
-									],
-							nickname: "halala2"
-						});
-					}
-				});
-				console.log ("res send?");
+				res.json ({projna: projnaTmp,nickname:"visitor"});
 			}
 		});
-
+		// res.json ({
+		// 	projna: [
+		// 				{id : "bookseeds", name : "Book Seeds", pic : "Pro1-pic", state : "intro"},//build,
+		// 				{id : "epitaph", name : "Epitaph", pic : "Pro2-pic", state : "intro"}
+		// 			],
+		// 	nickname: "visitor"
+		// });
 	}
+	else {
+
+		//get all projects from Projects collection
+		User.findOne({'_id':uid},function (err, nResult){
+			if(err){}
+			if(nResult){
+				Proj.find({},function (err, result){
+					if(err){}
+					if(result){
+						for(var i = 0;i<result.length;i++){
+							var pj = {};
+							pj.id = result[i]._id;
+							pj.name = result[i].title;
+							pj.pic = result[i].pic;
+							pj.state = 'intro';
+							for(var j = 0; j<nResult.projna.length; j++){
+								if(nResult.projna[j] === result[i]._id){
+									pj.state = 'build';
+								}
+							}
+							projnaTmp.push[pj];
+						}
+					}
+					res.json ({projna: projnaTmp,nickname:nResult.nickname});
+				});
+			}
+			else {
+				res.json ({
+					projna: [
+								{id : "bookseeds", name : "Book Seeds", pic : "Pro1-pic", state : "intro"},//build,
+								{id : "epitaph", name : "Epitaph", pic : "Pro2-pic", state : "intro"}
+							],
+					nickname: "halala2"
+				});
+			}
+		});
+	}
+
+}
 	
 	// //send back all projects.
 	// User.findOne({'_id': uid}, function (err, result) {
@@ -169,7 +179,7 @@ exports.getProjna = function (req, res) {
 	// 		res.json ({projna: result.projna,nickname:result.nickname});
 	// 	}
 	// })
-}
+
 
 exports.admin = function (req, res) {
 
