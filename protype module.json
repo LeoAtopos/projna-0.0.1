@@ -20,4 +20,5 @@ epitaph : "I hate death"
 //	data:{}
 //utility.js
 //msg.project.data.featurePerson
-featurePerson : [{id:"reseter@sina.com",name:"reseter@sina.com",pic:"per1-pic"},{id:"gz@qq.com",name:"gz@qq.com",pic:"per2-pic"}]
+featurePerson : [{id:"reseter@sina.com",name:"reseter@sina.com",pic:"per1-pic"},
+{id:"gz@qq.com",name:"gz@qq.com",pic:"per2-pic"}]

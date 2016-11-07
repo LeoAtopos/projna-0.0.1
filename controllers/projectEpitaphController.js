@@ -30,8 +30,8 @@ exports.loadepitaph = function (req, res) {
 	})
 
 //need to work something ,for none-login user to visitor some one's bookseeds directly by url
-	console.log ("epitaph author is " + req.query.username);
-	Epitaph.find({'author': req.query.username}, function (err, result) {
+	console.log ("epitaph author is " + req.query._id);
+	Epitaph.find({'_id': req.query._id}, function (err, result) {
 		if (err) {};
 		if (result) {
 			console.log(result);

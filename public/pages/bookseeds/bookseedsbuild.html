@@ -54,11 +54,11 @@ function updatePage(){
 }
 function updateBookseedsBuild(){
 //ajax and update project bookseeds' pageData
-	var username = getThePerson();
-	if(username != ""){
-		pageData.person = username;
+	var lookingID = getThePerson();
+	if(lookingID != ""){
+		pageData.person = lookingID;
 		$.ajax({
-			type:"GET",url:"/project/load/bookseeds",data:{username : pageData.person},
+			type:"GET",url:"/project/load/bookseeds",data:{_id : pageData.person},
 			async:false,
 			success: function(msg){
 				//alert(JSON.stringify(msg));
@@ -75,7 +75,7 @@ function renderPage(){
 
 function renderBookseedsBuild(){
 //render bookseeds page with pageData
-	renderProjnaName(pageData.person);
+	renderProjnaName(pageData.personName);
 	if(pageData.login === "visitor"){
 		$("#stb").attr('onclick',"location.href='/user/login'");
 	}else {
@@ -83,7 +83,7 @@ function renderBookseedsBuild(){
 		$("#stb").attr('onclick',"location.href='"+h+"'");
 	}
 
-	$("#whos").text(pageData.person + "'s Book Seeds");
+	$("#whos").text(pageData.personName + "'s Book Seeds");
 
 	var bslist = pageData.build.data.bslist;
 

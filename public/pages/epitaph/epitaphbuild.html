@@ -48,11 +48,11 @@ function updatePage(){
 }
 function updateEpitaphBuild(){
 //ajax and update project bookseeds' pageData
-	var username = getThePerson();
-	if(username != ""){
-		pageData.person = username;
+	var lookingID = getThePerson();
+	if(lookingID != ""){
+		pageData.person = lookingID;
 		$.ajax({
-			type:"GET",url:"/project/load/epitaph",data:{username : pageData.person},
+			type:"GET",url:"/project/load/epitaph",data:{_id : pageData.person},
 			async:false,
 			success: function(msg){
 				pageData.build.data.epitaph = msg.project.data.epitaph;
@@ -68,7 +68,7 @@ function renderPage(){
 
 function renderEpitaphBuild(){
 //render bookseeds page with pageData
-	renderProjnaName(pageData.person);
+	renderProjnaName(pageData.personName);
 
 	if(pageData.login === "visitor"){
 		$("#stb").attr('onclick',"location.href='/user/login'");
@@ -79,7 +79,7 @@ function renderEpitaphBuild(){
 
 	var epitaph = pageData.build.data.epitaph;
 
-	$("#whos").text(pageData.login + "'s Epitaph");
+	$("#whos").text(pageData.personName + "'s Epitaph");
 	$("#content").text(epitaph);
 
 	if(pageData.login != "visitor" && pageData.login === pageData.person)

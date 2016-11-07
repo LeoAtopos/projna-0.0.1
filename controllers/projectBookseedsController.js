@@ -39,7 +39,7 @@ exports.loadbookseeds = function (req, res) {
 	})
 
 //need to work something ,for none-login user to visitor some one's bookseeds directly by url
-	Bookseeds.find({'author': req.query.username}, function (err, result) {
+	Bookseeds.find({'_id': req.query._id}, function (err, result) {
 		if (err) {};
 		if (result) {
 			// console.log("bslist of mine "+result);
@@ -101,4 +101,6 @@ exports.addSeeds = function (req, res) {
 		})
 	})
 	res.json (resData);
+
+	//lack of adding this project to this user's schema!
 }

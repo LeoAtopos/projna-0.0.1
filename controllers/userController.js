@@ -98,8 +98,8 @@ exports.checkSession = function (req, res) {
 
 exports.getProjna = function (req, res) {
 	console.log ('user => getProjna');
-	var uid = req.query.username;
-	User.findOne({'username': uid}, function (err, result) {
+	var uid = req.query._id;
+	User.findOne({'_id': uid}, function (err, result) {
 		if (err) {}
 		if (!result) {
 			req.session.error = 'user not exist';
@@ -107,7 +107,7 @@ exports.getProjna = function (req, res) {
 		} else {
 			var msg = '';
 			// if (result.projects.length < 2) {msg = }
-			res.json ({projna: result.projna});
+			res.json ({projna: result.projna,nickname:result.nickname});
 		}
 	})
 }

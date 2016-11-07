@@ -63,7 +63,8 @@ exports.loadFeaturePerson = function (req, res) {
 				User.findOne({email: result[0].featurer[i]}, function (err, pp) {
 					console.log ("pp is " + pp);
 					var d = {};
-					d.nickname = pp.email;
+					d.id = pp._id;
+					d.nickname = pp.nickname;
 					d.pic = pp.pic;
 					resData.msg.push (d);
 					tmpNum ++;

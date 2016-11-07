@@ -51,7 +51,7 @@ function updatePage(){
 function updateBookseedsBuilding(){
 //ajax and update project bookseeds' pageData
 	$.ajax({
-		type:"GET",url:"/project/load/bookseeds",data:{username : pageData.login},
+		type:"GET",url:"/project/load/bookseeds",data:{_id : pageData.login},
 		async:false,
 		success: function(msg){
 			pageData.build.data.bslist = msg.project.data.bslist;
@@ -66,7 +66,7 @@ function renderPage(){
 
 function renderBookseedsBuilding(){
 //render bookseeds page with pageData
-	renderProjnaName(pageData.login);
+	renderProjnaName(pageData.loginName);
 
 	var bslist = pageData.build.data.bslist;
 

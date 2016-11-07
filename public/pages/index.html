@@ -45,16 +45,17 @@ function updatePage(){
 function updateProjna(){
 //ajax and update pageData;
 	//find what user it is looking at
-	var username = getThePerson();
+	var lookingID = getThePerson();
 	//ajax for the user's projna data
-	if(username != ""){
-		pageData.person = username;
+	if(lookingID != ""){
+		pageData.person = lookingID;
 		$.ajax({
-			type:"GET",url:"/user/getprojna",data:{username : pageData.person},
+			type:"GET",url:"/user/getprojna",data:{_id : pageData.person},
 			async:false,
 			success: function(msg){
 	//update projna
 				pageData.projna = msg.projna;
+				pageData.personName =msg.nickname;
 			},
 			error: function(msg){alert("somethin xiaoyue!");}
 		});
@@ -70,7 +71,7 @@ function renderProjna(){
 	var dc = $("#divC");
 	if (pageData.login === "visitor") {
 		$("#divcover").show();
-	}else{$("#divcover").hide();renderProjnaName(pageData.login);};
+	}else{$("#divcover").hide();renderProjnaName(pageData.personName);};
 	//render the projna list
 	var dprojna = $("<div id = 'divmyprojects' class = 'container' align = 'center'></div>");
 	var dpjpl = $("<div><div id = 'pjlist' class = 'col-sm-6 col-md-3'><a href = '#' class='thumbnail'><img src='../images/Pro1-pic.jpg' alt='通用的占位符缩略图'><h3 class = 'caption'>Project Name</h3></a></div></div>");

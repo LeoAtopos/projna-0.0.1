@@ -1,7 +1,9 @@
 pageData = {
-	login : "reseter@sina.com",//"projna"
+	login : "_id",//"projna"
+	loginName : "Gal Gal",
 	location : "projna",//"projna","project","featrue","build","building"
-	person : "reseter@sina.com",//"person"
+	person : "_id",//"person"
+	personName : "",
 	projna : [
 		{id : "bookseeds", name : "Book Seeds", pic : "Pro1-pic", state : "intro"},//build,
 		{id : "epitaph", name : "Epitaph", pic : "Pro2-pic", state : "intro"}
@@ -34,13 +36,17 @@ function checkLogIn(){
 				// alert(JSON.stringify(userInfo));
 				// $("#mplink").attr("href","/myprojects/" + userInfo.session.email);
 				$("#mplink").attr("href","/");
-				pageData.login = userInfo.session.email;
+				pageData.login = userInfo.session._id;
+				pageData.loginName = userInfo.session.nickname;
+				pageData.person = userInfo.session._id;
+				pageData.personName = userInfo.session.nickname;
 			}
 			else{
 				$("#login").show();
 				$("#beProjna").show();
 				$("#projnaName").hide();
 				pageData.login = "visitor";
+				pageData.loginName = "visitor";
 			}
 			// updatePage(function(){
 			// 	renderPage();
@@ -61,8 +67,8 @@ function renderProjnaName(pn){
 function getThePerson(){
 	var str = window.location.href;
 	var index = str.lastIndexOf("\/");  
-	var username  = str.substring(index + 1, str.length);
-	return username;
+	var lookingID  = str.substring(index + 1, str.length);
+	return lookingID;
 }
 
 function updateFeaturePerson(){

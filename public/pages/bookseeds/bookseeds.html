@@ -51,7 +51,7 @@ function renderPage(){
 
 function renderBookseeds(){
 //render bookseeds page with pageData
-	renderProjnaName(pageData.login);
+	renderProjnaName(pageData.loginName);
 	if(pageData.login === "visitor"){
 		$("#stb").attr('onclick',"location.href='/user/login'");
 	}else {
