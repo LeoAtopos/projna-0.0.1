@@ -1,10 +1,12 @@
 "use strict";
 
 var projModel = require('../Schemas/projectSchema');
+var userModel = require('../Schemas/userSchema');
 var epitaphModel = require('../Schemas/epitaphSchema');
 
 var Epitaph = epitaphModel.Epitaph;
 var Proj = projModel.Project;
+var User = userModel.User;
 
 exports.loadepitaph = function (req, res) {
 	console.log ("project => loadepitaph");
