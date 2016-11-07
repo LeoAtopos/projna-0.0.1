@@ -45,24 +45,27 @@ function updatePage(){
 function updateProjna(){
 //ajax and update pageData;
 	//find what user it is looking at
-	var lookingID = ""
+	var lookingID = "";
 	lookingID = getThePerson();
 	//ajax for the user's projna data
 	if(lookingID != ""){
 		pageData.person = lookingID;
 	}
 
+
 	$.ajax({
-		type:"GET",url:"/user/getprojna",data:{_id : pageData.person},
+		type:"GET",
+		url:"/user/getprojna",
+		data:{_id : pageData.person},
 		async:false,
 		success: function(msg){
 //update projna
 			pageData.projna = msg.projna;
 			pageData.personName =msg.nickname;
+			alert (msg.nickname);
 		},
 		error: function(msg){alert("somethin xiaoyue!");}
 	});
-
 }
 
 function renderPage(){

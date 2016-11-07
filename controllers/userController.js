@@ -102,34 +102,60 @@ exports.getProjna = function (req, res) {
 	console.log ('user => getProjna');
 	var uid = req.query._id;
 	var projnaTmp = [];
-	//get all projects from Projects collection
-	Proj.find({},function (err,result){
-		if(err){}
-		if(result){
-			//for each project, if the _id is its follower, mark it built
-			for(var i = 0;i<result.length;i++){
-				var pj = {};
-				pj.id = result[i]._id;
-				pj.name = result[i].title;
-				pj.pic = result[i].pic;
-				pj.state = 'intro';
-				for(var j = 0; j<result[i].followers.length; j++){
-					if(result[i].followers[j] === uid){
-						pj.state = 'build';
+
+
+	if (uid === "_id") {
+		res.json ({
+			projna: [
+						{id : "bookseeds", name : "Book Seeds", pic : "Pro1-pic", state : "intro"},//build,
+						{id : "epitaph", name : "Epitaph", pic : "Pro2-pic", state : "intro"}
+					],
+			nickname: "halala"
+		});
+	}
+	else {
+
+		//get all projects from Projects collection
+		Proj.find({},function (err,result){
+			if(err){}
+			if(result){
+				//for each project, if the _id is its follower, mark it built
+				for(var i = 0;i<result.length;i++){
+					var pj = {};
+					pj.id = result[i]._id;
+					pj.name = result[i].title;
+					pj.pic = result[i].pic;
+					pj.state = 'intro';
+					for(var j = 0; j<result[i].followers.length; j++){
+						if(result[i].followers[j] === uid){
+							pj.state = 'build';
+						}
 					}
+					projnaTmp.push[pj];
 				}
-				projnaTmp.push[pj];
+				console.log ("proj tmp? " + projnaTmp);
+				User.findOne({'_id':uid},function (err, nResult){
+					console.log ("have i found me?");
+					if(err){}
+					if(nResult){
+						//send back all projects.
+						res.json ({projna: projnaTmp,nickname:nResult.nickname});
+					}
+					else {
+						res.json ({
+							projna: [
+										{id : "bookseeds", name : "Book Seeds", pic : "Pro1-pic", state : "intro"},//build,
+										{id : "epitaph", name : "Epitaph", pic : "Pro2-pic", state : "intro"}
+									],
+							nickname: "halala2"
+						});
+					}
+				});
+				console.log ("res send?");
 			}
-			User.findOne({'_id':uid},function (err, nResult){
-				if(err){}
-				if(nResult){
-					//send back all projects.
-					res.json ({projna: projnaTmp,nickname:nResult.nickname});
-				}
-			});
-			
-		}
-	});
+		});
+
+	}
 	
 	// //send back all projects.
 	// User.findOne({'_id': uid}, function (err, result) {
