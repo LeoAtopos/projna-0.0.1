@@ -31,6 +31,7 @@
 	});
 	function signUpButtonClick(){
 		email = $("#email").val();
+		nickname = $("#nickname").val();
 		password = $("#password").val();
 		repassword = $("#rePassword").val();
 		if(isOKInput()){
@@ -39,8 +40,8 @@
 	}
 
 	function isOKInput(){
-		if(email == "" || password == "" || repassword == ""){
-			alert(email);
+		if(email == "" || password == "" || repassword == "" || nickname == ""){
+			alert("Something is empty, why? Baby");
 			return false;
 		}
 		if(password != repassword){
@@ -66,8 +67,8 @@
 			url:"/user/onregister",
 			data:params,
 			success: function(msg){
-				alert(JSON.stringify(msg));
-				window.location.href="/user/myprojects";
+				// alert(JSON.stringify(msg));
+				window.location.href="/";
 			},
 			error : function(msg){alert(JSON.stringify(msg));} 
 		});
