@@ -117,6 +117,7 @@ exports.addSeeds = function (req, res) {
 			if(!hooked){
 				userResult.projna.push(pid);
 				pjResult.follower.push(uid);
+				//not saved, don't forget that.
 			}
 		});
 	});
