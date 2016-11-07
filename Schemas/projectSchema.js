@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 // Define User Schema
 var ProjectSchema = new Schema({
 	title: {type: String, default: "Proj."},
+	name: {type: String, default: "Proj."},
 	pic:{type:String, default: 'Pro1-pic'},
 	desc: {type: String, default: "This is a projna project."},
 	createDate: {type: Date, default: Date.now},

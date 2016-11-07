@@ -89,6 +89,7 @@ exports.admin.addProject = function (req, res) {
 		if (result) {console.log ('project already exist');}
 		else {
 			proj.title = 'epitaph';
+			proj.name = 'Epitaph';
 			proj.save(function (err, userInfo) {
 				if (err) {};
 				console.log ("Successed adding project: "+'bookseeds');

@@ -107,7 +107,7 @@ exports.addSeeds = function (req, res) {
 	
 	Proj.findOne({'title':'bookseeds'},function (err, pjResult){
 		var hooked = false;
-		var pid = pjResult._id;
+		var pid = pjResult.title;
 		User.findOne({'_id':uid}, function (err, userResult){
 			for(var i = 0; i < userResult.projna.length;i++){
 				if(userResult.projna[i] === pid){

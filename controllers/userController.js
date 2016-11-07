@@ -110,8 +110,8 @@ exports.getProjna = function (req, res) {
 			if(result){
 				for(var i = 0;i<result.length;i++){
 					var pj = {};
-					pj.id = result[i]._id;
-					pj.name = result[i].title;
+					pj.id = result[i].title;
+					pj.name = result[i].name;
 					pj.pic = result[i].pic;
 					pj.state = 'intro';
 					projnaTmp.push[pj];
@@ -138,8 +138,8 @@ exports.getProjna = function (req, res) {
 					if(result){
 						for(var i = 0;i<result.length;i++){
 							var pj = {};
-							pj.id = result[i]._id;
-							pj.name = result[i].title;
+							pj.id = result[i].title;
+							pj.name = result[i].name;
 							pj.pic = result[i].pic;
 							pj.state = 'intro';
 							for(var j = 0; j<nResult.projna.length; j++){
