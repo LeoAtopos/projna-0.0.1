@@ -2,8 +2,10 @@
 
 var path = require('path');
 var model = require('../Schemas/userSchema');
-var User = model.User;
+var projModel = require('../Schemas/projectSchema');
 
+var User = model.User;
+var Proj = projModel.Project;
 
 exports.register = function (req, res) {
 	console.log ("user => register");
@@ -99,17 +101,48 @@ exports.checkSession = function (req, res) {
 exports.getProjna = function (req, res) {
 	console.log ('user => getProjna');
 	var uid = req.query._id;
-	User.findOne({'_id': uid}, function (err, result) {
-		if (err) {}
-		if (!result) {
-			req.session.error = 'user not exist';
-			res.json ({"success": "user not exist"});
-		} else {
-			var msg = '';
-			// if (result.projects.length < 2) {msg = }
-			res.json ({projna: result.projna,nickname:result.nickname});
+	var projnaTmp = [];
+	//get all projects from Projects collection
+	Proj.find({},function (err,result){
+		if(err){}
+		if(result){
+			//for each project, if the _id is its follower, mark it built
+			for(var i = 0;i<result.length;i++){
+				var pj = {};
+				pj.id = result[i]._id;
+				pj.name = result[i].title;
+				pj.pic = result[i].pic;
+				pj.state = 'intro';
+				for(var j = 0; j<result[i].followers.length; j++){
+					if(result[i].followers[j] === uid){
+						pj.state = 'build';
+					}
+				}
+				projnaTmp.push[pj];
+			}
+			User.findOne({'_id':uid},function (err, nResult){
+				if(err){}
+				if(nResult){
+					//send back all projects.
+					res.json ({projna: projnaTmp,nickname:nResult.nickname});
+				}
+			});
+			
 		}
-	})
+	});
+	
+	// //send back all projects.
+	// User.findOne({'_id': uid}, function (err, result) {
+	// 	if (err) {}
+	// 	if (!result) {
+	// 		req.session.error = 'user not exist';
+	// 		res.json ({"success": "user not exist"});
+	// 	} else {
+	// 		var msg = '';
+	// 		// if (result.projects.length < 2) {msg = }
+	// 		res.json ({projna: result.projna,nickname:result.nickname});
+	// 	}
+	// })
 }
 
 exports.admin = function (req, res) {
