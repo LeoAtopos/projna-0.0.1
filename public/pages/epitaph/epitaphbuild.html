@@ -60,6 +60,7 @@ function updateEpitaphBuild(){
 			async:false,
 			success: function(msg){
 				pageData.build.data.epitaph = msg.project.data.epitaph;
+				pageData.personName = msg.nickname;
 			},
 			error: function(msg){alert("somethin xiaoyue!");}
 		});		
