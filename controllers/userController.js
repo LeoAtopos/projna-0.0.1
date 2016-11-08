@@ -108,14 +108,16 @@ exports.getProjna = function (req, res) {
 		Proj.find({},function (err, result){
 			if(err){}
 			if(result){
+				// console.log ("******result is " + result);
 				for(var i = 0;i<result.length;i++){
 					var pj = {};
 					pj.id = result[i].title;
 					pj.name = result[i].name;
 					pj.pic = result[i].pic;
 					pj.state = 'intro';
-					projnaTmp.push[pj];
+					projnaTmp.push(pj);
 				}
+				// console.log ("******** projnaTmp to send is " + projnaTmp);
 				res.json ({projna: projnaTmp,nickname:"visitor"});
 			}
 		});
@@ -147,7 +149,7 @@ exports.getProjna = function (req, res) {
 									pj.state = 'build';
 								}
 							}
-							projnaTmp.push[pj];
+							projnaTmp.push(pj);
 						}
 					}
 					res.json ({projna: projnaTmp,nickname:nResult.nickname});

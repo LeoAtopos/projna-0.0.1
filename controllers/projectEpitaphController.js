@@ -89,14 +89,28 @@ exports.addEpitaph = function (req, res) {
 		var hooked = false;
 		var pid = pjResult.title;
 		User.findOne({'_id':uid}, function (err, userResult){
-			for(var i = 0; i < userResult.projna.length;i++){
-				if(userResult.projna[i] === pid){
-					hooked = true;
+			if (err) {
+				resData.error.push (err);
+			}
+			if (userResult) {
+				for(var i = 0; i < userResult.projna.length;i++){
+					if(userResult.projna[i] === pid){
+						hooked = true;
+					}
+				}
+				if(!hooked){
+					userResult.projna.push(pid);
+					pjResult.follower.push(uid);
+					pjResult.save (function (err) {
+						if (err) {resData.error.push (err);};
+					})
+					userResult.save (function (err) {
+						if (err) {resData.error.push (err);};
+					})
 				}
 			}
-			if(!hooked){
-				userResult.projna.push(pid);
-				pjResult.follower.push(uid);
+			else {
+				resData.error.push (err);
 			}
 		});
 	});

@@ -89,6 +89,7 @@ function renderProjna(){
 							"</a>"+
 						"</div>"+
 					"</div>");
+	alert ("Projna list is " + pageData.projna);
 	pageData.projna.forEach(function(pj){
 		var pjpl = dpjpl.clone();
 		pjpl.find("h3").text(pj.name);
