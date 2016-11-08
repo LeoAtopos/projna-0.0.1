@@ -145,7 +145,7 @@ exports.getProjna = function (req, res) {
 							pj.pic = result[i].pic;
 							pj.state = 'intro';
 							for(var j = 0; j<nResult.projna.length; j++){
-								if(nResult.projna[j] === result[i]._id){
+								if(nResult.projna[j] === result[i].title){
 									pj.state = 'build';
 								}
 							}
