@@ -12,6 +12,7 @@ exports.loadepitaph = function (req, res) {
 	console.log ("project => loadepitaph");
 	var resData = {
 		state : "visitor/self/other",
+		nickname : "",
 		project : {
 			title	:"Epitaph",
 			desc : "asdfsaf",
@@ -33,17 +34,20 @@ exports.loadepitaph = function (req, res) {
 
 //need to work something ,for none-login user to visitor some one's bookseeds directly by url
 	console.log ("epitaph author is " + req.query._id);
-	Epitaph.find({'author': req.query._id}, function (err, result) {
-		if (err) {};
-		if (result) {
-			console.log(result);
-			if (result.length > 0) {resData.project.data.epitaph=result[0].epitaph;}
-			// 	// resData.project.data.bslist[resData.project.data.bslist.length] = bs;
-		}
-		else {console.log ('project doesnot exist with author ' + req.session.user.email);}
-		res.send (resData);
-	})
 
+	User.findOne({'_id':req.query._id},function (err, result){
+		resData.nickname = result.nickname;
+		Epitaph.find({'author': req.query._id}, function (err, result) {
+			if (err) {};
+			if (result) {
+				console.log(result);
+				if (result.length > 0) {resData.project.data.epitaph=result[0].epitaph;}
+				// 	// resData.project.data.bslist[resData.project.data.bslist.length] = bs;
+			}
+			else {console.log ('project doesnot exist with author ' + req.session.user.email);}
+			res.send (resData);
+		})
+	});	
 }
 
 exports.addEpitaph = function (req, res) {

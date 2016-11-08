@@ -63,6 +63,7 @@ function updateBookseedsBuild(){
 			success: function(msg){
 				//alert(JSON.stringify(msg));
 				pageData.build = msg.project;
+				pageData.personName = msg.nickname;
 			},
 			error: function(msg){alert("somethin xiaoyue!lalalal");}
 		});
