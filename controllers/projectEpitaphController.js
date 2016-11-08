@@ -102,7 +102,7 @@ exports.addEpitaph = function (req, res) {
 				}
 				if(!hooked){
 					userResult.projna.push(pid);
-					pjResult.follower.push(uid);
+					pjResult.followers.push(uid);
 					pjResult.save (function (err) {
 						if (err) {resData.error.push (err);};
 					})
