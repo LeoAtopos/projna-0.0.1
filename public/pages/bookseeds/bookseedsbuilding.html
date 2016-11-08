@@ -47,6 +47,7 @@ function updatePage(){
 	pageData.build.data.bslist = [];
 	pageData.project.id = "bookseeds";
 	updateBookseedsBuilding();
+	updateFeaturePerson();
 }
 function updateBookseedsBuilding(){
 //ajax and update project bookseeds' pageData
@@ -81,6 +82,8 @@ function renderBookseedsBuilding(){
 		var l = bslist[bs].age;
 		$("#age"+l.toString()).find("input").val(bslist[bs].bookname);
 	}
+
+	renderFeaturePerson();
 }
 
 //handle input submit the book seeds user edited

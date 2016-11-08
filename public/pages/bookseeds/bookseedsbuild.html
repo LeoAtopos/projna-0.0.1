@@ -51,6 +51,7 @@ function updatePage(){
 	pageData.build.data.bslist = [];
 	pageData.project.id = "bookseeds";
 	updateBookseedsBuild();
+	updateFeaturePerson();
 }
 function updateBookseedsBuild(){
 //ajax and update project bookseeds' pageData
@@ -72,6 +73,7 @@ function updateBookseedsBuild(){
 
 function renderPage(){
 	renderBookseedsBuild();
+	renderFeaturePerson();
 }
 
 function renderBookseedsBuild(){

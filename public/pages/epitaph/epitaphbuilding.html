@@ -48,6 +48,7 @@ function updatePage(){
 	pageData.build.data.epitaph = "";
 	pageData.project.id = "epitaph";
 	updateEpitaphBuilding();
+	updateFeaturePerson();
 }
 function updateEpitaphBuilding(){
 //ajax and update project bookseeds' pageData
@@ -63,6 +64,7 @@ function updateEpitaphBuilding(){
 
 function renderPage(){
 	renderEpitaphBuilding();
+	renderFeaturePerson();
 }
 
 function renderEpitaphBuilding(){
@@ -73,6 +75,7 @@ function renderEpitaphBuilding(){
 
 	$("#grave").find("#whos").val(pageData.login + "'s Epitaph");
 	$("#grave").find("input").val(epitaph);
+
 }
 
 //handle input submit the book seeds user edited
