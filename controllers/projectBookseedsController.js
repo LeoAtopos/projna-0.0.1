@@ -64,22 +64,22 @@ exports.loadbookseeds = function (req, res) {
 		});
 	});
 
-	Bookseeds.find({'author': req.query._id}, function (err, result) {
-		// console.log ("query id? " + req.query._id);
-		if (err) {};
-		if (result) {
-			// console.log("bslist of mine "+result);
-			result.forEach (function(bs) {
-			// 	console.log ("bs is "+bs);
-				resData.project.data.bslist.push (bs);
-			// 	// resData.project.data.bslist[resData.project.data.bslist.length] = bs;
-			})
-			// resData.project.data.bslist = result;
-			// res.send (resData);
-		}
-		else {console.log ('project doesnot exist with author ' + req.session.user.email);}
-		res.send (resData);
-	})
+	// Bookseeds.find({'author': req.query._id}, function (err, result) {
+	// 	// console.log ("query id? " + req.query._id);
+	// 	if (err) {};
+	// 	if (result) {
+	// 		// console.log("bslist of mine "+result);
+	// 		result.forEach (function(bs) {
+	// 		// 	console.log ("bs is "+bs);
+	// 			resData.project.data.bslist.push (bs);
+	// 		// 	// resData.project.data.bslist[resData.project.data.bslist.length] = bs;
+	// 		})
+	// 		// resData.project.data.bslist = result;
+	// 		// res.send (resData);
+	// 	}
+	// 	else {console.log ('project doesnot exist with author ' + req.session.user.email);}
+	// 	res.send (resData);
+	// })
 
 	// console.log ("************ final resData " + resData);
 	// console.log (resData);
