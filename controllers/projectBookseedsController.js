@@ -39,9 +39,12 @@ exports.loadbookseeds = function (req, res) {
 		if (result) {resData.project.title = result.title;	resData.project.desc = result.desc;}
 		else {console.log ('project doesnot exist with title ' + 'Bookseeds');}
 	})
+	// console.log ("************ after result project resData " + resData);
+	// console.log (resData);
 
 //need to work something ,for none-login user to visitor some one's bookseeds directly by url
-	Bookseeds.find({'_id': req.query._id}, function (err, result) {
+	Bookseeds.find({'author': req.query._id}, function (err, result) {
+		// console.log ("query id? " + req.query._id);
 		if (err) {};
 		if (result) {
 			// console.log("bslist of mine "+result);
@@ -56,6 +59,9 @@ exports.loadbookseeds = function (req, res) {
 		else {console.log ('project doesnot exist with author ' + req.session.user.email);}
 		res.send (resData);
 	})
+
+	// console.log ("************ final resData " + resData);
+	// console.log (resData);
 
 	// res.send (resData);
 }

@@ -2,13 +2,15 @@
 
 var projModel = require('../Schemas/projectSchema');
 var userModel = require('../Schemas/userSchema');
-// var bookseedsModel = require('../Schemas/bookseedsSchema');
+var bookseedsModel = require('../Schemas/bookseedsSchema');
 
 var bookseedsController = require('./projectBookseedsController');
 var epitaphController = require('./projectEpitaphController');
 
 var Proj = projModel.Project;
 var User = userModel.User;
+
+var Bookseeds = bookseedsModel.Bookseeds;
 
 exports.bookseedsController = bookseedsController;
 exports.epitaphController = epitaphController;
