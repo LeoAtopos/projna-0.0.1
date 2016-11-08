@@ -76,7 +76,7 @@ exports.addSeeds = function (req, res) {
 	}
 	req.body.bslist.forEach (function(sd){
 		console.log(sd);
-		Bookseeds.findOne({'author': req.session.user.email, 'age': sd.age}, function (err, result) {
+		Bookseeds.findOne({'author': req.session.user._id, 'age': sd.age}, function (err, result) {
 			if (err) {}
 			if (result) { // if the seed of age already exist, then update the content. Keep the seeds unique to each age.
 				result.bookname = sd.bookname;
@@ -90,7 +90,7 @@ exports.addSeeds = function (req, res) {
 			}
 			else { // if there are no seed matched, save a new seed into db.
 				var seed = new Bookseeds();
-				seed.author = req.session.user.email;
+				seed.author = req.session.user._id;
 				seed.age = sd.age;
 				seed.bookname = sd.bookname;
 				// result.desc = req.body.book.desc;

@@ -50,6 +50,8 @@ exports.addEpitaph = function (req, res) {
 	console.log ("project => onEpitaph");
 	console.log (req.session.user.email);
 	console.log (req.body.epitaph);
+
+	var uid = req.session.user._id;
 	// var resList = new array();
 	var resData = {
 		error: [],
@@ -58,7 +60,7 @@ exports.addEpitaph = function (req, res) {
 			add: []
 		}
 	}
-	Epitaph.findOne({'author': req.session.user.email}, function (err, result) {
+	Epitaph.findOne({'author': req.session.user._id}, function (err, result) {
 		if (err) {}
 		if (result) { // if the seed of age already exist, then update the content. Keep the seeds unique to each age.
 			result.epitaph = req.body.epitaph;
@@ -72,7 +74,7 @@ exports.addEpitaph = function (req, res) {
 		}
 		else { // if there are no seed matched, save a new seed into db.
 			var ep = new Epitaph();
-			ep.author = req.session.user.email;
+			ep.author = req.session.user._id;
 			ep.epitaph = req.body.epitaph;
 			// result.desc = req.body.book.desc;
 			// result.link = req.body.book.link;
