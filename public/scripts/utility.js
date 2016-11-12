@@ -61,6 +61,7 @@ function renderProjnaName(pn){
 	var dc = $("#divC");
 	var personH = $("<center><div><a><h3></h3></a></div></center>");
 	personH.find("h3").text(pn);
+	personH.find('a').attr("href",'/'+pageData.person);
 	dc.prepend(personH);
 }
 
@@ -84,6 +85,7 @@ function updateFeaturePerson(){
 			alert (JSON.stringify(msg));
 		}
 	});
+	$('#projTitle').attr("href",'/project/'+pageData.project.id+'/build/'+pageData.login);
 }
 
 function renderFeaturePerson(){

@@ -62,7 +62,7 @@ function updateProjna(){
 //update projna
 			pageData.projna = msg.projna;
 			pageData.personName =msg.nickname;
-			alert (msg.nickname);
+			//alert (msg.nickname);
 		},
 		error: function(msg){alert("somethin xiaoyue!");}
 	});
@@ -89,7 +89,7 @@ function renderProjna(){
 							"</a>"+
 						"</div>"+
 					"</div>");
-	alert ("Projna list is " + pageData.projna);
+	//alert ("Projna list is " + pageData.projna);
 	pageData.projna.forEach(function(pj){
 		var pjpl = dpjpl.clone();
 		pjpl.find("h3").text(pj.name);

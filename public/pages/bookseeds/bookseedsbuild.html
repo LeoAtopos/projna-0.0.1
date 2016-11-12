@@ -15,7 +15,7 @@
 		<div id = "divH"></div>
 		<div id = "divC" class = "container">
 			<div id = "intro">
-				<h1>Book Seeds</h1>
+				<a id = 'projTitle' href=""><h1>Book Seeds</h1></a>
 				<h3>Name the books you thought suitable for children in each age, because a person's ideas ought to be past on to next generations, and that can be done by books he/she thoughtfully recomended.</h3>
 				<button id = "stb" class = "btn btn-default">Need to Build</button>
 			</div>
@@ -72,6 +72,7 @@ function updateBookseedsBuild(){
 			error: function(msg){alert("somethin xiaoyue!lalalal");}
 		});
 	}
+	$('#projTitle').attr("href",'/project/'+pageData.project.id+'/build/'+pageData.login);
 }
 
 function renderPage(){
