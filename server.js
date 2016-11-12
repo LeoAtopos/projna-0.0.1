@@ -70,6 +70,9 @@ routes.setReqUrl(app);
 var ADDRESS = '127.0.0.1';
 var PORT = 8081;
 
+//get ready for config dbs
+
+
 var server = app.listen(PORT);
 console.log ("Running server on :"+PORT);
 
