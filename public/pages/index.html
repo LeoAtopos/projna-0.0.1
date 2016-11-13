@@ -84,21 +84,21 @@ function renderProjna(){
 						"<div id = 'pjlist' class = 'col-sm-6 col-md-3'>"+
 							"<a href = '#' class='thumbnail'>"+
 								"<img src='../images/Pro1-pic.jpg' alt='通用的占位符缩略图'>"+
-								"<h3 class = 'caption'>Project Name</h3>"+
-								"<p>Build</p>"+
+								"<h3 class = ''>Project Name</h3>"+
 							"</a>"+
 						"</div>"+
 					"</div>");
 	//alert ("Projna list is " + pageData.projna);
 	pageData.projna.forEach(function(pj){
 		var pjpl = dpjpl.clone();
-		pjpl.find("h3").text(pj.name);
 		pjpl.find("img").attr("src",'../images/'+pj.pic+'.jpg');
 		if(pj.state === "intro"){
+			pjpl.find("h3").text(pj.name);
 			pjpl.find("a").attr("href",'/project/'+pj.id);
-			pjpl.find("p").hide();
 		}else if (pj.state === "build"){
+			pjpl.find("h3").text(pj.name+' (B)');
 			pjpl.find("a").attr("href",'/project/'+pj.id+'/build/'+pageData.person);
+			pjpl.find("h3").addClass("pjBuild");
 		}
 		
 		dprojna.append(pjpl);

@@ -115,3 +115,32 @@
 	padding-left: 40px;
 	padding-right: 40px;
 }
+
+
+/*_____________________________________________________________________*/
+
+
+.psImg{
+	height: 100px;
+	width: 80px;
+}
+.psName{
+	margin-top: 5px;
+	margin-bottom: 3px;
+	padding: 0px;
+}
+
+.pjBuild{
+	background-color: #123456;
+	color: white;
+}
+
+
+
+
+
+
+
+
+
+
