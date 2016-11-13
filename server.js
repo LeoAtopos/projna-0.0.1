@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use(cookieParser());
 app.use(session({
 	secret:'gooze',
-  	cookie: {maxAge: 600000},
+  	cookie: {maxAge: 3600000},
  	resave: false,
   	saveUninitialized: true,
 }));
@@ -99,6 +99,7 @@ Proj.findOne({'title': 'epitaph'}, function (err, result) {
 	else {
 		proj2.title = 'epitaph';
 		proj2.name = 'Epitaph';
+		proj2.pic = 'Pro2-pic';
 		proj2.save(function (err, userInfo) {
 			if (err) {};
 			console.log ("Successed adding project: "+'bookseeds');
