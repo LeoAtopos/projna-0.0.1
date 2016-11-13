@@ -135,6 +135,18 @@
 	color: white;
 }
 
+i{
+  display:block;
+  background:#123456;
+  border-radius:50%;
+  width:16px;
+  height:16px;
+  top:74%;
+  right:10%;
+  position:absolute;
+  font-size: 3px;
+  color: white;
+}
 
 
 

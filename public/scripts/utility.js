@@ -99,7 +99,7 @@ function renderFeaturePerson(){
 
 function renderPerson(p){
 	var fp = $("<div>"+
-					"<div class = 'col-sm-3 col-md-2'>"+
+					"<div class = 'col-xs-4 col-sm-3 col-md-2'>"+
 						"<a href = '#' class='thumbnail'>"+
 							"<img class = 'img-circle psImg' src='../images/per1-pic.jpg' alt='通用的占位符缩略图'>"+
 							"<center><h3 class = 'psName'>Person Name</h3></center>"+

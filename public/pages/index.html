@@ -81,10 +81,10 @@ function renderProjna(){
 	//render the projna list
 	var dprojna = $("<div id = 'divmyprojects' class = 'container' align = 'center'></div>");
 	var dpjpl = $("<div>"+
-						"<div id = 'pjlist' class = 'col-sm-6 col-md-3'>"+
+						"<div id = 'pjlist' class = 'col-xs-6 col-sm-4 col-md-3'>"+
 							"<a href = '#' class='thumbnail'>"+
 								"<img src='../images/Pro1-pic.jpg' alt='通用的占位符缩略图'>"+
-								"<h3 class = ''>Project Name</h3>"+
+								"<h3 class = ''>Project Name</h3><i>b</i>"+
 							"</a>"+
 						"</div>"+
 					"</div>");
@@ -95,10 +95,11 @@ function renderProjna(){
 		if(pj.state === "intro"){
 			pjpl.find("h3").text(pj.name);
 			pjpl.find("a").attr("href",'/project/'+pj.id);
+			pjpl.find("i").hide();
 		}else if (pj.state === "build"){
-			pjpl.find("h3").text(pj.name+' (B)');
+			pjpl.find("h3").text(pj.name);
 			pjpl.find("a").attr("href",'/project/'+pj.id+'/build/'+pageData.person);
-			pjpl.find("h3").addClass("pjBuild");
+			//pjpl.find("h3").addClass("pjBuild");
 		}
 		
 		dprojna.append(pjpl);
