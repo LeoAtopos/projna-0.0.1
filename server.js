@@ -8,6 +8,12 @@ var path = require('path');
 var url = require('url');
 var bodyParser = require('body-parser');
 
+var projModel = require('./Schemas/projectSchema');
+var Proj = projModel.Project;
+
+var model = require('./Schemas/userSchema');
+var User = model.User;
+
 var app = express();
 
 // app.use(express.static(path.join(__dirname)));
@@ -71,6 +77,49 @@ var ADDRESS = '127.0.0.1';
 var PORT = 8081;
 
 //get ready for config dbs
+//find proj bookseeds, creat one if not found
+var proj1 = new Proj();
+Proj.findOne({'title': 'epitaph'}, function (err, result) {
+	if (err) {};
+	if (result) {console.log ('project already exist');}
+	else {
+		proj1.title = 'epitaph';
+		proj1.name = 'Epitaph';
+		proj1.save(function (err, userInfo) {
+			if (err) {};
+			console.log ("Successed adding project: "+'epitaph');
+		})
+	}
+});
+//find proj epitaph, creat one if not found
+var proj2 = new Proj();
+Proj.findOne({'title': 'bookseeds'}, function (err, result) {
+	if (err) {};
+	if (result) {console.log ('project already exist');}
+	else {
+		proj2.title = 'bookseeds';
+		proj2.name = 'Book Seeds';
+		proj2.save(function (err, userInfo) {
+			if (err) {};
+			console.log ("Successed adding project: "+'bookseeds');
+		})
+	}
+});
+//find useer, creat one if not found
+var user = new User();
+User.findOne({}, function (err, result) {
+	if (err) {};
+	if (result) {console.log ('users exist');}
+	else {
+		user.email = 'r';
+		user.password = '1';
+		// user.projects.push (project);
+		user.save(function (err, userInfo) {
+			if (err) {};
+			console.log ("Successed adding users");
+		})
+	}
+})
 
 
 var server = app.listen(PORT);
