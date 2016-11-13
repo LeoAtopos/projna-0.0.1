@@ -79,12 +79,12 @@ var PORT = 8081;
 //get ready for config dbs
 //find proj bookseeds, creat one if not found
 var proj1 = new Proj();
-Proj.findOne({'title': 'epitaph'}, function (err, result) {
+Proj.findOne({'title': 'bookseeds'}, function (err, result) {
 	if (err) {};
 	if (result) {console.log ('project already exist');}
 	else {
-		proj1.title = 'epitaph';
-		proj1.name = 'Epitaph';
+		proj1.title = 'bookseeds';
+		proj1.name = 'Book Seeds';
 		proj1.save(function (err, userInfo) {
 			if (err) {};
 			console.log ("Successed adding project: "+'epitaph');
@@ -93,12 +93,12 @@ Proj.findOne({'title': 'epitaph'}, function (err, result) {
 });
 //find proj epitaph, creat one if not found
 var proj2 = new Proj();
-Proj.findOne({'title': 'bookseeds'}, function (err, result) {
+Proj.findOne({'title': 'epitaph'}, function (err, result) {
 	if (err) {};
 	if (result) {console.log ('project already exist');}
 	else {
-		proj2.title = 'bookseeds';
-		proj2.name = 'Book Seeds';
+		proj2.title = 'epitaph';
+		proj2.name = 'Epitaph';
 		proj2.save(function (err, userInfo) {
 			if (err) {};
 			console.log ("Successed adding project: "+'bookseeds');
