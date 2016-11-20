@@ -77,35 +77,55 @@ var ADDRESS = '127.0.0.1';
 var PORT = 8081;
 
 //get ready for config dbs
+//adding profile into projects
+Proj.findOne({'title': 'users'}, function (err, result) {
+	if (err) {};
+	if (result) {console.log ('project already exist');}
+	else {
+		var proj = new Proj();
+		proj.title = 'profile';
+		proj.name = 'Profile';
+		proj.pic = 'Pro2-pic';
+		proj.order = 1;
+		proj.save(function (err, userInfo) {
+			if (err) {};
+			console.log ("Successed adding project: "+'profile');
+		})
+	}
+});
 //find proj bookseeds, creat one if not found
-var proj1 = new Proj();
 Proj.findOne({'title': 'bookseeds'}, function (err, result) {
 	if (err) {};
 	if (result) {console.log ('project already exist');}
 	else {
-		proj1.title = 'bookseeds';
-		proj1.name = 'Book Seeds';
-		proj1.save(function (err, userInfo) {
+		var proj = new Proj();
+		proj.title = 'bookseeds';
+		proj.name = 'Book Seeds';
+		proj.order = 2;
+		proj.save(function (err, userInfo) {
 			if (err) {};
 			console.log ("Successed adding project: "+'epitaph');
 		})
 	}
 });
 //find proj epitaph, creat one if not found
-var proj2 = new Proj();
 Proj.findOne({'title': 'epitaph'}, function (err, result) {
 	if (err) {};
 	if (result) {console.log ('project already exist');}
 	else {
-		proj2.title = 'epitaph';
-		proj2.name = 'Epitaph';
-		proj2.pic = 'Pro2-pic';
-		proj2.save(function (err, userInfo) {
+		var proj = new Proj();
+		proj.title = 'epitaph';
+		proj.name = 'Epitaph';
+		proj.pic = 'Pro2-pic';
+		proj.order = 3;
+		proj.save(function (err, userInfo) {
 			if (err) {};
 			console.log ("Successed adding project: "+'bookseeds');
 		})
 	}
 });
+
+// user itself should be a project too.how to do that, oh my God.
 //find useer, creat one if not found
 var user = new User();
 User.findOne({}, function (err, result) {
