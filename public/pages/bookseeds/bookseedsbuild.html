@@ -105,7 +105,7 @@ function renderBookseedsBuild(){
 function listbookseeds(bs){
 	// alert (JSON.stringify(bs));
 	var tr = $("<tr></tr>");
-	var tdage = $("<i></i>").text(bs.age);
+	var tdage = $("<td></td>").text(bs.age);
 	var tdbookname = $("<td></td>").text(bs.bookname);
 
 	tr.append(tdage);
