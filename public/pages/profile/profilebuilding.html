@@ -89,7 +89,7 @@ function renderProfileBuilding(){
 	$("#profile").find("#whos").val(pageData.login + "'s Profile");
 	$("#nickname").text(profile.nickname);
 	$("#email").attr("placeholder", profile.email);
-	$("#pic").attr("src",profile.pic);
+	$("#pic").attr("src",'/images/' + profile.pic + '.jpg');
 
 }
 
@@ -99,10 +99,17 @@ $("#submit").on("click",function(event){
 });
 
 function submitProfile(){
-	var pf;
+	var pf ={
+		nickname : '',
+		email : '',
+		pic : ''
+	};
 	pf.nickname = $("#nickname").val();
 	pf.email = $("#email").val();
-	pf.pic = $("#pic").src;
+	var str = $("#pic").attr("src");
+	var index = str.lastIndexOf("\/"); 
+	var pic = str.substring(index + 1, str.length);
+	pf.pic = pic.substring(0, pic.lastIndexOf("."));
 	//here get profile data????????????????????????????????______________
 	if(pf != ""){
 		$.ajax({

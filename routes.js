@@ -121,6 +121,9 @@ exports.setReqUrl = function (app) {
 	app.get('/project/load/epitaph', project.epitaphController.loadepitaph);
 	app.post('/project/edit/addEpitaph', project.epitaphController.addEpitaph);
 
+	app.get('/project/load/profile', project.profileController.loadprofile);
+	app.post('/project/edit/addProfile', project.profileController.addProfile);
+
 	app.get('/project/loadFeaturePerson/:projectTitle', project.loadFeaturePerson);
 
 //just send those files back without any method, each page needs load their own details with funcs above

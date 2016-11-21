@@ -100,7 +100,7 @@ function renderProfileBuild(){
 	$("#whos").text(pageData.personName + "'s Profile");
 	$("#nickname").text(profile.nickname);
 	$("#email").text(profile.email);
-	$("#pic").attr("src",profile.pic);
+	$("#pic").attr("src",'/images/' + profile.pic + '.jpg');
 	// here show the profle out. $("#content").text(profile);????????????????????????????????______________
 
 	if(pageData.login != "visitor" && pageData.login === pageData.person)

@@ -6,6 +6,7 @@ var bookseedsModel = require('../Schemas/bookseedsSchema');
 
 var bookseedsController = require('./projectBookseedsController');
 var epitaphController = require('./projectEpitaphController');
+var profileController = require('./projectProfileController');
 
 var Proj = projModel.Project;
 var User = userModel.User;
@@ -14,6 +15,7 @@ var Bookseeds = bookseedsModel.Bookseeds;
 
 exports.bookseedsController = bookseedsController;
 exports.epitaphController = epitaphController;
+exports.profileController = profileController;
 
 exports.common = function (req, res) {
 
