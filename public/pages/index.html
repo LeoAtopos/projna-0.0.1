@@ -63,6 +63,8 @@ function updateProjna(){
 			pageData.projna = msg.projna;
 			pageData.personName =msg.nickname;
 			//alert (msg.nickname);
+			sortProjects();
+			pageData.projna.sort(sortProjects);
 		},
 		error: function(msg){alert("somethin xiaoyue!");}
 	});
@@ -105,6 +107,11 @@ function renderProjna(){
 		dprojna.append(pjpl);
 	});
 	dc.append(dprojna);
+}
+
+function sortProjects(a,b){
+	//new a projectlist, sort projectlist into it by inserting with order
+	return a.order - b.order;
 }
 </script>
 </html>

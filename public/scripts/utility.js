@@ -5,8 +5,8 @@ pageData = {
 	person : "_id",//"person"
 	personName : "",
 	projna : [
-		{id : "bookseeds", name : "Book Seeds", pic : "Pro1-pic", state : "intro"},//build,
-		{id : "epitaph", name : "Epitaph", pic : "Pro2-pic", state : "intro"}
+		{id : "bookseeds", name : "Book Seeds", pic : "Pro1-pic", state : "intro", order : 2},//build,
+		{id : "epitaph", name : "Epitaph", pic : "Pro2-pic", state : "intro", order : 3}
 	],
 	project : {
 		id : "bookseeds",//"project"

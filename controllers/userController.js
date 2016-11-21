@@ -114,6 +114,7 @@ exports.getProjna = function (req, res) {
 					pj.id = result[i].title;
 					pj.name = result[i].name;
 					pj.pic = result[i].pic;
+					pj.order = result[i].order;
 					pj.state = 'intro';
 					projnaTmp.push(pj);
 				}
