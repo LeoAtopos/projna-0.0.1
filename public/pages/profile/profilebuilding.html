@@ -28,15 +28,15 @@
 							<tbody>
 								<tr>
 									<td>Name</td>
-									<td>guzhao</td>
+									<td id ="nickname">guzhao</td>
 								</tr>
 								<tr>
 									<td>Email</td>
-									<td><input placeholder = "gz@qq.com"></td>
+									<td><input id = "email" placeholder = "gz@qq.com"></td>
 								</tr>
 								<tr>
 									<td>selfie</td>
-									<td><img src=""></td>
+									<td><img id = "pic" src=""></td>
 								</tr>
 							</tbody>
 						</table>
@@ -87,7 +87,9 @@ function renderProfileBuilding(){
 	var profile = pageData.build.data.profile;
 
 	$("#profile").find("#whos").val(pageData.login + "'s Profile");
-	// here show the profle out. $("#profile").find("input").val(profile);????????????????????????????????______________
+	$("#nickname").text(profile.nickname);
+	$("#email").attr("placeholder", profile.email);
+	$("#pic").attr("src",profile.pic);
 
 }
 
@@ -97,7 +99,10 @@ $("#submit").on("click",function(event){
 });
 
 function submitProfile(){
-	var pf = $("#profile").find("input").val();
+	var pf;
+	pf.nickname = $("#nickname").val();
+	pf.email = $("#email").val();
+	pf.pic = $("#pic").src;
 	//here get profile data????????????????????????????????______________
 	if(pf != ""){
 		$.ajax({

@@ -28,15 +28,15 @@
 							<tbody>
 								<tr>
 									<td>Name</td>
-									<td>guzhao</td>
+									<td id ="nickname">guzhao</td>
 								</tr>
 								<tr>
 									<td>Email</td>
-									<td>gz@qq.com</td>
+									<td id = "email">gz@qq.com</td>
 								</tr>
 								<tr>
 									<td>selfie</td>
-									<td><img src=""></td>
+									<td><img id = "pic" src=""></td>
 								</tr>
 							</tbody>
 						</table>
@@ -98,6 +98,9 @@ function renderProfileBuild(){
 	var profile = pageData.build.data.profile;
 
 	$("#whos").text(pageData.personName + "'s Profile");
+	$("#nickname").text(profile.nickname);
+	$("#email").text(profile.email);
+	$("#pic").attr("src",profile.pic);
 	// here show the profle out. $("#content").text(profile);????????????????????????????????______________
 
 	if(pageData.login != "visitor" && pageData.login === pageData.person)
