@@ -62,9 +62,9 @@ function updateProjna(){
 //update projna
 			pageData.projna = msg.projna;
 			pageData.personName =msg.nickname;
-			//alert (msg.nickname);
-			sortProjects();
+			// alert(JSON.stringify(pageData.projna));
 			pageData.projna.sort(sortProjects);
+			// alert(JSON.stringify(pageData.projna));
 		},
 		error: function(msg){alert("somethin xiaoyue!");}
 	});

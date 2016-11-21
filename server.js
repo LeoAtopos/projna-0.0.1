@@ -78,7 +78,7 @@ var PORT = 8081;
 
 //get ready for config dbs
 //adding profile into projects
-Proj.findOne({'title': 'users'}, function (err, result) {
+Proj.findOne({'title': 'profile'}, function (err, result) {
 	if (err) {};
 	if (result) {console.log ('project already exist');}
 	else {

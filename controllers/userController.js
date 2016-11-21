@@ -40,10 +40,17 @@ exports.onregister = function (req, res) {
 				console.log ("Successed adding user: "+req.body.email);
 				req.session.user = userInfo;
 				req.session.save;
+
+				//hook up the user to the profile project in projects
+				Proj.findOne({'title':'profile'},function (err, pjResult){
+					var uid = userInfo._id;
+					pjResult.followers.push(uid);
+				});
+
 				res.json("Successed adding user: "+req.body.email);
 			})
 		}
-	})
+	});
 }
 
 // exports.login = function (req, res) {
@@ -144,6 +151,7 @@ exports.getProjna = function (req, res) {
 							pj.id = result[i].title;
 							pj.name = result[i].name;
 							pj.pic = result[i].pic;
+							pj.order = result[i].order;
 							pj.state = 'intro';
 							for(var j = 0; j<nResult.projna.length; j++){
 								if(nResult.projna[j] === result[i].title){

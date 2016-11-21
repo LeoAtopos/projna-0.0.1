@@ -9,7 +9,7 @@ var UserSchema = new Schema({
 	password: {type: String, default: 123456},
 	createDate: {type: Date, default: Date.now},
 	projects: {type: [String], default: ['profile']},
-	projna: []
+	projna: {type: [String], default: ['profile']}
 })
 
 // var UserProjna = new Schema({
