@@ -1,0 +1,110 @@
+<html>
+<head>
+	<title>Projna</title>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="/images/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="/scripts/utility.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/mystyle.css"/>
+</head>
+<body>
+	<div class = "container-fluid">
+		<div id = "divH"></div>
+		<div id = "divC" class = "container">
+			<div id = "intro">
+				<a id = 'projTitle' href=""><h1>Profile</h1></a>
+				<h3>Well, it's the profle.</h3>
+				<button id = "stb" class = "btn btn-default">Need to Build</button>
+			</div>
+			<div id = "result">
+				<div id = "profile">
+					<label id = "whos">MY Profile</label>
+					<div id = "profile-tabel">
+						<!-- here make the profile tabel show up -->
+					</div>
+				</div>
+				<button id = "edit" class="btn btn-default">Edit</button>
+			</div>
+		</div>
+		<div id = "divF" ></div>
+	</div>
+</body>
+<script type="text/javascript">
+//load the page html
+	$("#divH").load("/pages/utility.html #divheader");
+	$("#divF").load("/pages/utility.html #divfooter");
+</script>
+<script type="text/javascript">
+//make the fake sample pageData for this building page
+
+
+function updatePage(){
+	pageData.build.id = "reseter@sina.com";
+	pageData.build.data.profile = "";
+	pageData.project.id = "profile";
+	updateProfileBuild();
+}
+function updateProfileBuild(){
+//ajax and update project bookseeds' pageData
+	var lookingID = getThePerson();
+	if(lookingID != ""){
+		pageData.person = lookingID;
+		$.ajax({
+			type:"GET",url:"/project/load/profile",data:{_id : pageData.person},
+			async:false,
+			success: function(msg){
+				pageData.build.data.profile = msg.project.data.profile;
+				pageData.personName = msg.nickname;
+			},
+			error: function(msg){alert("somethin xiaoyue!");}
+		});		
+	}
+}
+
+function renderPage(){
+	renderProfileBuild();
+}
+
+function renderProfileBuild(){
+//render bookseeds page with pageData
+	renderProjnaName(pageData.personName);
+
+	if(pageData.login === "visitor"){
+		$("#stb").attr('onclick',"location.href='/user/login'");
+	}else {
+		var h = '/project/'+pageData.project.id+'/building/'+pageData.login;
+		$("#stb").attr('onclick',"location.href='"+h+"'");
+	}
+
+	var profile = pageData.build.data.profile;
+
+	$("#whos").text(pageData.personName + "'s Profile");
+	// here show the profle out. $("#content").text(profile);????????????????????????????????______________
+
+	if(pageData.login != "visitor" && pageData.login === pageData.person)
+		$("#edit").show();
+	else $("#edit").hide();
+}
+
+//handle input
+$("#edit").on("click",function(event){
+	window.location.href = '/project/'+pageData.project.id+'/building/'+pageData.login;
+});
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
