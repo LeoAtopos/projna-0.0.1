@@ -112,12 +112,12 @@ function submitProfile(){
 	var index = str.lastIndexOf("\\"); 
 	var pic = str.substring(index + 1, str.length);
 	pf.pic = pic.substring(0, pic.lastIndexOf("."));
-	//need to find a way to upload the real pic file?????????????______________
+	//need to find a way to upload the real pic file. done but no server running for it, should do the server part.?????????????______________
 	if(pf.email != ""){
 		$.ajax({
 			type : "POST",
 			url : "/project/edit/addProfile",
-			data: {profile: pf},async:true,
+			data: {profile: pf, uploadImg : $('#file').files[0]},async:true,
 			success : function(msg){
 				window.location.href='/project/profile/build/'+pageData.login;
 			},
