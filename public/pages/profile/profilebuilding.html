@@ -32,7 +32,7 @@
 									<td><input id = "email"  type="text" class="form-control" placeholder = "gz@qq.com"></td>
 								</tr>
 								<tr>
-									<td>selfie</td>
+									<td>Selfie</td>
 									<td><img id = "pic" class="img-circle" src=""></td>
 								</tr>
 							</tbody>
@@ -107,7 +107,7 @@ function submitProfile(){
 	var pic = str.substring(index + 1, str.length);
 	pf.pic = pic.substring(0, pic.lastIndexOf("."));
 	//here get profile data????????????????????????????????______________
-	if(pf != ""){
+	if(pf.email != ""){
 		$.ajax({
 			type : "POST",
 			url : "/project/edit/addProfile",
