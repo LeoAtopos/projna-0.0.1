@@ -57,7 +57,7 @@
 </script>
 <script type="text/javascript">
 //make the fake sample pageData for this building page
-
+var picFile;// = new file();
 
 function updatePage(){
 	pageData.build.id = "reseter@sina.com";
@@ -117,7 +117,7 @@ function submitProfile(){
 		$.ajax({
 			type : "POST",
 			url : "/project/edit/addProfile",
-			data: {profile: pf, uploadImg : $('#file').files[0]},async:true,
+			data: {profile: pf, uploadImg : picFile},async:true,//it's wrong here ???????????????_____________________
 			success : function(msg){
 				window.location.href='/project/profile/build/'+pageData.login;
 			},
@@ -140,6 +140,7 @@ function filePreview(input){
 		var reader = new FileReader();
 		reader.onload = function(e){
 			$("#pic").attr('src',e.target.result);
+			picFile = e.target.file;
 		}
 		reader.readAsDataURL(input.files[0]);
 	}
