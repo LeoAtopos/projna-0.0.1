@@ -34,8 +34,10 @@
 								<tr>
 									<td>Selfie</td>
 									<td>
-										<img id = "pic" class="img-circle" src="">
-										<button id = "choosefile" class="btn btn-default">Choose File</button>
+										<img id = "pic" class="img-circle psImg" src="">
+										<form method = "post" enctype = "multipart/form-data" id = "uploadForm">
+											<input type = "file" name = "file" id = "file">
+										</form>
 									</td>
 								</tr>
 							</tbody>
@@ -105,11 +107,12 @@ function submitProfile(){
 	};
 	pf.nickname = $("#nickname").val();
 	pf.email = $("#email").val();
-	var str = $("#pic").attr("src");
-	var index = str.lastIndexOf("\/"); 
+	var str = $("#file").val();
+	alert(str);
+	var index = str.lastIndexOf("\\"); 
 	var pic = str.substring(index + 1, str.length);
 	pf.pic = pic.substring(0, pic.lastIndexOf("."));
-	//here get profile data????????????????????????????????______________
+	//need to find a way to upload the real pic file?????????????______________
 	if(pf.email != ""){
 		$.ajax({
 			type : "POST",
@@ -126,6 +129,20 @@ function submitProfile(){
 		alert("Hey! It's empty!");
 	}
 	
+}
+
+$('#file').change(function(){
+	filePreview(this);
+});
+
+function filePreview(input){
+	if(input.files && input.files[0]){
+		var reader = new FileReader();
+		reader.onload = function(e){
+			$("#pic").attr('src',e.target.result);
+		}
+		reader.readAsDataURL(input.files[0]);
+	}
 }
 </script>
 </html>
