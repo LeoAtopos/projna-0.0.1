@@ -1,6 +1,12 @@
 exports.setReqUrl = function (app) {
 	var user = require('./controllers/userController');
 	var project = require('./controllers/projectController');
+
+	var multer = require('multer');
+	var uploader = multer({dest: 'uploads/', filename: function(req, file, cb) {
+		var fileFormat = (file.originalname).split(".");
+		cb(null, file.fieldname + '-' + Date.now() + '.' + fileFormat[fileFormat.length - 1]);
+	}});
 	// var path = require('path');
 
 // Get Home page
@@ -162,4 +168,8 @@ exports.setReqUrl = function (app) {
 	app.get('/admin/testWebSession', user.admin.testWebSession);
 
 	app.get('/admin/addProjToMe', user.admin.addProjToMe);
+
+	app.post('/upload/image', uploader.any(), function (req, res) {
+		console.log ("I get something uploaded which is " + req.file + " files' body were " + req.body);
+	});
 }
