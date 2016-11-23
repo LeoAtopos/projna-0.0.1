@@ -35,7 +35,7 @@
 									<td>Selfie</td>
 									<td>
 										<img id = "pic" class="img-circle psImg" src="">
-										<form method = "post" enctype = "multipart/form-data" id = "uploadForm">
+										<form action = "/upload/image" method = "post" enctype = "multipart/form-data" id = "uploadForm">
 											<input type = "file" name = "file" id = "file">
 										</form>
 									</td>
@@ -57,7 +57,6 @@
 </script>
 <script type="text/javascript">
 //make the fake sample pageData for this building page
-var picFile;// = new file();
 
 function updatePage(){
 	pageData.build.id = "reseter@sina.com";
@@ -117,9 +116,12 @@ function submitProfile(){
 		$.ajax({
 			type : "POST",
 			url : "/project/edit/addProfile",
-			data: {profile: pf, uploadImg : picFile},async:true,//it's wrong here ???????????????_____________________
+			data: {profile: pf},async:true,//it's wrong here ???????????????_____________________
 			success : function(msg){
+				//maybe we should upload image file here, just save it into Images folder. don't need to link it with something, the image file name already done that.
+				$("#uploadForm").submit();
 				window.location.href='/project/profile/build/'+pageData.login;
+
 			},
 			error : function(msg){
 				alert("something xiaoxue!");
