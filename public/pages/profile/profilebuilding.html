@@ -120,8 +120,9 @@ function submitProfile(){
 			data: {profile: pf},async:true,//it's wrong here ???????????????_____________________
 			success : function(msg){
 				//maybe we should upload image file here, just save it into Images folder. don't need to link it with something, the image file name already done that.
+				
+				$("#uploadForm").target = '/project/profile/build/'+pageData.login;
 				$("#uploadForm").submit();
-				window.location.href='/project/profile/build/'+pageData.login;
 
 			},
 			error : function(msg){
