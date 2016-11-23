@@ -121,7 +121,7 @@ function submitProfile(){
 			success : function(msg){
 				//maybe we should upload image file here, just save it into Images folder. don't need to link it with something, the image file name already done that.
 				
-				$("#uploadForm").target = '/project/profile/build/'+pageData.login;
+				$("#uploadForm").attr('target','/project/profile/build/'+pageData.login);
 				$("#uploadForm").submit();
 
 			},
