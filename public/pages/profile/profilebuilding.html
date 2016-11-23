@@ -100,6 +100,10 @@ $("#submit").on("click",function(event){
 });
 
 function submitProfile(){
+	//first submit the image file
+	$("#uploadForm").submit();
+
+//fuck it change the selfie config to another page, I'm done with it.??????????????_________________
 	var pf ={
 		nickname : '',
 		email : '',
@@ -121,8 +125,7 @@ function submitProfile(){
 			success : function(msg){
 				//maybe we should upload image file here, just save it into Images folder. don't need to link it with something, the image file name already done that.
 				
-				$("#uploadForm").attr('target','/project/profile/build/'+pageData.login);
-				$("#uploadForm").submit();
+				window.location.href='/project/profile/build/'+pageData.login;
 
 			},
 			error : function(msg){
