@@ -170,6 +170,8 @@ exports.setReqUrl = function (app) {
 	app.get('/admin/addProjToMe', user.admin.addProjToMe);
 
 	app.post('/upload/image', uploader.any(), function (req, res) {
-		console.log ("I get something uploaded which is " + req.file + " files' body were " + req.body);
+		// console.log ("I get something uploaded which is " + req.file + " files' body were " + req.body);
+		// console.log (req.session);
+		res.redirect('/project/profile/build/'+req.session.user._id);
 	});
 }
