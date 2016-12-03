@@ -191,6 +191,21 @@ exports.getProjna = function (req, res) {
 	// 	}
 	// })
 
+exports.uploadPic = function (req, res) {
+	console.log("this is   "+req.file);
+	User.findOne({'_id':req.session.user._id},function (err, result){
+		if(err){}
+		if(result){
+			result.pic = req.file.filename;
+			result.save (function (err) {
+				if (err) {resData.error.push(err)};
+
+				res.redirect('/project/profile/build/'+req.session.user._id);
+			})
+		}
+	});
+	
+}
 
 exports.admin = function (req, res) {
 

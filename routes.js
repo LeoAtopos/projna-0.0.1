@@ -3,10 +3,25 @@ exports.setReqUrl = function (app) {
 	var project = require('./controllers/projectController');
 
 	var multer = require('multer');
-	var uploader = multer({dest: 'uploads/', filename: function(req, file, cb) {
-		var fileFormat = (file.originalname).split(".");
-		cb(null, file.fieldname + '-' + Date.now() + '.' + fileFormat[fileFormat.length - 1]);
-	}});
+	// var uploader = multer({dest: 'public/images/', filename: function(req, file, cb) {
+	// 	// var fileFormat = (file.originalname).split(".");
+	// 	// cb(null, file.fieldname + '-' + Date.now() + '.' + fileFormat[fileFormat.length - 1]);
+	// }});
+
+	var storage = multer.diskStorage({
+		destination: function (req, file, cb) {
+	    	cb(null, 'public/images/')
+		},
+  		filename: function (req, file, cb) {
+  			console.log(file.minetype);
+  			// var ft = file.minetype;
+  			// ft = ft.substring(ft.lastIndexOf('.')+1,ft.length);
+	    	cb(null, file.fieldname + '-' + Date.now());
+	  	}
+	})
+ 
+var uploader = multer({ storage: storage })
+// var uploader = multer({dest: 'public/images/'});
 	// var path = require('path');
 
 // Get Home page
@@ -169,9 +184,5 @@ exports.setReqUrl = function (app) {
 
 	app.get('/admin/addProjToMe', user.admin.addProjToMe);
 
-	app.post('/upload/image', uploader.any(), function (req, res) {
-		// console.log ("I get something uploaded which is " + req.file + " files' body were " + req.body);
-		// console.log (req.session);
-		res.redirect('/project/profile/build/'+req.session.user._id);
-	});
+	app.post('/upload/image', uploader.single("file"), user.uploadPic);
 }

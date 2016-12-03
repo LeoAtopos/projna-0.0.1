@@ -90,7 +90,7 @@ function renderProfileBuilding(){
 	$("#profile").find("#whos").val(pageData.login + "'s Profile");
 	$("#nickname").text(profile.nickname);
 	$("#email").attr("placeholder", profile.email);
-	$("#pic").attr("src",'/images/' + profile.pic + '.jpg');
+	$("#pic").attr("src",'/images/' + profile.pic);
 
 }
 
@@ -110,7 +110,11 @@ function submitProfile(){
 		pic : ''
 	};
 	pf.nickname = $("#nickname").val();
-	pf.email = $("#email").val();
+	if($("#email").val()){
+		pf.email = $("#email").val();
+	}else{
+		pf.email = $("#email").attr('placeholder');
+	}
 	var str = $("#file").val();
 	alert(str);
 	var index = str.lastIndexOf("\\"); 

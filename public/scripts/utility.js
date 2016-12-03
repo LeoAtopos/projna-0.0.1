@@ -107,7 +107,7 @@ function renderPerson(p){
 					"</div>"+
 				"</div>");
 	fp.find("h3").text(p.nickname);
-	fp.find("img").attr("src",'/images/'+p.pic+'.jpg');
+	fp.find("img").attr("src",'/images/'+p.pic);
 	fp.find("a").attr("href",'/project/'+pageData.project.id+'/build/'+p.id);
 
 	return fp;
