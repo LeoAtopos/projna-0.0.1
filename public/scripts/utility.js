@@ -19,6 +19,10 @@ pageData = {
 		id : "sample",
 		data : {bslist:[{age:7,bookname:"love you"},{age:8,bookname:"go to build"}]}
 	}
+	searchResult : {
+		personList :[{id:"reseter@sina.com",name:"reseter@sina.com",pic:"per1-pic"}],
+		projectList :[{id : "bookseeds", name : "Book Seeds", pic : "Pro1-pic", state : "intro", order : 2}]
+	}
 }
 
 OPG = {
@@ -41,6 +45,10 @@ OPG = {
 	build : {
 		id : "sample",
 		data : {bslist:[{age:7,bookname:"love you"},{age:8,bookname:"go to build"}]}
+	}
+	searchResult : {
+		personList :[{id:"reseter@sina.com",name:"reseter@sina.com",pic:"per1-pic"}],
+		projectList :[{id : "bookseeds", name : "Book Seeds", pic : "Pro1-pic", state : "intro", order : 2}]
 	}
 }
 
