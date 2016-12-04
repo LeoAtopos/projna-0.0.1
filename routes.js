@@ -1,6 +1,7 @@
 exports.setReqUrl = function (app) {
 	var user = require('./controllers/userController');
 	var project = require('./controllers/projectController');
+	var search = require('./controllers/searchController');
 
 	var multer = require('multer');
 	// var uploader = multer({dest: 'public/images/', filename: function(req, file, cb) {
@@ -26,7 +27,7 @@ var uploader = multer({ storage: storage })
 
 // Get Home page
 	app.get('/', function(req, res) {
-		console.log ('home page send');
+		console.log ('home page send____');
     	res.header("Content-Type", "text/html");
 		res.sendFile (__dirname+"/public/pages/index.html");
 	});
@@ -185,4 +186,25 @@ var uploader = multer({ storage: storage })
 	app.get('/admin/addProjToMe', user.admin.addProjToMe);
 
 	app.post('/upload/image', uploader.single("file"), user.uploadPic);
+
+	// app.post('/user/search', search.searchPage);
+
+	app.get('/search/:text', function (req, res){
+		res.header("Content-Type", "text/html");
+		res.sendFile (__dirname+"/public/pages/search.html");
+	});
+
+	app.post('/search/:text', search.searchSTH);
 }
+
+
+
+
+
+
+
+
+
+
+
+

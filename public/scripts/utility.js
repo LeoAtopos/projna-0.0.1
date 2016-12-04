@@ -46,6 +46,13 @@ OPG = {
 
 $(document).ready(checkLogIn);
 function checkLogIn(){
+
+	$("#searchForm").submit(function(){
+		// alert("hahaaaa");
+		window.location.href="/search/" + $("#searchText").val();
+		return false;
+	});
+	
 	var userInfo;
 	$.ajax({
 		// type:"GET",url:"http://172.16.40.36:8081/user/checkSession",data:{},
