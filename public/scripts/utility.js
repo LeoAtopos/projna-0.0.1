@@ -1,6 +1,4 @@
-pageData = 
-
-OPG = {
+var OPG = {
 	login : "_id",//"projna"
 	loginName : "Gal Gal",
 	location : "projna",//"projna","project","featrue","build","building"
@@ -27,7 +25,7 @@ OPG = {
 	}
 }
 
-pageData = OPG;
+var pageData = $.extend(true,{},OPG);//deep clone OPG in to pageData;
 
 $(document).ready(checkLogIn);
 function checkLogIn(){
@@ -57,7 +55,7 @@ function checkLogIn(){
 				pageData.personName = userInfo.session.nickname;
 			}
 			else{
-				pageData = OPG;
+				pageData = $.extend(true,{},OPG);
 				$("#login").show();
 				$("#beProjna").show();
 				$("#projnaName").hide();
