@@ -1,29 +1,4 @@
-pageData = {
-	login : "_id",//"projna"
-	loginName : "Gal Gal",
-	location : "projna",//"projna","project","featrue","build","building"
-	person : "_id",//"person"
-	personName : "",
-	projna : [
-		{id : "bookseeds", name : "Book Seeds", pic : "Pro1-pic", state : "intro", order : 2},//build,
-		{id : "epitaph", name : "Epitaph", pic : "Pro2-pic", state : "intro", order : 3}
-	],
-	project : {
-		id : "bookseeds",//"project"
-		data : {
-			featurePage : [],
-			featurePerson : [{id:"reseter@sina.com",name:"reseter@sina.com",pic:"per1-pic"},{id:"gz@qq.com",name:"gz@qq.com",pic:"per2-pic"}],
-		}
-	},
-	build : {
-		id : "sample",
-		data : {bslist:[{age:7,bookname:"love you"},{age:8,bookname:"go to build"}]}
-	}
-	searchResult : {
-		personList :[{id:"reseter@sina.com",name:"reseter@sina.com",pic:"per1-pic"}],
-		projectList :[{id : "bookseeds", name : "Book Seeds", pic : "Pro1-pic", state : "intro", order : 2}]
-	}
-}
+pageData = 
 
 OPG = {
 	login : "_id",//"projna"
@@ -45,12 +20,14 @@ OPG = {
 	build : {
 		id : "sample",
 		data : {bslist:[{age:7,bookname:"love you"},{age:8,bookname:"go to build"}]}
-	}
+	},
 	searchResult : {
 		personList :[{id:"reseter@sina.com",name:"reseter@sina.com",pic:"per1-pic"}],
 		projectList :[{id : "bookseeds", name : "Book Seeds", pic : "Pro1-pic", state : "intro", order : 2}]
 	}
 }
+
+pageData = OPG;
 
 $(document).ready(checkLogIn);
 function checkLogIn(){
