@@ -20,7 +20,7 @@ var OPG = {
 		data : {bslist:[{age:7,bookname:"love you"},{age:8,bookname:"go to build"}]}
 	},
 	searchResult : {
-		personList :[{id:"reseter@sina.com",name:"reseter@sina.com",pic:"per1-pic"}],
+		personList :[{id:"reseter@sina.com",nickname:"reseter@sina.com",pic:"per1-pic.jpg"}],
 		projectList :[{id : "bookseeds", name : "Book Seeds", pic : "Pro1-pic", state : "intro", order : 2}]
 	}
 }
@@ -106,12 +106,12 @@ function renderFeaturePerson(){
 	var fp = pageData.project.data.featurePerson;
 	if(fp.length > 0){
 		fp.forEach(function(p){
-			$("#feature").append(renderPerson(p));
+			$("#feature").append(renderPerson(p,'fp'));
 		});
 	}
 }
 
-function renderPerson(p){
+function renderPerson(p, type){
 	var fp = $("<div>"+
 					"<div class = 'col-xs-4 col-sm-3 col-md-2'>"+
 						"<a href = '#' class='thumbnail'>"+
@@ -122,7 +122,10 @@ function renderPerson(p){
 				"</div>");
 	fp.find("h3").text(p.nickname);
 	fp.find("img").attr("src",'/images/'+p.pic);
-	fp.find("a").attr("href",'/project/'+pageData.project.id+'/build/'+p.id);
+	if(type === 'fp')
+		fp.find("a").attr("href",'/project/'+pageData.project.id+'/build/'+p.id);
+	if(type === 'sp')
+		fp.find("a").attr("href",'/'+p.id);
 
 	return fp;
 }

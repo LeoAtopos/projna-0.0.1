@@ -10,6 +10,26 @@ var Proj = projModel.Project;
 
 exports.searchSTH = function (req, res) {
 	console.log ("user => search");
-	res.send ("hahah");
+	var resData = {
+		personList:[]
+	}
+	var rs = new RegExp(req.body.text);
+	// console.log (rs);
+	User.find({nickname : rs},function (err,result){
+		if(err){}
+		console.log (result);
+		if(result){
+			for(var i = 0; i<result.length;i++){
+				var p = {};
+				p.id = result[i]._id;
+				p.nickname = result[i].nickname;
+				p.pic = result[i].pic;
+				resData.personList.push(p);
+
+			}
+			res.send (resData);
+		}
+	});
+	
 }
 

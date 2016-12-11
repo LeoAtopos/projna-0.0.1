@@ -194,7 +194,7 @@ var uploader = multer({ storage: storage })
 		res.sendFile (__dirname+"/public/pages/search.html");
 	});
 
-	app.post('/search/:text', search.searchSTH);
+	app.post('/search', search.searchSTH);
 }
 
 

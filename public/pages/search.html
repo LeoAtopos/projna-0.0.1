@@ -13,7 +13,9 @@
 <body>
 	<div class = "container-fluid">
 		<div id = "divH"></div>
-		<div id = "divC">aha, it's search</div>
+		<div id = "divC">
+			<div id = 'divSearch' class = 'container' align = 'center'></div>
+		</div>
 		<div id = "divF"></div>
 	</div>
 </body>
@@ -27,7 +29,19 @@ function updatePage(){
 	updateSearch();
 }
 function updateSearch(){
-
+	$.ajax({
+		type: "POST",
+		url:"/search",
+		async:false,
+		data:{text : getThePerson()},
+		success : function(msg){
+			pageData.searchResult.personList = msg.personList;
+		},
+		error : function(msg){
+			alert("something xiaoyue! for search person");
+			alert (JSON.stringify(msg));
+		}
+	});
 }
 
 function renderPage(){
@@ -35,12 +49,16 @@ function renderPage(){
 }
 
 function renderSearch(){
-
+	var sp = [];
+	sp = pageData.searchResult.personList;
+	if(sp.length>0){
+		sp.forEach(function(p){
+			$("#divSearch").append(renderPerson(p,'sp'));
+		});
+	}else{
+		$("#divSearch").append("<span>I find nothing</span>");
+	}
 }
 
-function sortProjects(a,b){
-	//new a projectlist, sort projectlist into it by inserting with order
-	return a.order - b.order;
-}
 </script>
 </html>
