@@ -77,7 +77,7 @@ function renderPage(){
 function renderProjna(){
 	//get the cover
 	var dc = $("#divC");
-	if (pageData.login === "visitor" && pageData.person == "") {
+	if (pageData.login === "visitor" && (pageData.person == "" || pageData.person == "_id")) {
 		$("#divcover").show();
 	}else{$("#divcover").hide();renderProjnaName(pageData.personName);};
 	//render the projna list
