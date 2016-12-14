@@ -88,8 +88,10 @@ function renderEpitaphBuild(){
 	$("#whos").text(pageData.personName + "'s Epitaph");
 	$("#content").text(epitaph);
 
-	if(pageData.login != "visitor" && pageData.login === pageData.person)
+	if(pageData.login != "visitor" && pageData.login === pageData.person){
 		$("#edit").show();
+		$("#stb").hide();
+	}
 	else $("#edit").hide();
 }
 

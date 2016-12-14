@@ -16,7 +16,7 @@
 		<div id = "divC" class = "container">
 			<div id = "intro">
 				<h1>Profile</h1>
-				<h3>Well, it's the profle.</h3>
+				<h3>Well, it's the profile.</h3>
 			</div>
 			<div>
 				<div id = "working">
@@ -116,7 +116,6 @@ function submitProfile(){
 		pf.email = $("#email").attr('placeholder');
 	}
 	var str = $("#file").val();
-	alert(str);
 	var index = str.lastIndexOf("\\"); 
 	var pic = str.substring(index + 1, str.length);
 	pf.pic = pic.substring(0, pic.lastIndexOf("."));

@@ -21,7 +21,7 @@ exports.setReqUrl = function (app) {
 	  	}
 	})
  
-var uploader = multer({ storage: storage })
+var uploader = multer({ storage: storage });
 // var uploader = multer({dest: 'public/images/'});
 	// var path = require('path');
 

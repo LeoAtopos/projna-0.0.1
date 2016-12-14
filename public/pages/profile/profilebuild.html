@@ -16,7 +16,7 @@
 		<div id = "divC" class = "container">
 			<div id = "intro">
 				<a id = 'projTitle' href=""><h1>Profile</h1></a>
-				<h3>Well, it's the profle.</h3>
+				<h3>Well, it's the profile.</h3>
 				<button id = "stb" class = "btn btn-default">Need to Build</button>
 			</div>
 			<div id = "result">
@@ -103,9 +103,10 @@ function renderProfileBuild(){
 	$("#pic").attr("src",'/images/' + profile.pic);
 	// here show the profle out. $("#content").text(profile);????????????????????????????????______________
 
-	if(pageData.login != "visitor" && pageData.login === pageData.person)
+	if(pageData.login != "visitor" && pageData.login === pageData.person){
 		$("#edit").show();
-	else $("#edit").hide();
+		$("#stb").hide();
+	}else $("#edit").hide();
 }
 
 //handle input
