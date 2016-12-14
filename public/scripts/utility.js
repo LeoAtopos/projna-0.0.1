@@ -32,7 +32,10 @@ function checkLogIn(){
 
 	$("#searchForm").submit(function(){
 		// alert("hahaaaa");
-		window.location.href="/search/" + $("#searchText").val();
+		if($("#searchText").val() == "")
+			return false;
+		else
+			window.location.href="/search/" + $("#searchText").val();
 		return false;
 	});
 	
