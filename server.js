@@ -85,7 +85,7 @@ Proj.findOne({'title': 'profile'}, function (err, result) {
 		var proj = new Proj();
 		proj.title = 'profile';
 		proj.name = 'Profile';
-		proj.pic = 'Pro2-pic';
+		proj.pic = 'Pro-pic';
 		proj.order = 1;
 		proj.save(function (err, userInfo) {
 			if (err) {};
