@@ -45,23 +45,27 @@ exports.loadbookseeds = function (req, res) {
 
 //need to work something ,for none-login user to visitor some one's bookseeds directly by url
 	User.findOne({'_id':req.query._id},function (err, result){
-		resData.nickname = result.nickname;
-		Bookseeds.find({'author': req.query._id}, function (err, result) {
-			// console.log ("query id? " + req.query._id);
-			if (err) {};
-			if (result) {
-				// console.log("bslist of mine "+result);
-				result.forEach (function(bs) {
-				// 	console.log ("bs is "+bs);
-					resData.project.data.bslist.push (bs);
-				// 	// resData.project.data.bslist[resData.project.data.bslist.length] = bs;
-				})
-				// resData.project.data.bslist = result;
-				// res.send (resData);
-			}
-			else {console.log ('project doesnot exist with author ' + req.session.user.email);}
-			res.send (resData);
-		});
+		if(err){}
+		if(result){
+			resData.nickname = result.nickname;
+			Bookseeds.find({'author': req.query._id}, function (err, result) {
+				// console.log ("query id? " + req.query._id);
+				if (err) {};
+				if (result) {
+					// console.log("bslist of mine "+result);
+					result.forEach (function(bs) {
+					// 	console.log ("bs is "+bs);
+						resData.project.data.bslist.push (bs);
+					// 	// resData.project.data.bslist[resData.project.data.bslist.length] = bs;
+					})
+					// resData.project.data.bslist = result;
+					// res.send (resData);
+				}
+				else {console.log ('project doesnot exist with author ' + req.session.user.email);}
+				res.send (resData);
+			});
+		}else res.send("404");
+		
 	});
 
 	// Bookseeds.find({'author': req.query._id}, function (err, result) {

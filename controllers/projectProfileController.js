@@ -38,17 +38,20 @@ exports.loadprofile = function (req, res) {
 	console.log ("profile author is " + req.query._id);
 
 	User.findOne({'_id':req.query._id},function (err, result){
-		resData.nickname = result.nickname;
-		var pf = {
-					nickname : '',
-					email : '',
-					pic : ''
-				};
-		pf.nickname = result.nickname;
-		pf.email = result.email;
-		pf.pic = result.pic;
-		resData.project.data.profile = pf;
-		res.send (resData);
+		if(err){}
+		if(result){
+			resData.nickname = result.nickname;
+			var pf = {
+						nickname : '',
+						email : '',
+						pic : ''
+					};
+			pf.nickname = result.nickname;
+			pf.email = result.email;
+			pf.pic = result.pic;
+			resData.project.data.profile = pf;
+			res.send (resData);
+		}else res.send("404");
 	});	
 }
 

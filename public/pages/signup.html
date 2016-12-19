@@ -79,7 +79,10 @@
 			data:params,
 			success: function(msg){
 				// alert(JSON.stringify(msg));
-				window.location.href="/";
+				if(msg.success ==='user already exist'){
+					alert('user already exist');
+				}else
+				 window.location.href="/";
 			},
 			error : function(msg){alert(JSON.stringify(msg));} 
 		});

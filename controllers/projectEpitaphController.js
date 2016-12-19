@@ -36,17 +36,20 @@ exports.loadepitaph = function (req, res) {
 	console.log ("epitaph author is " + req.query._id);
 
 	User.findOne({'_id':req.query._id},function (err, result){
-		resData.nickname = result.nickname;
-		Epitaph.find({'author': req.query._id}, function (err, result) {
-			if (err) {};
-			if (result) {
-				console.log(result);
-				if (result.length > 0) {resData.project.data.epitaph=result[0].epitaph;}
-				// 	// resData.project.data.bslist[resData.project.data.bslist.length] = bs;
-			}
-			else {console.log ('project doesnot exist with author ' + req.session.user.email);}
-			res.send (resData);
-		})
+		if(err){}
+		if(result){
+			resData.nickname = result.nickname;
+			Epitaph.find({'author': req.query._id}, function (err, result) {
+				if (err) {};
+				if (result) {
+					console.log(result);
+					if (result.length > 0) {resData.project.data.epitaph=result[0].epitaph;}
+					// 	// resData.project.data.bslist[resData.project.data.bslist.length] = bs;
+				}
+				else {console.log ('project doesnot exist with author ' + req.session.user.email);}
+				res.send (resData);
+			})
+		}else res.send("404");
 	});	
 }
 
