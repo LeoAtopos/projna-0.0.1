@@ -2,9 +2,18 @@ body{
 	font: Arial;
 }
 .btn-default{
-	/*background-color: #e6461a;
-	color: #e6461a;*/
+	background-color: #e6461a;
+	color: #FFF;
 	/*border: #e6461a;*/
+	border-color: #e6461a;
+}
+.btn-default:hover{
+	background-color: #e6461a;
+	color: #FFF;
+	/*border: #e6461a;*/
+	border-color: #e6461a;
+
+	opacity: 0.9;
 }
 .container-fluid{
 	margin: 0px;
