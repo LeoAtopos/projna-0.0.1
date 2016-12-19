@@ -1,7 +1,11 @@
 body{
 	font: Arial;
 }
-
+.btn-default{
+	/*background-color: #e6461a;
+	color: #e6461a;*/
+	/*border: #e6461a;*/
+}
 .container-fluid{
 	margin: 0px;
 	border-radius: 0px;
