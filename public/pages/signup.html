@@ -48,11 +48,15 @@
 
 	function isOKInput(){
 		if(email == "" || password == "" || repassword == "" || nickname == ""){
-			alert("Something is empty, why? Baby");
+			alert("Something is empty, Mmmm...interesting!");
 			return false;
 		}
 		if(password != repassword){
-			alert("Password not the same");
+			alert("Password not the same.");
+			return false;
+		}
+		if(password.length < 6){
+			alert("Password too short, 6 letters at least.");
 			return false;
 		}
 		if(!email.match(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]{2,3}){1,2})$/)){
