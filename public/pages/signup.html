@@ -26,16 +26,17 @@
 	var email;
 	var password;
 	var repassword;
-	$(document).ready(function(){
-		$("#signUpButton").click(signUpButtonClick);
-		$(".regform").keydown(function(e){
-			var e = e || event,
-			keycode = e.which || e.keyCode;
-			if (keycode==13) {
-				$("#signUpButton").trigger("click");
-			}
-		});
-	});
+	// $(document).ready(function(){
+	// 	$("#signUpButton").click(signUpButtonClick);
+	// 	$(".regform").keydown(function(e){
+	// 		var e = e || event,
+	// 		keycode = e.which || e.keyCode;
+	// 		if (keycode==13) {
+	// 			$("#signUpButton").trigger("click");
+	// 		}
+	// 	});
+	// });
+
 	function signUpButtonClick(){
 		email = $("#email").val();
 		nickname = $("#nickname").val();
@@ -88,7 +89,16 @@
 		});
 	}
 
-	function updatePage(){}
+	function updatePage(){
+		$("#signUpButton").click(signUpButtonClick);
+		$(".regform").keydown(function(e){
+			var e = e || event,
+			keycode = e.which || e.keyCode;
+			if (keycode==13) {
+				$("#signUpButton").trigger("click");
+			}
+		});
+	}
 	function renderPage(){}
 
 </script>

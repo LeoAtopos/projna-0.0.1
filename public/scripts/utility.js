@@ -70,6 +70,7 @@ function checkLogIn(){
 			// });
 		}
 	});
+	
 	updatePage();
 	renderPage();
 }

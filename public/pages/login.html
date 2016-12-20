@@ -25,16 +25,6 @@
 <script>
 	var email;
 	var password;
-	$(document).ready(function(){
-		$("#submitButton").click(submitButtonClick);
-		$(".regform").keydown(function(e){
-			var e = e || event,
-			keycode = e.which || e.keyCode;
-			if (keycode==13) {
-				$("#submitButton").trigger("click");
-			}
-		});
-	});
 	function submitButtonClick(){
 		email = $("#email").val();
 		password = $("#password").val();
@@ -74,7 +64,16 @@
 		});
 	}
 
-	function updatePage(){}
+	function updatePage(){
+		$("#submitButton").click(submitButtonClick);
+		$(".regform").keydown(function(e){
+			var e = e || event,
+			keycode = e.which || e.keyCode;
+			if (keycode==13) {
+				$("#submitButton").trigger("click");
+			}
+		});
+	}
 	function renderPage(){}
 
 </script>
