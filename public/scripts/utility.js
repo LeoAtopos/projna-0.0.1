@@ -1,3 +1,5 @@
+
+
 var OPG = {
 	login : "_id",//"projna"
 	loginName : "Gal Gal",

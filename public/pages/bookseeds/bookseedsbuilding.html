@@ -38,6 +38,9 @@
 </body>
 <script type="text/javascript">
 //load the page html
+$.ajaxSetup({
+	  async: false
+	  });
 	$("#divH").load("/pages/utility.html #divheader");
 	$("#divF").load("/pages/utility.html #divfooter");
 </script>

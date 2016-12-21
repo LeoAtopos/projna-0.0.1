@@ -28,6 +28,9 @@
 	</div>
 </body>
 <script type="text/javascript">
+$.ajaxSetup({
+	  async: false
+	  });
 	$("#divH").load("pages/utility.html #divheader");
 	$("#divF").load("pages/utility.html #divfooter");
 </script>

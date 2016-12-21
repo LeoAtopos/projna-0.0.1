@@ -18,6 +18,9 @@
 	</div>
 </body>
 <script type="text/javascript">
+$.ajaxSetup({
+	  async: false
+	  });
 	$("#divH").load("../pages/utility.html #divheader");
 	$("#divC").load("../pages/utility.html #divmyprojects", function(){
 		$("#divmyprojects").load("../pages/utility.html #pjpanel", function(){
