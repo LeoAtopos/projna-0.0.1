@@ -206,6 +206,9 @@ exports.uploadPic = function (req, res) {
 			}
 		});
 	}
+	else {
+		res.redirect('/project/profile/build/'+req.session.user._id);
+	}
 	
 	
 }
