@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 var UserSchema = new Schema({
 	email: String,
 	nickname: {type: String, default: 'projnare'},
-	pic:{type:String, default: 'per1-pic'},
+	pic:{type:String, default: 'per1-pic.jpg'},
 	password: {type: String, default: 123456},
 	createDate: {type: Date, default: Date.now},
 	projects: {type: [String], default: ['profile']},
