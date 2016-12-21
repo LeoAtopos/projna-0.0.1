@@ -192,7 +192,7 @@ exports.getProjna = function (req, res) {
 	// })
 
 exports.uploadPic = function (req, res) {
-	if(req.file){
+	if(typeof req.file != 'undefined'){
 		console.log("this is   "+req.file);
 		User.findOne({'_id':req.session.user._id},function (err, result){
 			if(err){}
