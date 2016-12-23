@@ -48,7 +48,7 @@ function checkLogIn(){
 		success: function(msg){
 			alert (msg.session);
 			userInfo = msg;
-			alert (userInfo.session);
+			alert (JSON.stringify(userInfo.session));
 			if(userInfo.status === "user"){
 				$("#login").hide();
 				$("#beProjna").hide();
