@@ -101,7 +101,10 @@ exports.checkSession = function (req, res) {
 		res.json ({status: 'visiter'})
 	} else {
 		// console.log (req.session);
-		res.json ({status: 'user', session: req.session.user});
+		var sessionTmp = req.session.user;
+		sessionTmp.password = "";
+		sessionTmp.email = "";
+		res.json ({status: 'user', session: sessionTmp});
 	}
 }
 
