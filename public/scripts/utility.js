@@ -46,8 +46,9 @@ function checkLogIn(){
 		// type:"GET",url:"http://172.16.40.36:8081/user/checkSession",data:{},
 		type:"GET",url:"/user/checkSession",data:{},async:false,
 		success: function(msg){
-			alert (msg);
+			alert (msg.session);
 			userInfo = msg;
+			alert (userInfo.session);
 			if(userInfo.status === "user"){
 				$("#login").hide();
 				$("#beProjna").hide();
