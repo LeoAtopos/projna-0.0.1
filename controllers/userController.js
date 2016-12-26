@@ -5,9 +5,11 @@ var util = require ('../utility');
 var path = require('path');
 var model = require('../Schemas/userSchema');
 var projModel = require('../Schemas/projectSchema');
+var visitorCounterModel = require('../Schemas/visitorCounterSchema');
 
 var User = model.User;
 var Proj = projModel.Project;
+var VC = visitorCounterModel.VisitorCounter;
 
 exports.register = function (req, res) {
 	console.log ("user => register");
@@ -101,6 +103,27 @@ exports.checkSession = function (req, res) {
 	// console.log ("user => checkSession");
 	// console.log (req.session);
 	if (!req.session.user) {
+		VC.findOne({'counterName': "VisitorCounter"},function (err, result){
+			if (err) {util.getLogs("Not Found the Counter");}
+			else {
+				if (!result) {
+					var result = new VC();
+				}
+				else {
+					result.count++;
+				}
+				// var vc = new VC ();
+				// vc.counterName = result.counterName;
+				// vc.createDate = result.createDate;
+				result.save(function(err, info){
+					if (err) {util.getLogs("vc not saved!");}
+					else {
+						util.getLogs ("One more visitor! Yeah! -- " + result.count);
+					}
+				});
+			}
+		})
+
 		res.json ({status: 'visiter'})
 	} else {
 		// console.log (req.session);
