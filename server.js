@@ -3,6 +3,7 @@ var session = require('express-session');
 var mongoose = require('mongoose');
 var routes = require('./routes');
 var cookieParser = require('cookie-parser');
+var util = require('./utility')
 // var fs= require('fs');
 var path = require('path');
 var url = require('url');
@@ -142,9 +143,10 @@ User.findOne({}, function (err, result) {
 	}
 })
 
-
+util.getLogs (PORT);
 var server = app.listen(PORT);
 console.log ("Running server on :"+PORT);
+
 
 
 

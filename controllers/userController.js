@@ -1,5 +1,7 @@
 "use strict";
 
+var util = require ('../utility');
+
 var path = require('path');
 var model = require('../Schemas/userSchema');
 var projModel = require('../Schemas/projectSchema');
@@ -95,7 +97,8 @@ exports.logout = function (req, res) {
 }
 
 exports.checkSession = function (req, res) {
-	console.log ("user => checkSession");
+	util.getLogs ("user => checkSession");
+	// console.log ("user => checkSession");
 	// console.log (req.session);
 	if (!req.session.user) {
 		res.json ({status: 'visiter'})
